@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siddarth Boggarapu — Systems Engineer</title>
+  <meta name="description" content="Siddarth Boggarapu — building systems that operate under uncertainty across finance, healthcare, legal AI, and physics simulation." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+<body>
+
+  <!-- Background particle canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">SB<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#systems">Systems</a></li>
+        <li><a href="#simulation">Simulation</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="mesh-1"></div>
+      <div class="mesh-2"></div>
+      <div class="mesh-3"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-name reveal">Siddarth Boggarapu</h1>
+      <p class="hero-tagline reveal" data-delay="1">Building systems that operate under uncertainty</p>
+      <p class="hero-subtitle reveal" data-delay="2">AI · Quantitative Finance · Legal Tech · Physics Simulation</p>
+      <div class="hero-contact reveal" data-delay="2">
+        <a href="mailto:siddarthb078@gmail.com" class="hero-contact-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+          siddarthb078@gmail.com
+        </a>
+        <span class="hero-contact-sep">·</span>
+        <span class="hero-contact-link" style="cursor:default;">Bangalore, India</span>
+      </div>
+      <a href="#systems" class="hero-cta reveal" data-delay="3">
+        View Projects
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED SYSTEMS ===== -->
+  <section class="section" id="systems">
+    <div class="container">
+      <div class="section-label reveal">Featured Work</div>
+      <h2 class="section-title reveal" data-delay="1">High-Impact Systems</h2>
+      <p class="section-subtitle reveal" data-delay="2">End-to-end engineered systems — measurable, explainable, and grounded in real-world constraints.</p>
+
+      <div class="featured-grid">
+
+        <!-- GeoQuant -->
+        <div class="glass-card featured-card reveal">
+          <div class="featured-card-info">
+            <div class="featured-icon">📈</div>
+            <span class="featured-card-domain">Quantitative Finance</span>
+            <h3 class="featured-card-title">GeoQuant</h3>
+            <p class="featured-card-desc">
+              Full systematic trading pipeline — feature engineering from historical price data and external signals, ML-based directional prediction, and a backtesting engine with transaction cost and slippage modeling.
+            </p>
+            <p class="featured-card-insight">
+              <strong>Key Insight:</strong> Prediction accuracy alone is insufficient — profitability depends on execution realism, cost modeling, and risk management.
+            </p>
+            <div class="highlights">
+              <span class="highlight-pill">Python</span>
+              <span class="highlight-pill">ML Signals</span>
+              <span class="highlight-pill">Walk-Forward</span>
+              <span class="highlight-pill">Cost Modeling</span>
+              <span class="highlight-pill">Backtesting</span>
+            </div>
+          </div>
+          <div class="viz-panel">
+            <div class="pipeline" data-pipeline>
+              <span class="pipeline-node">Data</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Features</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Model</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Signals</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Backtest</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Metrics</span>
+            </div>
+            <div class="viz-panel-title">Equity Curve (Simulated)</div>
+            <div class="equity-chart" data-chart>
+              <svg viewBox="0 0 400 120" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path class="chart-area" d="M0,110 L30,100 60,95 90,88 120,85 150,70 180,60 210,55 240,48 270,35 300,30 330,22 360,18 400,10 400,120 0,120 Z"/>
+                <path class="chart-line" d="M0,110 L30,100 60,95 90,88 120,85 150,70 180,60 210,55 240,48 270,35 300,30 330,22 360,18 400,10"/>
+              </svg>
+            </div>
+            <div class="result-badges">
+              <span class="result-badge">Directional Predictions</span>
+              <span class="result-badge">Drawdown Tracking</span>
+              <span class="result-badge">Win Rate Analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LexProbe -->
+        <div class="glass-card featured-card reveal">
+          <div class="featured-card-info">
+            <div class="featured-icon">⚖️</div>
+            <span class="featured-card-domain">Legal AI</span>
+            <h3 class="featured-card-title">LexProbe</h3>
+            <p class="featured-card-desc">
+              Retrieval-augmented legal research system with a full citation audit trail. Every generated claim is verified — case name normalization, token-overlap verification, and strict removal of unverifiable citations before output.
+            </p>
+            <p class="featured-card-insight">
+              <strong>Key Insight:</strong> Trust in legal AI depends not just on answers, but on verifiable and auditable reasoning.
+            </p>
+            <div class="highlights">
+              <span class="highlight-pill">RAG Pipeline</span>
+              <span class="highlight-pill">Citation Audit</span>
+              <span class="highlight-pill">Token Overlap</span>
+              <span class="highlight-pill">Hallucination Filter</span>
+              <span class="highlight-pill">GPT-4</span>
+            </div>
+          </div>
+          <div class="viz-panel">
+            <div class="pipeline" data-pipeline>
+              <span class="pipeline-node">Query</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Retrieval</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Context</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">LLM</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Audit</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Output</span>
+            </div>
+            <div class="viz-panel-title">Citation Audit Output</div>
+            <div class="audit-panel" data-audit>
+              <div class="audit-line"><span class="label">CLAIM_1  </span> <span class="pass">✓ VERIFIED</span> — Art. 21, Indian Constitution</div>
+              <div class="audit-line"><span class="label">CLAIM_2  </span> <span class="pass">✓ VERIFIED</span> — Maneka Gandhi v. Union of India</div>
+              <div class="audit-line"><span class="label">CLAIM_3  </span> <span class="warn">⚠ REMOVED</span> — Unverifiable source</div>
+              <div class="audit-line"><span class="label">CLAIM_4  </span> <span class="pass">✓ VERIFIED</span> — Section 302, IPC</div>
+              <div class="audit-line"><span class="label">RESULT   </span> <span class="pass">3/4 verified</span> · 1 filtered · output clean</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Health AI -->
+        <div class="glass-card featured-card reveal">
+          <div class="featured-card-info">
+            <div class="featured-icon">🫀</div>
+            <span class="featured-card-domain">Healthcare AI</span>
+            <h3 class="featured-card-title">Health AI</h3>
+            <p class="featured-card-desc">
+              Explainable health risk prediction system with structured data input, ML-based probability scoring, feature importance explanations, and a safety layer with confidence scoring and medical disclaimers.
+            </p>
+            <p class="featured-card-insight">
+              <strong>Key Insight:</strong> In healthcare systems, explainability and safety are as critical as predictive performance.
+            </p>
+            <div class="highlights">
+              <span class="highlight-pill">Explainability</span>
+              <span class="highlight-pill">Safety Layer</span>
+              <span class="highlight-pill">Confidence Scoring</span>
+              <span class="highlight-pill">Feature Importance</span>
+            </div>
+          </div>
+          <div class="viz-panel">
+            <div class="pipeline" data-pipeline>
+              <span class="pipeline-node">Input</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Process</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Model</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Explain</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">Safety</span>
+              <span class="pipeline-arrow">→</span>
+              <span class="pipeline-node">UI</span>
+            </div>
+            <div class="risk-gauge" data-gauge>
+              <div class="gauge-circle">87<span style="font-size:0.6rem;font-weight:400;">%</span></div>
+              <div class="gauge-label">Risk Score<br><span style="font-size:0.75rem;color:var(--text-muted);">With confidence scoring &amp; disclaimers</span></div>
+            </div>
+            <div class="viz-panel-title">Feature Importance</div>
+            <div class="feature-bars" data-bars>
+              <div class="feature-bar">
+                <span class="feature-bar-label">Blood Pressure</span>
+                <div class="feature-bar-track"><div class="feature-bar-fill" data-width="92"></div></div>
+              </div>
+              <div class="feature-bar">
+                <span class="feature-bar-label">Cholesterol</span>
+                <div class="feature-bar-track"><div class="feature-bar-fill" data-width="78"></div></div>
+              </div>
+              <div class="feature-bar">
+                <span class="feature-bar-label">Age</span>
+                <div class="feature-bar-track"><div class="feature-bar-fill" data-width="65"></div></div>
+              </div>
+              <div class="feature-bar">
+                <span class="feature-bar-label">BMI</span>
+                <div class="feature-bar-track"><div class="feature-bar-fill" data-width="51"></div></div>
+              </div>
+              <div class="feature-bar">
+                <span class="feature-bar-label">Family Hx</span>
+                <div class="feature-bar-track"><div class="feature-bar-fill" data-width="44"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SIMULATION & APPLIED PHYSICS ===== -->
+  <section class="section" id="simulation" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-label reveal">Engineering Depth</div>
+      <h2 class="section-title reveal" data-delay="1">Simulation &amp; Applied Physics</h2>
+      <p class="section-subtitle reveal" data-delay="2">Physics-based modeling for real-world aerospace problems.</p>
+
+      <div class="engineering-grid">
+
+        <!-- Propeller Performance -->
+        <div class="glass-card reveal">
+          <h3 class="eng-card-title">Propeller Performance Simulation</h3>
+          <p class="eng-card-desc">
+            Physics-based models for propeller performance analysis — generating datasets across RPM, pitch, and blade configurations. Outputs thrust vs RPM relationships and efficiency comparisons across configurations.
+          </p>
+          <div class="eng-chart" data-chart>
+            <svg viewBox="0 0 400 150">
+              <line class="chart-axis" x1="50" y1="130" x2="380" y2="130"/>
+              <line class="chart-axis" x1="50" y1="10" x2="50" y2="130"/>
+              <text class="chart-label" x="200" y="148" text-anchor="middle">RPM</text>
+              <text class="chart-label" x="15" y="70" text-anchor="middle" transform="rotate(-90, 15, 70)">Thrust (N)</text>
+              <text class="chart-label" x="70" y="145" text-anchor="start">2000</text>
+              <text class="chart-label" x="360" y="145" text-anchor="end">8000</text>
+              <path class="chart-line" d="M60,120 C100,115 140,100 180,80 S260,40 300,25 S360,15 380,12"/>
+              <path class="chart-line-secondary" d="M60,118 C100,90 140,60 180,40 S220,30 240,32 S300,50 340,70 S370,85 380,90"/>
+            </svg>
+          </div>
+          <div class="eng-legend">
+            <span class="eng-legend-item"><span class="eng-dot accent"></span>Thrust</span>
+            <span class="eng-legend-item"><span class="eng-dot secondary"></span>Efficiency</span>
+          </div>
+        </div>
+
+        <!-- Vortex Ring State -->
+        <div class="glass-card reveal" data-delay="1">
+          <h3 class="eng-card-title">Vortex Ring State Analysis</h3>
+          <p class="eng-card-desc">
+            Modeling the dangerous VRS regime during vertical descent. Analyzing effects of thrust, duration, and flight conditions — validated during IISc research internship. Small parameter variations can trigger unstable aerodynamic states.
+          </p>
+          <div class="eng-chart" data-chart>
+            <svg viewBox="0 0 400 150">
+              <line class="chart-axis" x1="50" y1="130" x2="380" y2="130"/>
+              <line class="chart-axis" x1="50" y1="10" x2="50" y2="130"/>
+              <text class="chart-label" x="200" y="148" text-anchor="middle">Descent Rate (m/s)</text>
+              <text class="chart-label" x="15" y="70" text-anchor="middle" transform="rotate(-90, 15, 70)">Instability</text>
+              <text class="chart-label" x="70" y="145" text-anchor="start">0</text>
+              <text class="chart-label" x="360" y="145" text-anchor="end">12</text>
+              <path class="chart-line" d="M60,120 C80,118 100,115 130,110 S160,90 180,60 S200,20 220,15 S260,18 280,40 S320,80 360,110 S375,118 380,120"/>
+              <rect x="150" y="10" width="100" height="120" rx="4" fill="rgba(0,212,255,0.04)" stroke="var(--accent)" stroke-width="0.5" stroke-dasharray="4"/>
+              <text class="chart-label" x="200" y="25" text-anchor="middle" fill="var(--accent)">VRS Region</text>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-label reveal">More Work</div>
+      <h2 class="section-title reveal" data-delay="1">Engineering &amp; AI Projects</h2>
+      <p class="section-subtitle reveal" data-delay="2">Tools, systems, and hardware across the stack.</p>
+
+      <div class="additional-grid">
+        <div class="glass-card mini-card reveal">
+          <div class="mini-card-icon">👁️</div>
+          <h4 class="mini-card-title">Computer Vision</h4>
+          <p class="mini-card-desc">Gesture-based volume control and sign language recognition systems using real-time video processing.</p>
+        </div>
+        <div class="glass-card mini-card reveal" data-delay="1">
+          <div class="mini-card-icon">🛡️</div>
+          <h4 class="mini-card-title">DNS Ad Blocker</h4>
+          <p class="mini-card-desc">Network-wide ad blocking via custom DNS resolver with blocklist management and real-time query logging.</p>
+        </div>
+        <div class="glass-card mini-card reveal" data-delay="2">
+          <div class="mini-card-icon">🎤</div>
+          <h4 class="mini-card-title">Voice Assistant (Jarvis)</h4>
+          <p class="mini-card-desc">Python-based assistant for automation, command execution, and system control with voice interaction.</p>
+        </div>
+        <div class="glass-card mini-card reveal" data-delay="3">
+          <div class="mini-card-icon">🚁</div>
+          <h4 class="mini-card-title">Autonomous Drones</h4>
+          <p class="mini-card-desc">Quadcopter and hexacopter systems — flight control, propeller optimization, and real-time telemetry.</p>
+        </div>
+        <div class="glass-card mini-card reveal" data-delay="4">
+          <div class="mini-card-icon">🤖</div>
+          <h4 class="mini-card-title">Rovers & Automation</h4>
+          <p class="mini-card-desc">Bluetooth-controlled and autonomous rovers, plant watering with sensor feedback, smart home with Alexa.</p>
+        </div>
+        <div class="glass-card mini-card reveal" data-delay="5">
+          <div class="mini-card-icon">🖥️</div>
+          <h4 class="mini-card-title">Infrastructure</h4>
+          <p class="mini-card-desc">Raspberry Pi NAS for local storage/backup. Distributed computing experiments. Web hosting and backend systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="section" id="experience" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-label reveal">Career</div>
+      <h2 class="section-title reveal" data-delay="1">Experience</h2>
+      <p class="section-subtitle reveal" data-delay="2">Research, industry, and entrepreneurial work.</p>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-date">2024 — Present</div>
+          <h3 class="timeline-title">Research Intern</h3>
+          <div class="timeline-org">Indian Institute of Science (IISc), Bangalore</div>
+          <p class="timeline-desc">
+            Conducted research on vortex ring formation under varying drone flight conditions. Studied aerodynamic instability and real-world flight behavior in rotorcraft systems.
+          </p>
+          <div class="timeline-tags">
+            <span class="timeline-tag">CFD</span>
+            <span class="timeline-tag">BEMT</span>
+            <span class="timeline-tag">Python</span>
+            <span class="timeline-tag">MATLAB</span>
+            <span class="timeline-tag">Aerodynamics</span>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-date">2023 — 2024</div>
+          <h3 class="timeline-title">Engineering Intern</h3>
+          <div class="timeline-org">Vegam Co</div>
+          <p class="timeline-desc">
+            Developed water-based air filtration systems. Built RAG pipeline converting natural language queries into SQL outputs. Worked on large dataset querying and visualization.
+          </p>
+          <div class="timeline-tags">
+            <span class="timeline-tag">RAG</span>
+            <span class="timeline-tag">NL-to-SQL</span>
+            <span class="timeline-tag">Data Viz</span>
+            <span class="timeline-tag">Hardware</span>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Ongoing</div>
+          <h3 class="timeline-title">Founder & Developer</h3>
+          <div class="timeline-org">Elevyx (elevyx.in) · Athera</div>
+          <p class="timeline-desc">
+            Backend development and workflow system design at Elevyx. Building Athera — a platform for workflow automation and company operations. Also built and deployed websites for NGOs and small businesses.
+          </p>
+          <div class="timeline-tags">
+            <span class="timeline-tag">FastAPI</span>
+            <span class="timeline-tag">Backend</span>
+            <span class="timeline-tag">Web Dev</span>
+            <span class="timeline-tag">Automation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-label reveal">Who I Am</div>
+      <h2 class="section-title reveal" data-delay="1">About</h2>
+
+      <div class="about-content">
+        <div class="about-text reveal" data-delay="2">
+          <p>
+            I build systems that operate under uncertainty across domains including <strong>finance, healthcare, legal reasoning, and physical simulation</strong>. My work combines machine learning, backend engineering, and physics-based modeling to create solutions that are not only functional but <strong>measurable, explainable, and grounded</strong> in real-world constraints.
+          </p>
+          <br/>
+          <p>
+            Alongside technical work, I actively participate in <strong>competitive sports</strong> — skating, football (CBSE tournaments, Goa Globe), badminton, and swimming — as well as <strong>Model United Nations</strong> (1 year of VMUN conferences), which has strengthened my discipline, teamwork, and communication.
+          </p>
+          <br/>
+          <p>
+            I've contributed <strong>50+ hours of community service</strong> through NGOs and local initiatives. My core focus areas are <strong>ML systems, backend engineering, simulation, decision-making under uncertainty, and AI explainability</strong>.
+          </p>
+        </div>
+
+        <div class="about-stats reveal" data-delay="3">
+          <div class="glass-card stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="glass-card stat-card">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Domains</div>
+          </div>
+          <div class="glass-card stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Service Hours</div>
+          </div>
+          <div class="glass-card stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Curiosity</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Focus areas -->
+      <div class="focus-areas reveal" data-delay="4">
+        <h3 class="focus-title">Core Focus Areas</h3>
+        <div class="focus-grid">
+          <div class="focus-item">
+            <span class="focus-icon">🧠</span>
+            <span>Machine Learning Systems</span>
+          </div>
+          <div class="focus-item">
+            <span class="focus-icon">⚙️</span>
+            <span>Backend Engineering</span>
+          </div>
+          <div class="focus-item">
+            <span class="focus-icon">🌀</span>
+            <span>Simulation & Applied Physics</span>
+          </div>
+          <div class="focus-item">
+            <span class="focus-icon">🎯</span>
+            <span>Decision Under Uncertainty</span>
+          </div>
+          <div class="focus-item">
+            <span class="focus-icon">🔍</span>
+            <span>Explainability & Verification</span>
+          </div>
+          <div class="focus-item">
+            <span class="focus-icon">🚀</span>
+            <span>FastAPI & RAG Pipelines</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="mailto:siddarthb078@gmail.com">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+          siddarthb078@gmail.com
+        </a>
+        <a href="https://github.com/siddarth" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/siddarth" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Siddarth Boggarapu. Built from scratch with HTML, CSS &amp; JS.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
