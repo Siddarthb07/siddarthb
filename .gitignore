@@ -1,0 +1,18 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node (if ever introduced)
+node_modules/
+
+# Local backups / iterations
+v[0-9]/
+v[0-9][0-9]/
+
+# Logs
+*.log

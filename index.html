@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en" data-page="0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Siddarth Boggarapu — Issue #001 / Operator-Verse</title>
+  <meta name="description" content="An illustrated dossier on Siddarth Boggarapu — engineer building under uncertainty across legal AI, quant, healthcare, voice, and physical simulation. Read it like a comic." />
+
+  <meta property="og:title" content="Siddarth Boggarapu — Issue #001 / Operator-Verse SB" />
+  <meta property="og:description" content="Builder across finance, healthcare, legal reasoning, drones, and physical simulation. Issue #001 dossier." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://siddarthb07.github.io/siddarthb/" />
+  <meta property="og:image" content="https://siddarthb07.github.io/siddarthb/assets/operator-hero.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Siddarth Boggarapu — Issue #001 / Operator-Verse SB" />
+  <meta name="twitter:description" content="Builder across finance, healthcare, legal reasoning, drones, and physical simulation. Issue #001 dossier." />
+  <meta name="twitter:image" content="https://siddarthb07.github.io/siddarthb/assets/operator-hero.svg" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a2e'/><text x='50' y='66' font-size='48' text-anchor='middle' fill='%23ffd60a' font-family='monospace' font-weight='800'>SB</text></svg>" />
+
+  <link rel="preload" as="image" href="src/images/proj-lexprobe.png">
+  <link rel="preload" as="image" href="src/images/proj-geoquant.png">
+  <link rel="preload" as="image" href="src/images/proj-health.png">
+  <link rel="preload" as="image" href="src/images/proj-aibrain.png">
+  <link rel="preload" as="image" href="src/images/proj-propeller.png">
+  <link rel="preload" as="image" href="src/images/proj-vortex.png">
+  <link rel="preload" as="image" href="assets/operator-hero.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@300..800&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles/main.css" />
+</head>
+<body>
+
+  <!-- =========================================================
+       SVG FILTERS — duotone halftone for image panels
+       ========================================================= -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="comic-cyan-mag" x="0" y="0" width="100%" height="100%">
+        <feColorMatrix type="matrix" values="
+          1 0 0 0 0
+          0 0.6 0 0 0
+          0.4 0 1 0 0
+          0 0 0 1 0"/>
+        <feComponentTransfer>
+          <feFuncR type="gamma" exponent="0.85"/>
+          <feFuncG type="gamma" exponent="1.1"/>
+          <feFuncB type="gamma" exponent="0.9"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="comic-mag-yel">
+        <feColorMatrix type="matrix" values="
+          1 0.4 0 0 0
+          0.5 0.9 0 0 0
+          0 0 0.4 0 0
+          0 0 0 1 0"/>
+      </filter>
+      <filter id="comic-cyan-yel">
+        <feColorMatrix type="matrix" values="
+          0.2 0 0.6 0 0
+          0.7 1 0 0 0
+          0 0 1 0 0
+          0 0 0 1 0"/>
+      </filter>
+      <filter id="comic-red-yel">
+        <feColorMatrix type="matrix" values="
+          1.1 0.5 0 0 0
+          0.3 0.8 0 0 0
+          0 0 0.2 0 0
+          0 0 0 1 0"/>
+      </filter>
+      <pattern id="halftoneDots" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="#050510"/>
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- =========================================================
+       CUSTOM CURSOR — SVG comic crosshair
+       ========================================================= -->
+  <div id="cursor" aria-hidden="true">
+    <div class="cur-inner">
+      <svg class="cur-svg" viewBox="-20 -20 40 40" width="36" height="36" overflow="visible">
+        <g class="cur-arms" stroke-linecap="round" fill="none">
+          <line x1="-14" y1="0" x2="-5" y2="0"/>
+          <line x1="5"   y1="0" x2="14" y2="0"/>
+          <line x1="0" y1="-14" x2="0" y2="-5"/>
+          <line x1="0" y1="5"   x2="0" y2="14"/>
+        </g>
+        <circle class="cur-dot" cx="0" cy="0" r="2.2"/>
+      </svg>
+    </div>
+    <span class="cur-label" id="curLabel"></span>
+  </div>
+
+  <!-- =========================================================
+       BOOT
+       ========================================================= -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="boot-burst">
+      <div class="boot-issue">ISSUE · 001 · 2026</div>
+      <h1 class="boot-title">
+        <span class="bt-1">OPENING</span>
+        <span class="bt-2">DOSSIER</span>
+      </h1>
+      <pre class="boot-log" id="bootLog"></pre>
+      <div class="boot-bar"><i></i></div>
+      <div class="boot-foot">
+        <span>OPERATOR · SB</span>
+        <span id="bootRdy">PRINTING</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       TOP HUD
+       ========================================================= -->
+  <header class="hud">
+    <a href="#cover" class="brand" data-jump="0" data-cur="restart">
+      <span class="b-mark">SB</span>
+      <span class="b-issue">ISSUE&nbsp;001</span>
+      <span class="b-meta">OPERATOR DOSSIER · 2026</span>
+    </a>
+
+    <div class="page-tag">
+      <span class="pt-num" id="hudNum">01</span>
+      <span class="pt-sep">/</span>
+      <span class="pt-tot">11</span>
+      <span class="pt-name" id="hudName">COVER</span>
+    </div>
+
+    <div class="hud-tools">
+      <a href="https://www.linkedin.com/in/siddarth-boggarapu-12411339b/" target="_blank" rel="noopener noreferrer" class="hud-btn" data-cur="linkedin">IN ↗</a>
+      <a href="https://github.com/Siddarthb07" target="_blank" rel="noopener noreferrer" class="hud-btn" data-cur="github">GH ↗</a>
+    </div>
+  </header>
+
+  <!-- right edge dot rail -->
+  <nav class="rail" aria-label="Pages">
+    <a href="#cover"     data-jump="0"  class="r-tick on"  data-num="01" data-name="COVER"><span></span></a>
+    <a href="#origin"    data-jump="1"  class="r-tick"     data-num="02" data-name="ORIGIN"><span></span></a>
+    <a href="#case-1"    data-jump="2"  class="r-tick"     data-num="03" data-name="LEXPROBE"><span></span></a>
+    <a href="#case-2"    data-jump="3"  class="r-tick"     data-num="04" data-name="GEOQUANT"><span></span></a>
+    <a href="#case-3"    data-jump="4"  class="r-tick"     data-num="05" data-name="HEALTH"><span></span></a>
+    <a href="#case-4"    data-jump="5"  class="r-tick"     data-num="06" data-name="AI BRAIN"><span></span></a>
+    <a href="#lab"       data-jump="6"  class="r-tick"     data-num="07" data-name="LAB"><span></span></a>
+    <a href="#workshop"  data-jump="7"  class="r-tick"     data-num="08" data-name="WORKSHOP"><span></span></a>
+    <a href="#timeline"  data-jump="8"  class="r-tick"     data-num="09" data-name="TIMELINE"><span></span></a>
+    <a href="#operator"  data-jump="9"  class="r-tick"     data-num="10" data-name="OPERATOR"><span></span></a>
+    <a href="#signal"    data-jump="10" class="r-tick"     data-num="11" data-name="SIGNAL"><span></span></a>
+  </nav>
+
+  <!-- =========================================================
+       PAGES
+       ========================================================= -->
+  <main id="comic">
+
+    <!-- ════════ 01 · COVER ════════ -->
+    <section class="page cover" id="cover" data-page="0" data-name="COVER">
+      <div class="page-bg-halftone"></div>
+
+      <div class="cover-burst" aria-hidden="true">
+        <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffd60a" stop-opacity=".55"/>
+              <stop offset="60%" stop-color="#ff2d70" stop-opacity=".25"/>
+              <stop offset="100%" stop-color="#0a0a2e" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="400" cy="400" r="400" fill="url(#rg1)"/>
+          <g stroke="#ffd60a" stroke-width="4" opacity=".5">
+            <line x1="400" y1="0" x2="400" y2="800"/>
+            <line x1="0" y1="400" x2="800" y2="400"/>
+            <line x1="60" y1="60" x2="740" y2="740"/>
+            <line x1="740" y1="60" x2="60" y2="740"/>
+            <line x1="200" y1="0" x2="200" y2="800" opacity=".5"/>
+            <line x1="600" y1="0" x2="600" y2="800" opacity=".5"/>
+            <line x1="0" y1="200" x2="800" y2="200" opacity=".5"/>
+            <line x1="0" y1="600" x2="800" y2="600" opacity=".5"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="cover-issue">
+        <span class="ci-bang">ISSUE 001</span>
+        <span class="ci-meta">CLASSIFIED · OPERATOR DOSSIER · 2026</span>
+      </div>
+
+      <h1 class="cover-name chromatic">
+        <span class="cn-line">SIDDARTH</span>
+        <span class="cn-line cn-yel">BOGGARAPU</span>
+      </h1>
+
+      <p class="cover-tag">
+        <span>SYSTEMS</span><i>·</i><span>APPLIED ML</span><i>·</i><span>PHYSICAL SIM</span>
+      </p>
+
+      <div class="cover-quote">
+        <span class="cq-mark">"</span>
+        I build systems where <em>uncertainty</em> is the <em>default</em>.
+        <span class="cq-mark cq-end">"</span>
+      </div>
+
+      <div class="cover-foot">
+        <span class="cf-pages">11 PAGES · 4 CASE FILES · 2 LIVE EXPERIMENTS · 4 BUILDS</span>
+        <a href="#origin" class="cf-cta" data-jump="1" data-cur="open">
+          <span>OPEN THE DOSSIER ↓</span>
+        </a>
+      </div>
+
+      <div class="sfx sfx-cover">CLASSIFIED!</div>
+    </section>
+
+    <!-- ════════ 02 · ORIGIN — manifesto in narration panels ════════ -->
+    <section class="page origin" id="origin" data-page="1" data-name="ORIGIN">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 02</div>
+        <h2 class="ph-title chromatic">ORIGIN <em>STORY</em></h2>
+        <div class="ph-sub">— how the operator works —</div>
+      </header>
+
+      <div class="origin-grid">
+        <div class="panel narr panel-yel tilt-l">
+          <span class="narr-tag">/01 — METHOD</span>
+          <p>
+            <em>Most software</em> assumes the inputs are clean, the model is right, and the world will hold still long enough to ship.
+          </p>
+        </div>
+
+        <div class="panel narr panel-mag tilt-r">
+          <span class="narr-tag">/02 — STAKES</span>
+          <p>
+            The Operator works <em>downstream of that lie</em> — in legal advice, in money, in health, in physical systems.
+          </p>
+        </div>
+
+        <div class="panel narr panel-cyan tilt-l">
+          <span class="narr-tag">/03 — CRAFT</span>
+          <p>
+            So every system is built around the <em>verification</em>, not the answer. Refuse when unsure. Simulate when reality is expensive.
+          </p>
+        </div>
+
+        <div class="panel principles panel-paper">
+          <span class="narr-tag">PRINCIPLES · 03</span>
+          <ol>
+            <li><b>Verify before answering.</b> RAG + audit + refusal.</li>
+            <li><b>Simulate when reality costs.</b> CFD, BEMT, walk-forward.</li>
+            <li><b>Refusal is a feature.</b> Calibrated "I don't know" beats a confident hallucination.</li>
+          </ol>
+        </div>
+
+        <div class="sfx sfx-origin">VERIFY!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 03 · CASE FILE #01 — LEXPROBE ════════ -->
+    <section class="page case" id="case-1" data-page="2" data-name="LEXPROBE" data-acc="cyan">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 03</div>
+        <h2 class="ph-title chromatic">CASE FILE <em>#01</em></h2>
+        <div class="ph-sub">— LEGAL · INDIA · RAG —</div>
+      </header>
+
+      <div class="case-grid">
+        <figure class="panel panel-img panel-cyan tilt-l" data-img-fx="comic-cyan-mag">
+          <img src="src/images/proj-lexprobe.png" alt="legal scales" />
+          <div class="img-halftone"></div>
+          <figcaption class="img-cap">
+            <span class="ic-num">EXHIBIT A</span>
+            <span class="ic-name">SCALES OF JUSTICE</span>
+          </figcaption>
+        </figure>
+
+        <div class="panel panel-title panel-yel tilt-r">
+          <span class="pt-pre">CASE FILE #01</span>
+          <h3 class="case-name">LEXPROBE</h3>
+          <p class="case-pull">
+            "When the answer matters, <em>verify before you speak</em>."
+          </p>
+          <a class="case-repo" href="https://github.com/Siddarthb07/Lexprobe" target="_blank" rel="noopener noreferrer" data-cur="open repo">
+            github.com/Lexprobe ↗
+          </a>
+        </div>
+
+        <div class="panel narr panel-paper tilt-l">
+          <span class="narr-tag">DOSSIER · BRIEF</span>
+          <p>
+            Production-grade legal research stack for <strong>Indian law</strong>. Citation audit catches hallucinated precedents <em>before</em> they reach the user. Refuses when uncertain.
+          </p>
+          <ul class="case-bullets">
+            <li><b>RAG</b> over Indian statute &amp; case-law</li>
+            <li><b>Audit</b> — every claim cross-checked vs source</li>
+            <li><b>Refusal</b> layer for confident "I don't know"</li>
+          </ul>
+        </div>
+
+        <div class="panel evidence panel-ink">
+          <div class="ev-head">
+            <span>EVIDENCE</span><b>AUDIT · SAMPLE</b>
+          </div>
+          <div class="audit" data-audit>
+            <div class="aud-row"><span>Article 22 · Detention</span><b class="ok">VERIFIED</b></div>
+            <div class="aud-row"><span>Maneka Gandhi · 1978</span><b class="ok">VERIFIED</b></div>
+            <div class="aud-row"><span>Article 21 · Liberty</span><b class="ok">VERIFIED</b></div>
+            <div class="aud-row"><span>D. K. Basu · 1997</span><b class="ok">VERIFIED</b></div>
+            <div class="aud-row"><span>"Sharma v. Republic 2019"</span><b class="bad">REMOVED</b></div>
+          </div>
+          <div class="ev-tally">
+            <span>VERIFIED <b class="ok">4</b></span>
+            <span>REMOVED <b class="bad">1</b></span>
+            <span>RATE <b class="ok">80%</b></span>
+          </div>
+        </div>
+
+        <div class="sfx sfx-case">AUDIT!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 04 · CASE FILE #02 — GEOQUANT ════════ -->
+    <section class="page case" id="case-2" data-page="3" data-name="GEOQUANT" data-acc="yellow">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 04</div>
+        <h2 class="ph-title chromatic">CASE FILE <em>#02</em></h2>
+        <div class="ph-sub">— QUANT · DIRECTIONAL · WALK-FORWARD —</div>
+      </header>
+
+      <div class="case-grid case-grid-flip">
+        <figure class="panel panel-img panel-yel tilt-r" data-img-fx="comic-mag-yel">
+          <img src="src/images/proj-geoquant.png" alt="market chart" />
+          <div class="img-halftone"></div>
+          <figcaption class="img-cap">
+            <span class="ic-num">EXHIBIT B</span>
+            <span class="ic-name">PRICE SERIES</span>
+          </figcaption>
+        </figure>
+
+        <div class="panel panel-title panel-mag tilt-l">
+          <span class="pt-pre">CASE FILE #02</span>
+          <h3 class="case-name">GEOQUANT</h3>
+          <p class="case-pull">
+            "<em>Cost the trade</em>. Then take it."
+          </p>
+          <a class="case-repo" href="https://github.com/Siddarthb07/GeoQuant" target="_blank" rel="noopener noreferrer" data-cur="open repo">
+            github.com/GeoQuant ↗
+          </a>
+        </div>
+
+        <div class="panel narr panel-paper tilt-r">
+          <span class="narr-tag">DOSSIER · BRIEF</span>
+          <p>
+            Research → signal → execution. <strong>Walk-forward</strong> only. Costs &amp; slippage modeled <em>inside</em> the optimizer, not assumed away.
+          </p>
+          <ul class="case-bullets">
+            <li><b>Features</b> over price + macro signals</li>
+            <li><b>Walk-forward</b> backtest, out-of-sample</li>
+            <li><b>Cost-aware</b> sizing — fees &amp; slippage in</li>
+          </ul>
+        </div>
+
+        <div class="panel evidence panel-ink">
+          <div class="ev-head">
+            <span>EVIDENCE</span><b>EQUITY · SIM BAND</b>
+          </div>
+          <div class="equity">
+            <svg viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
+              <path id="eqFill" d="" fill="rgba(255,214,10,.20)"/>
+              <path id="eqLine" d="" stroke="var(--yellow)" stroke-width="2" fill="none"/>
+            </svg>
+            <div class="eq-meta">
+              <div><span>SHARPE</span><b>~1.5–1.9</b></div>
+              <div><span>MDD</span><b>~10–13%</b></div>
+              <div><span>HIT</span><b>~55–60%</b></div>
+              <div><span>YR</span><b>~+20–28%</b></div>
+            </div>
+            <div class="eq-foot">illustrative band · see repo for live metrics</div>
+          </div>
+        </div>
+
+        <div class="sfx sfx-case sfx-yel">SHIP!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 05 · CASE FILE #03 — HEALTH AI ════════ -->
+    <section class="page case" id="case-3" data-page="4" data-name="HEALTH AI" data-acc="red">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 05</div>
+        <h2 class="ph-title chromatic">CASE FILE <em>#03</em></h2>
+        <div class="ph-sub">— HEALTH · CALIBRATED RISK · OOD-SAFE —</div>
+      </header>
+
+      <div class="case-grid">
+        <figure class="panel panel-img panel-red tilt-l" data-img-fx="comic-red-yel">
+          <img src="src/images/proj-health.png" alt="health vitals" />
+          <div class="img-halftone"></div>
+          <figcaption class="img-cap">
+            <span class="ic-num">EXHIBIT C</span>
+            <span class="ic-name">VITAL SIGNS</span>
+          </figcaption>
+        </figure>
+
+        <div class="panel panel-title panel-cyan tilt-r">
+          <span class="pt-pre">CASE FILE #03</span>
+          <h3 class="case-name">HEALTH AI</h3>
+          <p class="case-pull">
+            "<em>Probabilities</em>, not promises."
+          </p>
+          <a class="case-repo" href="https://github.com/Siddarthb07/Health-AI" target="_blank" rel="noopener noreferrer" data-cur="open repo">
+            github.com/Health-AI ↗
+          </a>
+        </div>
+
+        <div class="panel narr panel-paper tilt-l">
+          <span class="narr-tag">DOSSIER · BRIEF</span>
+          <p>
+            Calibrated risk score for <strong>cancer / CVD / diabetes</strong> from labs + lifestyle. <em>Refuses</em> when input is out-of-distribution.
+          </p>
+          <ul class="case-bullets">
+            <li><b>Calibrated</b> probability — not raw score</li>
+            <li><b>OOD detection</b> — abstain on unfamiliar input</li>
+            <li><b>Explainable</b> — feature attribution per case</li>
+          </ul>
+        </div>
+
+        <div class="panel evidence panel-ink">
+          <div class="ev-head">
+            <span>EVIDENCE</span><b>RISK · SAMPLE</b>
+          </div>
+          <div class="risk">
+            <div class="risk-dial">
+              <svg viewBox="0 0 120 70" aria-hidden="true">
+                <path d="M10,60 A50,50 0 0,1 110,60" stroke="rgba(254,249,237,.10)" stroke-width="6" fill="none"/>
+                <path id="riskArc" d="" stroke="var(--red)" stroke-width="6" fill="none" stroke-linecap="round"/>
+              </svg>
+              <b id="riskNum">0.31</b>
+              <span>CVD · MOD</span>
+            </div>
+            <ul class="risk-inputs">
+              <li><span>BP</span><i>·</i></li>
+              <li><span>LDL / HDL</span><i>·</i></li>
+              <li><span>HbA1c</span><i>·</i></li>
+              <li><span>BMI / waist</span><i>·</i></li>
+              <li><span>age · sex · smoking</span></li>
+            </ul>
+          </div>
+          <div class="risk-foot">illustrative sample · runtime: ACC/AHA + FINDRISC rule-based</div>
+        </div>
+
+        <div class="sfx sfx-case sfx-red">REFUSE!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 06 · CASE FILE #04 — AI BRAIN ════════ -->
+    <section class="page case" id="case-4" data-page="5" data-name="AI BRAIN" data-acc="magenta">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 06</div>
+        <h2 class="ph-title chromatic">CASE FILE <em>#04</em></h2>
+        <div class="ph-sub">— VOICE · LOCAL-FIRST · ACTION —</div>
+      </header>
+
+      <div class="case-grid case-grid-flip">
+        <figure class="panel panel-img panel-mag tilt-r" data-img-fx="comic-cyan-mag">
+          <img src="src/images/proj-aibrain.png" alt="ai brain" />
+          <div class="img-halftone"></div>
+          <figcaption class="img-cap">
+            <span class="ic-num">EXHIBIT D</span>
+            <span class="ic-name">JARVIS · DAILY OS</span>
+          </figcaption>
+        </figure>
+
+        <div class="panel panel-title panel-yel tilt-l">
+          <span class="pt-pre">CASE FILE #04</span>
+          <h3 class="case-name">AI BRAIN</h3>
+          <p class="case-pull">
+            "Voice → context → <em>action</em>."
+          </p>
+          <a class="case-repo" href="https://github.com/Siddarthb07/AI-BRAIN" target="_blank" rel="noopener noreferrer" data-cur="open repo">
+            github.com/AI-BRAIN ↗
+          </a>
+        </div>
+
+        <div class="panel narr panel-paper tilt-r">
+          <span class="narr-tag">DOSSIER · BRIEF</span>
+          <p>
+            FastAPI + Next.js daily OS. <strong>Whisper STT</strong> with a local backend fallback, <em>local-first</em> LLM via Ollama, Groq cloud fallback when offline. RAG over your repos + Hacker News + calendar.
+          </p>
+          <ul class="case-bullets">
+            <li><b>STT</b> — browser Web Speech → Whisper local fallback</li>
+            <li><b>LLM</b> — Ollama local-first, Groq fallback</li>
+            <li><b>RAG</b> — Qdrant index over repos + signals + brief</li>
+          </ul>
+        </div>
+
+        <div class="panel evidence panel-ink">
+          <div class="ev-head">
+            <span>EVIDENCE</span><b>STACK · LOCAL</b>
+          </div>
+          <div class="wave">
+            <div class="wave-bars" id="waveBars"></div>
+            <div class="wave-meta">
+              <div><span>STATE</span><b id="waveState">LISTENING</b></div>
+              <div><span>STT</span><b>WHISPER</b></div>
+              <div><span>LLM</span><b>OLLAMA</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sfx sfx-case sfx-mag">ROUTE!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 07 · THE LAB — sim experiments ════════ -->
+    <section class="page lab" id="lab" data-page="6" data-name="THE LAB" data-acc="cyan">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 07</div>
+        <h2 class="ph-title chromatic">THE <em>LAB</em></h2>
+        <div class="ph-sub">— PHYSICS · 2025 — drag the sliders ↓</div>
+      </header>
+
+      <div class="lab-grid">
+        <article class="panel lab-piece panel-paper tilt-l">
+          <figure class="panel-img-inline" data-img-fx="comic-cyan-yel">
+            <img src="src/images/proj-propeller.png" alt="propeller" />
+            <div class="img-halftone"></div>
+          </figure>
+          <div class="lp-body">
+            <span class="lp-tag">EXPERIMENT 01 · BEMT</span>
+            <h3 class="lp-name">Propeller Simulator</h3>
+            <p>BEMT solver across RPM × pitch × blade count.  — drag to see thrust / efficiency / power.</p>
+            <div class="rig">
+              <svg class="rig-chart" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0,110 L320,110" stroke="rgba(5,5,16,.15)"/>
+                <path id="thrustCurve" d="" stroke="var(--ink)" stroke-width="2" fill="none"/>
+                <line id="rpmCursor" x1="0" y1="0" x2="0" y2="120" stroke="var(--magenta)" stroke-width="1.4"/>
+                <circle id="rpmPoint" cx="0" cy="0" r="6" fill="var(--magenta)" stroke="var(--ink)" stroke-width="2"/>
+              </svg>
+              <div class="rig-row">
+                <label>RPM <b id="rpmVal">4400</b></label>
+                <input id="rpmRange" type="range" min="1500" max="8500" value="4400" step="50" />
+              </div>
+              <div class="rig-readout">
+                <div><span>THRUST</span><b id="thrustVal">18.4</b><i>N</i></div>
+                <div><span>η</span><b id="effVal">0.71</b></div>
+                <div><span>POWER</span><b id="pwrVal">112</b><i>W</i></div>
+              </div>
+            </div>
+            <a class="lp-link" href="https://github.com/Siddarthb07/Propeller-simulator" target="_blank" rel="noopener noreferrer" data-cur="repo">github.com/Propeller-simulator ↗</a>
+          </div>
+        </article>
+
+        <article class="panel lab-piece panel-paper tilt-r">
+          <figure class="panel-img-inline" data-img-fx="comic-cyan-mag">
+            <img src="src/images/proj-vortex.png" alt="vortex ring" />
+            <div class="img-halftone"></div>
+          </figure>
+          <div class="lp-body">
+            <span class="lp-tag">EXPERIMENT 02 · VRS</span>
+            <h3 class="lp-name">Drone VRS</h3>
+            <p>Vortex Ring State across the descent envelope — drag to find the unstable zone.</p>
+            <div class="rig">
+              <svg class="rig-chart vrs" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0,110 L320,110" stroke="rgba(5,5,16,.15)"/>
+                <path id="vrsField" d="" stroke="var(--red)" stroke-width="1.6" fill="rgba(255,23,68,.18)"/>
+                <line id="vdLine" x1="0" y1="0" x2="0" y2="120" stroke="var(--cyan)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                <circle id="vrsPoint" cx="160" cy="60" r="6" fill="var(--cyan)" stroke="var(--ink)" stroke-width="2"/>
+              </svg>
+              <div class="rig-row">
+                <label>DESCENT <b id="vdVal">6.2</b><i>m/s</i></label>
+                <input id="vdRange" type="range" min="0" max="12" value="6.2" step="0.1" />
+              </div>
+              <div class="rig-readout">
+                <div><span>REGIME</span><b id="vrsRegime">UNSTABLE</b></div>
+                <div><span>RECOVERY</span><b id="vrsRec">↗ +6 m/s lat</b></div>
+                <div><span>RISK</span><b id="vrsRisk">HIGH</b></div>
+              </div>
+            </div>
+            <a class="lp-link" href="https://github.com/Siddarthb07/Drone-Vortex-Ring-Simulation" target="_blank" rel="noopener noreferrer" data-cur="repo">github.com/Drone-Vortex-Ring-Simulation ↗</a>
+          </div>
+        </article>
+
+        <div class="sfx sfx-lab">SIMULATE!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 08 · THE WORKSHOP — physical builds ════════ -->
+    <section class="page workshop" id="workshop" data-page="7" data-name="WORKSHOP" data-acc="red">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 08</div>
+        <h2 class="ph-title chromatic">THE <em>WORKSHOP</em></h2>
+        <div class="ph-sub">— PHYSICAL · receipts off-screen · builds that fly, drive, sense —</div>
+      </header>
+
+      <aside class="panel workshop-note panel-ink">
+        <span class="narr-tag">DOSSIER · TAGLINE</span>
+        <p>
+          The simulators don't stop at the screen. The <strong>hexcopters</strong> in <em>EXPERIMENT 02</em> are aircraft I assemble and fly. Illustrations below — receipts coming with <code>quad-build-log</code>.
+        </p>
+      </aside>
+
+      <div class="workshop-grid">
+        <article class="panel build-card build-lead panel-yel tilt-l">
+          <figure class="bc-illus bc-illus-yel" aria-hidden="true">
+            <svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid meet">
+              <g opacity=".22">
+                <polygon points="160,8 174,58 232,30 188,72 252,80 188,96 222,138 168,104 156,148 148,104 92,134 130,80 60,82 130,64 84,28 152,58" fill="#ff2d70"/>
+              </g>
+              <g stroke="#050510" stroke-width="3.2" fill="none">
+                <line x1="160" y1="80" x2="64" y2="26"/>
+                <line x1="160" y1="80" x2="256" y2="26"/>
+                <line x1="160" y1="80" x2="64" y2="134"/>
+                <line x1="160" y1="80" x2="256" y2="134"/>
+              </g>
+              <circle cx="160" cy="80" r="26" fill="#050510"/>
+              <circle cx="160" cy="80" r="11" fill="#ff2d70"/>
+              <text x="160" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="800" fill="#fef9ed">SB</text>
+              <g stroke="#050510" stroke-width="2.6" fill="#fef9ed">
+                <circle cx="64"  cy="26"  r="20"/>
+                <circle cx="256" cy="26"  r="20"/>
+                <circle cx="64"  cy="134" r="20"/>
+                <circle cx="256" cy="134" r="20"/>
+              </g>
+              <g stroke="#050510" stroke-width="1.6" fill="none" opacity=".75">
+                <path d="M48 26 Q64 8 80 26"/><path d="M48 26 Q64 44 80 26"/>
+                <path d="M240 26 Q256 8 272 26"/><path d="M240 26 Q256 44 272 26"/>
+                <path d="M48 134 Q64 116 80 134"/><path d="M48 134 Q64 152 80 134"/>
+                <path d="M240 134 Q256 116 272 134"/><path d="M240 134 Q256 152 272 134"/>
+              </g>
+              <g>
+                <rect x="6" y="136" width="48" height="18" fill="#050510"/>
+                <text x="30" y="149" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="800" fill="#ffd60a">QUAD</text>
+              </g>
+              <g>
+                <rect x="266" y="136" width="48" height="18" fill="#050510"/>
+                <text x="290" y="149" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="800" fill="#00d4ff">HEX</text>
+              </g>
+              <text x="160" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="800" letter-spacing="2" fill="#050510" opacity=".55">TOP-DOWN · ILLUS</text>
+            </svg>
+            <div class="bc-illus-halftone"></div>
+          </figure>
+          <div class="bc-body">
+            <span class="bc-tag">BUILD 01 · AIRCRAFT · LEAD</span>
+            <h3 class="bc-name">Autonomous Drones <em>(Quad + Hex)</em></h3>
+            <p class="bc-brief">The hardware behind the sims. Designed using my own <strong>BEMT + VRS</strong> solvers.</p>
+            <ul class="bc-bullets">
+              <li><b>BEMT-tuned</b> rotors</li>
+              <li><b>Custom</b> flight-controller firmware</li>
+              <li><b>Field-tested</b> across multiple thrust profiles</li>
+            </ul>
+            <ul class="bc-chips" aria-label="parts list">
+              <li>BEMT</li><li>F4 FC</li><li>Betaflight</li><li>Carbon frame</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="panel build-card panel-paper tilt-r">
+          <figure class="bc-illus" aria-hidden="true">
+            <svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid meet">
+              <g opacity=".18">
+                <rect x="0" y="118" width="320" height="42" fill="#00d4ff"/>
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="none">
+                <line x1="0" y1="118" x2="320" y2="118"/>
+                <line x1="22" y1="124" x2="36" y2="124"/>
+                <line x1="60" y1="124" x2="80" y2="124"/>
+                <line x1="120" y1="124" x2="142" y2="124"/>
+                <line x1="200" y1="124" x2="222" y2="124"/>
+                <line x1="262" y1="124" x2="282" y2="124"/>
+              </g>
+              <g fill="#fef9ed" stroke="#050510" stroke-width="3">
+                <rect x="62" y="64" width="196" height="46" rx="4"/>
+              </g>
+              <g fill="#050510">
+                <rect x="78" y="76" width="38" height="22" fill="#00d4ff" stroke="#050510" stroke-width="2"/>
+                <rect x="124" y="76" width="38" height="22" fill="#ff2d70" stroke="#050510" stroke-width="2"/>
+                <rect x="170" y="76" width="38" height="22" fill="#ffd60a" stroke="#050510" stroke-width="2"/>
+                <rect x="216" y="76" width="34" height="22" fill="#fef9ed" stroke="#050510" stroke-width="2"/>
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="#ffd60a">
+                <line x1="146" y1="64" x2="146" y2="28"/>
+                <circle cx="146" cy="22" r="6"/>
+              </g>
+              <g stroke="#050510" stroke-width="2.5" fill="none">
+                <path d="M132 18 Q146 10 160 18" />
+                <path d="M126 26 Q146 14 166 26" opacity=".6"/>
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="#050510">
+                <circle cx="98" cy="118" r="18"/>
+                <circle cx="222" cy="118" r="18"/>
+              </g>
+              <g fill="#fef9ed">
+                <circle cx="98" cy="118" r="7"/>
+                <circle cx="222" cy="118" r="7"/>
+              </g>
+              <g stroke="#050510" stroke-width="2" fill="none" opacity=".7">
+                <line x1="86" y1="118" x2="110" y2="118"/>
+                <line x1="98" y1="106" x2="98" y2="130"/>
+                <line x1="210" y1="118" x2="234" y2="118"/>
+                <line x1="222" y1="106" x2="222" y2="130"/>
+              </g>
+              <g>
+                <rect x="6" y="6" width="86" height="18" fill="#050510"/>
+                <text x="49" y="19" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="800" fill="#00d4ff">ROVER · SIDE</text>
+              </g>
+            </svg>
+            <div class="bc-illus-halftone"></div>
+          </figure>
+          <div class="bc-body">
+            <span class="bc-tag">BUILD 02 · GROUND</span>
+            <h3 class="bc-name">Rovers</h3>
+            <p class="bc-brief">Autonomous ground vehicles. Sensor-fusion + onboard CV experiments.</p>
+            <ul class="bc-bullets">
+              <li><b>Custom</b> chassis</li>
+              <li><b>Onboard</b> CV (OpenCV)</li>
+              <li><b>Path-planning</b> + obstacle avoidance</li>
+            </ul>
+            <ul class="bc-chips" aria-label="parts list">
+              <li>Arduino</li><li>Pi Cam</li><li>OpenCV</li><li>IMU</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="panel build-card panel-paper tilt-l">
+          <figure class="bc-illus" aria-hidden="true">
+            <svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid meet">
+              <g opacity=".18">
+                <circle cx="240" cy="40" r="30" fill="#ffd60a"/>
+                <circle cx="240" cy="40" r="46" fill="none" stroke="#ffd60a" stroke-width="3"/>
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="none">
+                <path d="M120 60 Q116 36 126 22" stroke-linecap="round"/>
+                <path d="M132 60 Q138 30 158 18" stroke-linecap="round"/>
+                <path d="M146 62 Q170 40 196 30" stroke-linecap="round"/>
+                <path d="M150 64 Q174 60 198 56" stroke-linecap="round"/>
+                <path d="M118 62 Q98 50 84 36" stroke-linecap="round"/>
+              </g>
+              <g fill="#2ed573" stroke="#050510" stroke-width="2.5">
+                <ellipse cx="124" cy="22" rx="10" ry="6" transform="rotate(-22 124 22)"/>
+                <ellipse cx="160" cy="18" rx="11" ry="6" transform="rotate(8 160 18)"/>
+                <ellipse cx="196" cy="30" rx="10" ry="6" transform="rotate(28 196 30)"/>
+                <ellipse cx="198" cy="56" rx="9" ry="5" transform="rotate(8 198 56)"/>
+                <ellipse cx="84" cy="36" rx="9" ry="6" transform="rotate(-30 84 36)"/>
+              </g>
+              <g fill="#ff2d70" stroke="#050510" stroke-width="2.5">
+                <polygon points="100,60 196,60 184,140 112,140" />
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="none">
+                <line x1="100" y1="74" x2="196" y2="74"/>
+              </g>
+              <g fill="#050510">
+                <rect x="148" y="80" width="56" height="22" fill="#050510" stroke="#050510" stroke-width="2"/>
+                <text x="176" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="800" fill="#ffd60a">MOIST</text>
+                <text x="176" y="105" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="#00d4ff" opacity=".9"></text>
+              </g>
+              <g stroke="#050510" stroke-width="2.4" fill="none">
+                <path d="M148 91 L96 91"/>
+                <path d="M96 91 L96 124"/>
+              </g>
+              <circle cx="96" cy="128" r="5" fill="#00d4ff" stroke="#050510" stroke-width="2"/>
+              <g fill="#00d4ff" stroke="#050510" stroke-width="2">
+                <path d="M44 110 Q40 122 44 130 Q48 122 44 110 Z"/>
+                <path d="M62 96 Q58 108 62 116 Q66 108 62 96 Z"/>
+                <path d="M50 88 Q46 100 50 108 Q54 100 50 88 Z"/>
+              </g>
+              <g>
+                <rect x="6" y="138" width="120" height="18" fill="#050510"/>
+                <text x="66" y="151" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="800" fill="#2ed573">PLANT IoT · LOOP</text>
+              </g>
+            </svg>
+            <div class="bc-illus-halftone"></div>
+          </figure>
+          <div class="bc-body">
+            <span class="bc-tag">BUILD 03 · IOT</span>
+            <h3 class="bc-name">IoT Greenhouse <em>+ Home Automation</em></h3>
+            <p class="bc-brief">Sensor-to-actuator loops for things that grow and things that don't.</p>
+            <ul class="bc-bullets">
+              <li><b>Soil-moisture</b>-driven plant watering</li>
+              <li><b>Home</b> automation hooks</li>
+              <li><b>Rule-based</b> + edge-ML</li>
+            </ul>
+            <ul class="bc-chips" aria-label="parts list">
+              <li>ESP32</li><li>MQTT</li><li>Solenoid</li><li>DHT22</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="panel build-card panel-paper tilt-r">
+          <figure class="bc-illus" aria-hidden="true">
+            <svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid meet">
+              <g opacity=".16">
+                <circle cx="50" cy="40" r="32" fill="#ff2d70"/>
+                <circle cx="270" cy="120" r="32" fill="#00d4ff"/>
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="#2ed573">
+                <rect x="78" y="22" width="164" height="26" rx="3"/>
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="#fef9ed">
+                <rect x="78" y="54" width="164" height="26" rx="3"/>
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="#ffd60a">
+                <rect x="78" y="86" width="164" height="26" rx="3"/>
+              </g>
+              <g stroke="#050510" stroke-width="3" fill="#050510">
+                <rect x="78" y="118" width="164" height="24" rx="3"/>
+              </g>
+              <g fill="#050510">
+                <circle cx="92" cy="35" r="3.2"/><circle cx="104" cy="35" r="3.2"/><circle cx="116" cy="35" r="3.2"/>
+                <circle cx="92" cy="67" r="3.2"/><circle cx="104" cy="67" r="3.2"/>
+                <circle cx="92" cy="99" r="3.2"/>
+              </g>
+              <g fill="#ff2d70">
+                <circle cx="226" cy="35" r="3.6"/>
+                <circle cx="226" cy="67" r="3.6"/>
+                <circle cx="226" cy="99" r="3.6"/>
+              </g>
+              <g fill="#00d4ff">
+                <circle cx="214" cy="130" r="3.6"/>
+                <circle cx="226" cy="130" r="3.6"/>
+              </g>
+              <g stroke="#050510" stroke-width="2.4" fill="none">
+                <path d="M242 35 L284 35 L284 130 L242 130"/>
+                <path d="M242 67 L274 67 L274 130"/>
+                <path d="M242 99 L264 99 L264 130"/>
+              </g>
+              <g fill="#fef9ed" font-family="JetBrains Mono, monospace" font-size="8" font-weight="800">
+                <text x="160" y="40" text-anchor="middle" fill="#050510">NAS · pi4</text>
+                <text x="160" y="72" text-anchor="middle" fill="#050510">WORKER · pi4</text>
+                <text x="160" y="104" text-anchor="middle" fill="#050510">DNS · pi3</text>
+                <text x="160" y="135" text-anchor="middle" fill="#ffd60a">SWITCH · 8p</text>
+              </g>
+              <g>
+                <rect x="6" y="6" width="78" height="18" fill="#050510"/>
+                <text x="45" y="19" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="800" fill="#ff2d70">RPi · RACK</text>
+              </g>
+            </svg>
+            <div class="bc-illus-halftone"></div>
+          </figure>
+          <div class="bc-body">
+            <span class="bc-tag">BUILD 04 · HOMELAB</span>
+            <h3 class="bc-name">RPi Homelab</h3>
+            <p class="bc-brief">Raspberry Pi NAS + distributed-computing experiments + DNS-level ad blocking.</p>
+            <ul class="bc-bullets">
+              <li><b>NAS</b> + media stack (Samba + Jellyfin)</li>
+              <li><b>Distributed</b> task scheduler across Pi 4s</li>
+              <li><b>Pi-hole</b> network-wide ad block</li>
+            </ul>
+            <ul class="bc-chips" aria-label="parts list">
+              <li>Pi 4 ×3</li><li>Samba</li><li>Docker</li><li>Pi-hole</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="sfx sfx-workshop">BUILD!</div>
+    </section>
+
+    <!-- ════════ 09 · TIMELINE — career strip ════════ -->
+    <section class="page timeline" id="timeline" data-page="8" data-name="TIMELINE" data-acc="yellow">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 09</div>
+        <h2 class="ph-title chromatic">THE <em>TIMELINE</em></h2>
+        <div class="ph-sub">— shipped every quarter —</div>
+      </header>
+
+      <div class="tl-strip">
+        <article class="panel tl-cell panel-cyan tilt-l">
+          <div class="tl-num">PANEL 1 · 10-DAY SUMMER</div>
+          <div class="tl-date">MAY 2025</div>
+          <div class="tl-org">IISc · BANGALORE</div>
+          <h3 class="tl-name">Research Intern</h3>
+          <p>10-day summer intern. Vortex ring formation under varying drone flight conditions. Short, focused stint — output continued after: Drone-VRS, Vortex-Tracker, Propeller-Simulator.</p>
+        </article>
+
+        <article class="panel tl-cell panel-yel tilt-r">
+          <div class="tl-num">PANEL 2</div>
+          <div class="tl-date">2025 · Q3</div>
+          <div class="tl-org">VEGAM CO</div>
+          <h3 class="tl-name">Engineering Intern</h3>
+          <p>Prototype water-based air filtration systems. Hardware-first iteration, weekly build / test / refine.</p>
+        </article>
+
+        <article class="panel tl-cell panel-mag tilt-l">
+          <div class="tl-num">PANEL 3</div>
+          <div class="tl-date">2026 · Q1</div>
+          <div class="tl-org">VEGAM CO</div>
+          <h3 class="tl-name">Engineering Intern</h3>
+          <p>RAG pipeline for natural language → SQL with large dataset querying + visualization.</p>
+        </article>
+
+        <article class="panel tl-cell panel-red tilt-r live">
+          <div class="tl-num">PANEL 4 · ONGOING</div>
+          <div class="tl-date">NOW</div>
+          <div class="tl-org">ELEVYX · ATHERA</div>
+          <h3 class="tl-name">Founder &amp; Developer</h3>
+          <p>Backend + workflow systems at Elevyx. Building Athera — workflow automation. Sites for NGOs &amp; small businesses.</p>
+        </article>
+
+        <div class="sfx sfx-tl">SHIP!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 10 · THE OPERATOR — character profile ════════ -->
+    <section class="page operator" id="operator" data-page="9" data-name="OPERATOR" data-acc="cyan">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 10</div>
+        <h2 class="ph-title chromatic">THE <em>OPERATOR</em></h2>
+        <div class="ph-sub">— Operator SB · illustrated likeness · ~/sb.dossier —</div>
+      </header>
+
+      <div class="op-grid">
+        <div class="op-portrait-wrap">
+          <figure class="panel panel-img op-portrait-fig panel-mag tilt-l" data-img-fx="comic-mag-yel">
+            <img
+              src="assets/operator-hero.svg"
+              width="960"
+              height="520"
+              alt="Operator-Verse comic illustration: stylized operator figure with headset boom mic, HUD corner brackets, Issue #001 ribbon, scan lines, and halftone dots — illustrated likeness of Operator SB, not a photograph."
+            />
+            <div class="img-halftone"></div>
+            <figcaption class="img-cap">
+              <span class="ic-num">SUBJECT</span>
+              <span class="ic-name">SB · OPERATOR</span>
+              <span class="ic-sub">Siddarth Boggarapu · student builder · Bangalore</span>
+            </figcaption>
+          </figure>
+          <div class="op-context" role="note">
+            <span class="oc-tag">Who is “Operator”?</span>
+            <p><strong>Operator SB</strong> is the voice behind this dossier — a student builder who stress-tests ideas across code, models, and messy reality.</p>
+            <p><strong>How they work:</strong> verify claims, simulate outcomes, and refuse to ship noise when the signal is not there.</p>
+            <p>The portrait above is an <strong>original comic illustration</strong> (SVG), not a studio photograph. Swap in a real headshot anytime by replacing <code>assets/operator-hero.svg</code> (or point the <code>&lt;img&gt;</code> at a new file) — the panel frame stays.</p>
+          </div>
+        </div>
+
+        <div class="panel op-bio panel-paper tilt-r">
+          <span class="narr-tag">QUOTE</span>
+          <blockquote class="op-quote">
+            "I like <em>pressure tests</em>. In systems and in life."
+          </blockquote>
+          <p>
+            Builder across <strong>finance, healthcare, legal reasoning, drones &amp; physical simulation</strong>. Measurable performance, tight feedback loops, and knowing exactly when a system should refuse to answer. Competitive sport — skating, football, badminton, swimming. MUN, NGO work, 50+ hrs of community service.
+          </p>
+        </div>
+
+        <div class="panel op-stack panel-ink">
+          <div class="ev-head"><span>STACK</span><b>DAILY</b></div>
+          <ul class="op-stack-list">
+            <li><span>lang</span><b>Python · TypeScript · GLSL · C</b></li>
+            <li><span>ml</span><b>PyTorch · sklearn · LangChain · vLLM</b></li>
+            <li><span>web</span><b>FastAPI · Next.js · WebGL · Three.js</b></li>
+            <li><span>data</span><b>Postgres · Qdrant · Redis · DuckDB</b></li>
+            <li><span>infra</span><b>Docker · Linux · GH Actions · n8n</b></li>
+          </ul>
+        </div>
+
+        <div class="panel op-stats panel-yel tilt-r">
+          <div class="ev-head"><span>STATS</span></div>
+          <div class="stat-grid">
+            <div><b>10+</b><span>repos · 6 archived</span></div>
+            <div><b>05</b><span>domains</span></div>
+            <div><b>03</b><span>internships</span></div>
+            <div><b>∞</b><span>curiosity</span></div>
+          </div>
+        </div>
+
+        <div class="sfx sfx-op">OPERATOR!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 11 · SIGNAL — final action panel ════════ -->
+    <section class="page signal" id="signal" data-page="10" data-name="SIGNAL">
+      <div class="page-bg-halftone"></div>
+
+      <div class="signal-burst" aria-hidden="true">
+        <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00d4ff" stop-opacity=".5"/>
+              <stop offset="55%" stop-color="#ff2d70" stop-opacity=".22"/>
+              <stop offset="100%" stop-color="#0a0a2e" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="400" cy="400" r="400" fill="url(#rg2)"/>
+          <g stroke="#00d4ff" stroke-width="3" opacity=".4">
+            <line x1="400" y1="0" x2="400" y2="800"/>
+            <line x1="0" y1="400" x2="800" y2="400"/>
+            <line x1="80" y1="80" x2="720" y2="720"/>
+            <line x1="720" y1="80" x2="80" y2="720"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="signal-frame">
+        <div class="sg-issue">
+          <span>END · ISSUE 001</span>
+          <i>·</i>
+          <span>PAGE 11 / 11</span>
+        </div>
+
+        <h2 class="sg-end chromatic">
+          <span class="sg-line">SEND THE</span>
+          <span class="sg-line sg-yel">SIGNAL.</span>
+        </h2>
+
+        <p class="sg-tag">— let's build something real —</p>
+
+        <a class="sg-cta" href="mailto:siddarthb078@gmail.com" data-magnet data-cur="email">
+          <span class="cc-bg"></span>
+          <span class="cc-label">siddarthb078@gmail.com</span>
+          <i class="cc-arrow">↗</i>
+        </a>
+
+        <div class="sg-foot">
+          <a href="https://github.com/Siddarthb07" target="_blank" rel="noopener noreferrer" data-cur="github">GITHUB <i>↗</i></a>
+          <span class="sf-dot">·</span>
+          <a href="https://www.linkedin.com/in/siddarth-boggarapu-12411339b/" target="_blank" rel="noopener noreferrer" data-cur="linkedin">LINKEDIN <i>↗</i></a>
+          <span class="sf-dot">·</span>
+          <a href="mailto:siddarthb078@gmail.com" data-cur="email">EMAIL <i>↗</i></a>
+        </div>
+
+        <div class="sg-fin">
+          <div class="fin-band">— FIN —</div>
+          <div class="fin-meta">© 2026 · Siddarth Boggarapu · ISSUE 001 · BUILT FROM SCRATCH · HTML / CSS / JS</div>
+        </div>
+
+        <div class="sfx sfx-signal">CALL!</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>
