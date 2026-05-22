@@ -3,6 +3,11 @@
    Comic book pages with snap-scroll, reveals, interactive widgets.
    ========================================================= */
 
+import {
+  SITE, fetchAllRepos, categorizeRepos, inflightCount,
+  padStat, renderRepoIndex
+} from './github.js';
+
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = matchMedia('(hover: none)').matches;
 const $  = (q, r=document) => r.querySelector(q);
@@ -16,18 +21,15 @@ const PAGES = [
   { num: '03', name: 'LEXPROBE' },
   { num: '04', name: 'GEOQUANT' },
   { num: '05', name: 'HEALTH AI' },
-  { num: '06', name: 'AI BRAIN' },
+  { num: '06', name: 'ANIMA' },
   { num: '07', name: 'THE LAB' },
-  { num: '08', name: 'WORKSHOP' },
-  { num: '09', name: 'TIMELINE' },
-  { num: '10', name: 'OPERATOR' },
-  { num: '11', name: 'SIGNAL' }
+  { num: '08', name: 'TIMELINE' },
+  { num: '09', name: 'OPERATOR' },
+  { num: '10', name: 'SIGNAL' }
 ];
 
 /* =========================================================
-   1. CURSOR — SVG crosshair tracked via translate3d
-   Position is set on the outer #cursor; hover scale/rotate
-   lives on .cur-inner so the two transforms never fight.
+   1. CURSOR
    ========================================================= */
 (() => {
   if (isTouch) return;
@@ -40,7 +42,6 @@ const PAGES = [
     if (!seeded){ x = tx; y = ty; seeded = true; }
   }, { passive: true });
 
-  // hide cursor when mouse leaves the document
   document.addEventListener('mouseleave', () => cur.style.opacity = '0');
   document.addEventListener('mouseenter', () => cur.style.opacity = '1');
 
@@ -79,25 +80,25 @@ async function boot(){
     '> printing cover...........<span class="ok">ok</span>',
     '> mixing inks · CMYK......<span class="ok">ok</span>',
     '> stamping halftone.......<span class="ok">ok</span>',
-    '> binding 11 pages........<span class="ok">ok</span>',
+    '> binding 10 pages........<span class="ok">ok</span>',
+    '> syncing GitHub index....<span class="ok">live</span>',
     '> mounting widgets........<span class="ok">04</span>',
-    '> loading SFX type........<span class="em">BANG!</span>',
     '<span class="ok">[ ready ]</span> Issue 001 — scroll to read'
   ];
   for (let i = 0; i < lines.length; i++){
     log.innerHTML += (i ? '\n' : '') + lines[i];
     bar.style.right = (100 - (i + 1) / lines.length * 100).toFixed(0) + '%';
-    await new Promise(r => setTimeout(r, 150 + Math.random() * 80));
+    await new Promise(r => setTimeout(r, 120 + Math.random() * 60));
   }
   if (rdy) rdy.textContent = 'PRINTED';
-  await new Promise(r => setTimeout(r, 380));
+  await new Promise(r => setTimeout(r, 320));
   $('#loader').classList.add('gone');
   setTimeout(() => $('#loader')?.remove(), 1100);
   $('#cover')?.classList.add('in');
 }
 
 /* =========================================================
-   3. PAGE OBSERVER
+   4. PAGE OBSERVER
    ========================================================= */
 function startPages(){
   const pages = $$('.page');
@@ -157,7 +158,45 @@ function startPages(){
 }
 
 /* =========================================================
-   4. EQUITY (one-shot)
+   5. GITHUB — stats + project index
+   ========================================================= */
+async function loadGitHubData(){
+  const reposEl = $('#statRepos');
+  const inflightEl = $('#statInflight');
+  const sourceEl = $('#statSource');
+  const indexHost = $('#repoIndex');
+  const coverMeta = $('#coverMeta');
+
+  if (reposEl) reposEl.classList.add('loading');
+  if (inflightEl) inflightEl.classList.add('loading');
+
+  try {
+    const all = await fetchAllRepos();
+    const { visible, buckets } = categorizeRepos(all);
+    const inflight = inflightCount(buckets);
+
+    if (reposEl) reposEl.textContent = padStat(visible.length);
+    if (inflightEl) inflightEl.textContent = padStat(inflight);
+    if (sourceEl) sourceEl.textContent = 'GITHUB · LIVE';
+    if (coverMeta){
+      coverMeta.textContent =
+        `10 PAGES · ${padStat(SITE.caseFiles)} CASE FILES · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(visible.length)} REPOS`;
+    }
+
+    renderRepoIndex(buckets, indexHost);
+  } catch {
+    if (reposEl) reposEl.textContent = '—';
+    if (inflightEl) inflightEl.textContent = '—';
+    if (sourceEl) sourceEl.textContent = 'GITHUB · OFFLINE';
+    if (indexHost) indexHost.innerHTML = '<p class="ri-fallback">Index offline — <a href="https://github.com/Siddarthb07" target="_blank" rel="noopener noreferrer">view on GitHub ↗</a></p>';
+  } finally {
+    reposEl?.classList.remove('loading');
+    inflightEl?.classList.remove('loading');
+  }
+}
+
+/* =========================================================
+   6. EQUITY (illustrative)
    ========================================================= */
 function drawEquity(){
   const line = $('#eqLine');
@@ -178,7 +217,7 @@ function drawEquity(){
 }
 
 /* =========================================================
-   5. RISK DIAL
+   7. RISK DIAL
    ========================================================= */
 function setRisk(v=0.31){
   const arc = $('#riskArc'); const num = $('#riskNum');
@@ -194,11 +233,10 @@ function setRisk(v=0.31){
 }
 
 /* =========================================================
-   6. WAVE
+   8. ANIMA PROBE READOUT
    ========================================================= */
-function startWave(){
-  const host = $('#waveBars');
-  const state = $('#waveState');
+function startProbe(){
+  const host = $('#probeBars');
   if (!host) return;
   host.innerHTML = '';
   const N = 36;
@@ -207,16 +245,39 @@ function startWave(){
     const s = document.createElement('span');
     host.appendChild(s); bars.push(s);
   }
-  const states = ['LISTENING','STT','RAG','LLM','SPEAK','IDLE'];
-  let si = 0, t0 = performance.now();
+  const valBar = $('#valBar');
+  const aroBar = $('#aroBar');
+  const uncBar = $('#uncBar');
+  const valNum = $('#valNum');
+  const aroNum = $('#aroNum');
+  const uncNum = $('#uncNum');
+  const token = $('#probeToken');
+  const layer = $('#probeLayer');
+  const state = $('#probeState');
+  const states = ['STREAM','HOOK','PROBE','EMIT'];
+  let si = 0, tok = 47, t0 = performance.now();
   function tick(now){
     const t = (now - t0) / 1000;
+    const val = (Math.sin(t * 1.4) * 0.35 + Math.sin(t * 0.7) * 0.15);
+    const aro = (Math.sin(t * 2.1 + 1.2) * 0.5 + 0.5);
+    const unc = clamp(0.18 + Math.sin(t * 0.9 + 2.4) * 0.22 + Math.sin(t * 3.1) * 0.08, 0.05, 0.92);
     for (let i = 0; i < N; i++){
-      const w = (Math.sin(i * 0.6 + t * 4) + Math.sin(i * 0.18 + t * 2.6)) * 0.5 + 0.5;
+      const w = (Math.sin(i * 0.55 + t * 5 + val * 2) + Math.sin(i * 0.2 + t * 2.8)) * 0.5 + 0.5;
       const decay = 1 - Math.abs((i - N/2) / (N/2));
-      bars[i].style.height = (10 + w * decay * 90) + '%';
+      bars[i].style.height = (8 + w * decay * (60 + aro * 40)) + '%';
     }
-    if (Math.floor(t * 10) % 22 === 0){
+    if (valBar) valBar.style.setProperty('--w', ((val + 1) / 2 * 100).toFixed(1) + '%');
+    if (aroBar) aroBar.style.setProperty('--w', (aro * 100).toFixed(1) + '%');
+    if (uncBar) uncBar.style.setProperty('--w', (unc * 100).toFixed(1) + '%');
+    if (valNum) valNum.textContent = (val >= 0 ? '+' : '') + val.toFixed(2);
+    if (aroNum) aroNum.textContent = aro.toFixed(2);
+    if (uncNum) uncNum.textContent = unc.toFixed(2);
+    if (Math.floor(t * 8) % 18 === 0){
+      tok = (tok + 1) % 999;
+      if (token) token.textContent = String(tok).padStart(3, '0');
+      if (layer) layer.textContent = '−' + (4 + (tok % 5));
+    }
+    if (Math.floor(t * 10) % 24 === 0){
       si = (si + 1) % states.length;
       if (state) state.textContent = states[si];
     }
@@ -226,7 +287,7 @@ function startWave(){
 }
 
 /* =========================================================
-   7. SIM — RPM
+   9. SIM — RPM + VRS
    ========================================================= */
 function initRPM(){
   const range = $('#rpmRange');
@@ -266,9 +327,6 @@ function initRPM(){
   set(+range.value);
 }
 
-/* =========================================================
-   8. SIM — VRS
-   ========================================================= */
 function initVRS(){
   const range = $('#vdRange');
   if (!range) return;
@@ -314,7 +372,7 @@ function initVRS(){
 }
 
 /* =========================================================
-   9. MAGNET CTA
+   10. MAGNET CTA
    ========================================================= */
 function startMagnets(){
   if (isTouch || reduceMotion) return;
@@ -332,7 +390,7 @@ function startMagnets(){
 }
 
 /* =========================================================
-   10. KEYS — number jump, arrows
+   11. KEYS
    ========================================================= */
 function startKeys(){
   document.addEventListener('keydown', e => {
@@ -342,7 +400,7 @@ function startKeys(){
       const i = +e.key - 1;
       pages[i]?.scrollIntoView({ behavior: 'smooth' });
     }
-    if (e.key === '0') pages[pages.length - 1]?.scrollIntoView({ behavior: 'smooth' });
+    if (e.key === '0') pages[9]?.scrollIntoView({ behavior: 'smooth' });
     if (e.key === 'ArrowDown' || e.key === 'PageDown'){
       const cur = +(document.documentElement.dataset.page || 0);
       pages[Math.min(pages.length-1, cur+1)]?.scrollIntoView({ behavior: 'smooth' });
@@ -367,12 +425,13 @@ function ready(fn){
 ready(() => {
   drawEquity();
   setRisk(0.31);
-  startWave();
+  startProbe();
   initRPM();
   initVRS();
   startMagnets();
   startKeys();
   startPages();
+  loadGitHubData();
 
   boot();
 });

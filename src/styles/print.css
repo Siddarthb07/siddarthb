@@ -1,0 +1,60 @@
+/* Brief dossier export — one-page readable summary for interviewers / VCs */
+
+@media print {
+  @page { margin: 14mm; size: A4; }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 10pt;
+  }
+
+  #loader, #cursor, .rail, .hud-tools, .sfx, .boot-burst,
+  .cover-burst, .signal-burst, .page-bg-halftone, .rig, .probe-bars,
+  input[type="range"] { display: none !important; }
+
+  .hud {
+    position: static;
+    border-bottom: 2px solid #111;
+    padding: 0 0 8px;
+    margin-bottom: 12px;
+  }
+
+  .page {
+    position: static !important;
+    min-height: auto !important;
+    height: auto !important;
+    page-break-inside: avoid;
+    padding: 12px 0 !important;
+    scroll-snap-align: none !important;
+    background: #fff !important;
+  }
+
+  .panel {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    transform: none !important;
+    opacity: 1 !important;
+    break-inside: avoid;
+  }
+
+  .chromatic, .case-name, .ph-title {
+    color: #111 !important;
+    text-shadow: none !important;
+    -webkit-text-stroke: 0 !important;
+  }
+
+  .panel-img img { filter: none !important; max-height: 120px; object-fit: cover; }
+
+  a { color: #111 !important; text-decoration: underline; }
+
+  .case-grid, .op-grid, .lab-grid, .tl-strip, .origin-grid {
+    display: block !important;
+  }
+
+  .case-grid > *, .op-grid > *, .lab-grid > *, .tl-strip > * {
+    margin-bottom: 10px;
+  }
+
+  .signal { padding-top: 20px; }
+}
