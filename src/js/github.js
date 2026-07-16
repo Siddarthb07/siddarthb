@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v1';
+export const GH_CACHE_KEY = 'sb_gh_repos_v2';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -15,7 +15,6 @@ export const SITE = {
 export const REPO_HIDDEN = new Set([
   'Siddarthb07',
   'siddarthb',
-  'Elevyx',
   'AI-BRAIN',
   'AI-powered-whatsapp-chatbot',
   'health-tracker-v2',
@@ -29,7 +28,7 @@ export const REPO_TIERS = {
   featured: ['Lexprobe', 'GeoQuant', 'Health-AI', 'Anima'],
   lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
   inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'sign-language-cv'],
-  founder: ['Athera']
+  founder: ['Athera', 'Elevyx']
 };
 
 export const PROOF_LINES = {
@@ -43,6 +42,7 @@ export const PROOF_LINES = {
   'text2sql-rag': 'Spider benchmark · sqlglot validator · clean-room',
   'vortex-tracker': 'OpenCV · diameter + speed · IISc May 2025',
   Athera: 'AI automation · SMB workflows · no public client list',
+  Elevyx: 'lead recovery · real-estate · elevyx.in',
   'sign-language-cv': 'MediaPipe · gesture pipeline · training scaffold'
 };
 

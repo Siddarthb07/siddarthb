@@ -793,6 +793,12 @@ main#comic{ position: relative; z-index: 1; }
 .panel-mag .tl-name, .panel-red .tl-name{ color: var(--paper); }
 .tl-cell p{ font-family: var(--inter); font-size: .85rem; color: var(--ink); line-height: 1.5; }
 .panel-mag.tl-cell p, .panel-red.tl-cell p{ color: var(--paper); }
+.panel-red.tl-cell a{
+  color: var(--yellow);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.panel-red.tl-cell a:hover{ color: var(--paper); }
 .tl-cell.live::before{
   content: ""; position: absolute; right: 12px; top: 12px;
   width: 12px; height: 12px; border-radius: 50%;
