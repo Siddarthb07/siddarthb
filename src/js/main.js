@@ -18,10 +18,10 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const PAGES = [
   { num: '01', name: 'COVER' },
   { num: '02', name: 'ORIGIN' },
-  { num: '03', name: 'LEXPROBE' },
-  { num: '04', name: 'GEOQUANT' },
-  { num: '05', name: 'HEALTH AI' },
-  { num: '06', name: 'ANIMA' },
+  { num: '03', name: 'ANIMA' },
+  { num: '04', name: 'LEXPROBE' },
+  { num: '05', name: 'GEOQUANT' },
+  { num: '06', name: 'HEALTH AI' },
   { num: '07', name: 'THE LAB' },
   { num: '08', name: 'TIMELINE' },
   { num: '09', name: 'OPERATOR' },
@@ -121,7 +121,7 @@ function startPages(){
     for (const e of entries){
       if (e.isIntersecting){
         e.target.classList.add('in');
-        if (e.target.id === 'case-1'){
+        if (e.target.id === 'case-2'){
           const audit = $('.audit', e.target);
           if (audit) audit.classList.add('run');
         }

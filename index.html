@@ -147,10 +147,10 @@
   <nav class="rail" aria-label="Pages">
     <a href="#cover"     data-jump="0" class="r-tick on"  data-num="01" data-name="COVER"><span></span></a>
     <a href="#origin"    data-jump="1" class="r-tick"     data-num="02" data-name="ORIGIN"><span></span></a>
-    <a href="#case-1"    data-jump="2" class="r-tick"     data-num="03" data-name="LEXPROBE"><span></span></a>
-    <a href="#case-2"    data-jump="3" class="r-tick"     data-num="04" data-name="GEOQUANT"><span></span></a>
-    <a href="#case-3"    data-jump="4" class="r-tick"     data-num="05" data-name="HEALTH"><span></span></a>
-    <a href="#case-4"    data-jump="5" class="r-tick"     data-num="06" data-name="ANIMA"><span></span></a>
+    <a href="#case-1"    data-jump="2" class="r-tick"     data-num="03" data-name="ANIMA"><span></span></a>
+    <a href="#case-2"    data-jump="3" class="r-tick"     data-num="04" data-name="LEXPROBE"><span></span></a>
+    <a href="#case-3"    data-jump="4" class="r-tick"     data-num="05" data-name="GEOQUANT"><span></span></a>
+    <a href="#case-4"    data-jump="5" class="r-tick"     data-num="06" data-name="HEALTH"><span></span></a>
     <a href="#lab"       data-jump="6" class="r-tick"     data-num="07" data-name="LAB"><span></span></a>
     <a href="#timeline"  data-jump="7" class="r-tick"     data-num="08" data-name="TIMELINE"><span></span></a>
     <a href="#operator"  data-jump="8" class="r-tick"     data-num="09" data-name="OPERATOR"><span></span></a>
@@ -244,53 +244,123 @@
         <div class="panel narr panel-mag tilt-r">
           <span class="narr-tag">/02 — SIMULATION</span>
           <p>
-            Crashed airframes cost real money. So I wrote the physics instead — <em>vortex-ring dynamics, propeller BEMT</em> — and found the unstable zones on a screen before the hardware found them in the dirt. Simulation is how I afford to be wrong.
+            Crashed airframes cost real money, so I wrote the physics instead — <em>vortex-ring dynamics, propeller BEMT</em> — and started finding the unstable zones on a screen before the hardware found them in the dirt. Simulation is how I afford to be wrong.
           </p>
         </div>
 
         <div class="panel narr panel-cyan tilt-l">
           <span class="narr-tag">/03 — THE PATTERN</span>
           <p>
-            Then the same failure showed up everywhere: legal AI citing <em>cases that don't exist</em>, backtests that assume free execution, health scores that guess through missing data. Different domains — the same missing <em>verification layer</em>.
+            That instinct — catch the failure before it happens — became <em>Anima</em>: forward hooks into a model's internals, probe heads trained to read valence, arousal, and uncertainty straight out of the activations. Benchmarked against HaluEval and TruthfulQA, it's the same question as the drone: can you see instability building <em>before the model commits to an answer</em>. Legal AI citing cases that don't exist, backtests that assume free execution — different domains, same missing layer.
           </p>
         </div>
 
         <div class="panel principles panel-paper">
           <span class="narr-tag">PRINCIPLES · 03</span>
           <ol>
-            <li><b>Verify before answering.</b> RAG + audit + refusal.</li>
+            <li><b>Look inside, not just at the output.</b> Forward hooks + probe heads + benchmarked uncertainty.</li>
             <li><b>Simulate when reality costs.</b> CFD, BEMT, walk-forward.</li>
             <li><b>Refusal is a feature.</b> Calibrated "I don't know" beats a confident hallucination.</li>
           </ol>
-          <p class="pr-quote">"I build systems that operate under uncertainty across finance, healthcare, legal reasoning, and physical simulation. My work combines machine learning, backend engineering, and physics-based modeling to create systems that are measurable, explainable, and grounded in real-world constraints."</p>
+          <p class="pr-quote">"I build systems that operate under uncertainty — across interpretability, finance, healthcare, and physical simulation. My work combines machine learning, backend engineering, and physics-based modeling to produce systems that are measurable, explainable, and grounded in real-world constraints."</p>
         </div>
 
         <div class="sfx sfx-origin">VERIFY!</div>
       </div>
     </section>
 
-    <!-- ════════ 03 · CASE FILE #01 — LEXPROBE ════════ -->
-    <section class="page case" id="case-1" data-page="2" data-name="LEXPROBE" data-acc="cyan">
+    <!-- ════════ 03 · CASE FILE #01 — ANIMA (HERO) ════════ -->
+    <section class="page case" id="case-1" data-page="2" data-name="ANIMA" data-acc="magenta">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
         <div class="ph-num">PAGE / 03</div>
         <h2 class="ph-title chromatic">CASE FILE <em>#01</em></h2>
-        <div class="ph-sub">— LEGAL · INDIA · RAG —</div>
+        <div class="ph-sub">— LLM INTERNALS · INTERPRETABILITY · HERO FILE —</div>
       </header>
 
       <div class="case-grid">
-        <figure class="panel panel-img panel-cyan tilt-l" data-img-fx="comic-cyan-mag">
-          <img src="src/images/proj-lexprobe.webp" alt="legal scales" />
+        <figure class="panel panel-img panel-mag tilt-l" data-img-fx="comic-cyan-mag">
+          <img src="src/images/proj-anima.webp" alt="wireframe neural layers with valence arousal uncertainty probe waveforms" />
           <div class="img-halftone"></div>
           <figcaption class="img-cap">
             <span class="ic-num">EXHIBIT A</span>
-            <span class="ic-name">SCALES OF JUSTICE</span>
+            <span class="ic-name">PROBE READOUT</span>
           </figcaption>
         </figure>
 
         <div class="panel panel-title panel-yel tilt-r">
-          <span class="pt-pre">CASE FILE #01</span>
+          <span class="pt-pre">CASE FILE #01 · HERO</span>
+          <h3 class="case-name">ANIMA</h3>
+          <p class="case-pull">
+            "Measure what's <em>inside</em> the model. Not what it says."
+          </p>
+          <a class="case-repo" href="https://github.com/Siddarthb07/Anima" target="_blank" rel="noopener noreferrer" data-cur="open repo">
+            github.com/Anima ↗
+          </a>
+          <p class="case-proof">HF hooks · valence / arousal / unc · guard</p>
+          <p class="case-proof">MIT · <code>anima api --port 8010</code></p>
+        </div>
+
+        <div class="panel narr panel-paper tilt-l">
+          <span class="narr-tag">DOSSIER · BRIEF</span>
+          <p>
+            Open-source instrumentation for <strong>Hugging Face causal LMs</strong>. While a model generates, forward hooks capture its hidden states at chosen layers; small trained <strong>probe heads</strong> read valence, arousal, and uncertainty out of those activations — per token, live. A <strong>guard policy</strong> recommends abstaining when the readouts look unreliable. Validated by a 5-model benchmark council; streams over REST + WebSocket with a live dashboard and a public demo on HF Spaces.
+          </p>
+          <ul class="case-bullets">
+            <li><b>Hooks</b> — per-token hidden-state capture at selected layers</li>
+            <li><b>Probes</b> — trainable heads for valence, arousal, uncertainty</li>
+            <li><b>Guard</b> — abstain recommendation, run against HaluEval + TruthfulQA</li>
+            <li><b>Stream</b> — REST + WebSocket + benchmark tooling</li>
+          </ul>
+        </div>
+
+        <div class="panel evidence panel-ink">
+          <div class="ev-head">
+            <span>EVIDENCE</span><b>BENCH · TINYLLAMA 1.1B</b>
+          </div>
+          <div class="probe">
+            <div class="probe-bars" id="probeBars"></div>
+            <div class="probe-dims">
+              <div class="probe-row"><span>VALENCE</span><div class="probar"><i id="valBar"></i></div><b id="valNum">+0.12</b></div>
+              <div class="probe-row"><span>AROUSAL</span><div class="probar"><i id="aroBar"></i></div><b id="aroNum">0.48</b></div>
+              <div class="probe-row"><span>UNCERT</span><div class="probar"><i id="uncBar"></i></div><b id="uncNum">0.31</b></div>
+            </div>
+            <div class="probe-meta">
+              <div><span>TOKEN</span><b id="probeToken">047</b></div>
+              <div><span>LAYER</span><b id="probeLayer">−4</b></div>
+              <div><span>STATE</span><b id="probeState">STREAM</b></div>
+            </div>
+          </div>
+          <p class="ev-note">Widget is a demo · real numbers: council 94.0 · GoEmotions r 0.19 val / 0.41 aro — <a href="https://github.com/Siddarthb07/Anima/blob/main/docs/BENCHMARK_REPORT.md" target="_blank" rel="noopener noreferrer">benchmark report ↗</a> · <a href="https://huggingface.co/spaces/sidb078/Anima" target="_blank" rel="noopener noreferrer">live demo on HF Spaces ↗</a></p>
+        </div>
+
+        <div class="sfx sfx-case sfx-mag">PROBE!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 04 · CASE FILE #02 — LEXPROBE ════════ -->
+    <section class="page case" id="case-2" data-page="3" data-name="LEXPROBE" data-acc="cyan">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 04</div>
+        <h2 class="ph-title chromatic">CASE FILE <em>#02</em></h2>
+        <div class="ph-sub">— LEGAL · INDIA · RAG —</div>
+      </header>
+
+      <div class="case-grid case-grid-flip">
+        <figure class="panel panel-img panel-cyan tilt-r" data-img-fx="comic-cyan-mag">
+          <img src="src/images/proj-lexprobe.webp" alt="legal scales" />
+          <div class="img-halftone"></div>
+          <figcaption class="img-cap">
+            <span class="ic-num">EXHIBIT B</span>
+            <span class="ic-name">SCALES OF JUSTICE</span>
+          </figcaption>
+        </figure>
+
+        <div class="panel panel-title panel-yel tilt-l">
+          <span class="pt-pre">CASE FILE #02</span>
           <h3 class="case-name">LEXPROBE</h3>
           <p class="case-pull">
             "When the answer matters, <em>verify before you speak</em>."
@@ -302,7 +372,7 @@
           <p class="case-proof">closed source · public design docs</p>
         </div>
 
-        <div class="panel narr panel-paper tilt-l">
+        <div class="panel narr panel-paper tilt-r">
           <span class="narr-tag">DOSSIER · BRIEF</span>
           <p>
             Production legal research for <strong>Indian law</strong>. Citation audit catches hallucinated precedents <em>before</em> they reach the user. Refuses when uncertain.
@@ -337,28 +407,28 @@
       </div>
     </section>
 
-    <!-- ════════ 04 · CASE FILE #02 — GEOQUANT ════════ -->
-    <section class="page case" id="case-2" data-page="3" data-name="GEOQUANT" data-acc="yellow">
+    <!-- ════════ 05 · CASE FILE #03 — GEOQUANT ════════ -->
+    <section class="page case" id="case-3" data-page="4" data-name="GEOQUANT" data-acc="yellow">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
-        <div class="ph-num">PAGE / 04</div>
-        <h2 class="ph-title chromatic">CASE FILE <em>#02</em></h2>
+        <div class="ph-num">PAGE / 05</div>
+        <h2 class="ph-title chromatic">CASE FILE <em>#03</em></h2>
         <div class="ph-sub">— QUANT · DIRECTIONAL · WALK-FORWARD —</div>
       </header>
 
-      <div class="case-grid case-grid-flip">
-        <figure class="panel panel-img panel-yel tilt-r" data-img-fx="comic-mag-yel">
+      <div class="case-grid">
+        <figure class="panel panel-img panel-yel tilt-l" data-img-fx="comic-mag-yel">
           <img src="src/images/proj-geoquant.webp" alt="market chart" />
           <div class="img-halftone"></div>
           <figcaption class="img-cap">
-            <span class="ic-num">EXHIBIT B</span>
+            <span class="ic-num">EXHIBIT C</span>
             <span class="ic-name">PRICE SERIES</span>
           </figcaption>
         </figure>
 
-        <div class="panel panel-title panel-mag tilt-l">
-          <span class="pt-pre">CASE FILE #02</span>
+        <div class="panel panel-title panel-mag tilt-r">
+          <span class="pt-pre">CASE FILE #03</span>
           <h3 class="case-name">GEOQUANT</h3>
           <p class="case-pull">
             "<em>Cost the trade</em>. Then take it."
@@ -370,7 +440,7 @@
           <p class="case-proof">MIT · <code>.\run_all.ps1</code></p>
         </div>
 
-        <div class="panel narr panel-paper tilt-r">
+        <div class="panel narr panel-paper tilt-l">
           <span class="narr-tag">DOSSIER · BRIEF</span>
           <p>
             Research → signal → execution. <strong>Walk-forward</strong> only. Costs &amp; slippage modeled <em>inside</em> the optimizer, not assumed away.
@@ -405,28 +475,28 @@
       </div>
     </section>
 
-    <!-- ════════ 05 · CASE FILE #03 — HEALTH AI ════════ -->
-    <section class="page case" id="case-3" data-page="4" data-name="HEALTH AI" data-acc="red">
+    <!-- ════════ 06 · CASE FILE #04 — HEALTH AI ════════ -->
+    <section class="page case" id="case-4" data-page="5" data-name="HEALTH AI" data-acc="red">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
-        <div class="ph-num">PAGE / 05</div>
-        <h2 class="ph-title chromatic">CASE FILE <em>#03</em></h2>
+        <div class="ph-num">PAGE / 06</div>
+        <h2 class="ph-title chromatic">CASE FILE <em>#04</em></h2>
         <div class="ph-sub">— HEALTH · CALIBRATED RISK · OOD-SAFE —</div>
       </header>
 
-      <div class="case-grid">
-        <figure class="panel panel-img panel-red tilt-l" data-img-fx="comic-red-yel">
+      <div class="case-grid case-grid-flip">
+        <figure class="panel panel-img panel-red tilt-r" data-img-fx="comic-red-yel">
           <img src="src/images/proj-health.webp" alt="health vitals" />
           <div class="img-halftone"></div>
           <figcaption class="img-cap">
-            <span class="ic-num">EXHIBIT C</span>
+            <span class="ic-num">EXHIBIT D</span>
             <span class="ic-name">VITAL SIGNS</span>
           </figcaption>
         </figure>
 
-        <div class="panel panel-title panel-cyan tilt-r">
-          <span class="pt-pre">CASE FILE #03</span>
+        <div class="panel panel-title panel-cyan tilt-l">
+          <span class="pt-pre">CASE FILE #04</span>
           <h3 class="case-name">HEALTH AI</h3>
           <p class="case-pull">
             "<em>Probabilities</em>, not promises."
@@ -438,7 +508,7 @@
           <p class="case-proof">MIT · <code>python app_v5.py</code></p>
         </div>
 
-        <div class="panel narr panel-paper tilt-l">
+        <div class="panel narr panel-paper tilt-r">
           <span class="narr-tag">DOSSIER · BRIEF</span>
           <p>
             Clinical risk scoring from labs + lifestyle. Runtime path uses <strong>ACC/AHA Pooled Cohort</strong> and <strong>FINDRISC</strong> — actual clinical models, not invented scores. Refuses when input is incomplete.
@@ -474,75 +544,6 @@
         </div>
 
         <div class="sfx sfx-case sfx-red">REFUSE!</div>
-      </div>
-    </section>
-
-    <!-- ════════ 06 · CASE FILE #04 — ANIMA ════════ -->
-    <section class="page case" id="case-4" data-page="5" data-name="ANIMA" data-acc="magenta">
-      <div class="page-bg-halftone"></div>
-
-      <header class="page-head">
-        <div class="ph-num">PAGE / 06</div>
-        <h2 class="ph-title chromatic">CASE FILE <em>#04</em></h2>
-        <div class="ph-sub">— LLM · PROBES · RESEARCH —</div>
-      </header>
-
-      <div class="case-grid case-grid-flip">
-        <figure class="panel panel-img panel-mag tilt-r" data-img-fx="comic-cyan-mag">
-          <img src="src/images/proj-anima.webp" alt="wireframe neural layers with valence arousal uncertainty probe waveforms" />
-          <div class="img-halftone"></div>
-          <figcaption class="img-cap">
-            <span class="ic-num">EXHIBIT D</span>
-            <span class="ic-name">PROBE READOUT</span>
-          </figcaption>
-        </figure>
-
-        <div class="panel panel-title panel-yel tilt-l">
-          <span class="pt-pre">CASE FILE #04</span>
-          <h3 class="case-name">ANIMA</h3>
-          <p class="case-pull">
-            "Measure what's <em>inside</em> the model. Not what it says."
-          </p>
-          <a class="case-repo" href="https://github.com/Siddarthb07/Anima" target="_blank" rel="noopener noreferrer" data-cur="open repo">
-            github.com/Anima ↗
-          </a>
-          <p class="case-proof">HF hooks · valence / arousal / unc</p>
-          <p class="case-proof">MIT · <code>anima api --port 8010</code></p>
-        </div>
-
-        <div class="panel narr panel-paper tilt-r">
-          <span class="narr-tag">DOSSIER · BRIEF</span>
-          <p>
-            Open-source instrumentation for <strong>Hugging Face causal LMs</strong>. Forward hooks on hidden states → valence / arousal / uncertainty readouts per token. FastAPI + WebSocket streaming with an optional live dashboard.
-          </p>
-          <ul class="case-bullets">
-            <li><b>Hooks</b> — per-token hidden-state capture at selected layers</li>
-            <li><b>Probes</b> — trainable heads for valence, arousal, uncertainty</li>
-            <li><b>Stream</b> — REST + WebSocket + benchmark tooling</li>
-          </ul>
-        </div>
-
-        <div class="panel evidence panel-ink">
-          <div class="ev-head">
-            <span>EVIDENCE</span><b>BENCH · TINYLLAMA 1.1B</b>
-          </div>
-          <div class="probe">
-            <div class="probe-bars" id="probeBars"></div>
-            <div class="probe-dims">
-              <div class="probe-row"><span>VALENCE</span><div class="probar"><i id="valBar"></i></div><b id="valNum">+0.12</b></div>
-              <div class="probe-row"><span>AROUSAL</span><div class="probar"><i id="aroBar"></i></div><b id="aroNum">0.48</b></div>
-              <div class="probe-row"><span>UNCERT</span><div class="probar"><i id="uncBar"></i></div><b id="uncNum">0.31</b></div>
-            </div>
-            <div class="probe-meta">
-              <div><span>TOKEN</span><b id="probeToken">047</b></div>
-              <div><span>LAYER</span><b id="probeLayer">−4</b></div>
-              <div><span>STATE</span><b id="probeState">STREAM</b></div>
-            </div>
-          </div>
-          <p class="ev-note">Widget is a demo · real numbers: council 94.0 · GoEmotions r 0.19 val / 0.41 aro — <a href="https://github.com/Siddarthb07/Anima/blob/main/docs/BENCHMARK_REPORT.md" target="_blank" rel="noopener noreferrer">benchmark report ↗</a> · <a href="https://huggingface.co/spaces/sidb078/Anima" target="_blank" rel="noopener noreferrer">live demo on HF Spaces ↗</a></p>
-        </div>
-
-        <div class="sfx sfx-case sfx-mag">PROBE!</div>
       </div>
     </section>
 
