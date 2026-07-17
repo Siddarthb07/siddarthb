@@ -344,7 +344,7 @@ main#comic{ position: relative; z-index: 1; }
   text-transform: uppercase;
   line-height: 1;
 }
-.sfx-cover  { right: 8%; bottom: 18%; transform: rotate(-12deg); color: var(--magenta); }
+.sfx-cover  { right: 8%; bottom: 18%; transform: rotate(-12deg); color: var(--yellow); opacity: .85; }
 .sfx-origin { right: 4%; bottom: 27%; transform: rotate(8deg); color: var(--yellow); }
 .sfx-case   { right: 4%; bottom: 8%; }
 .sfx-yel    { color: var(--yellow); }
@@ -413,21 +413,21 @@ main#comic{ position: relative; z-index: 1; }
   background: var(--night);
   padding-top: clamp(80px, 10vh, 120px);
 }
-.cover-burst{ position: absolute; inset: 0; z-index: 0; opacity: .72; }
+.cover-burst{ position: absolute; inset: 0; z-index: 0; opacity: .6; }
 .cover-burst svg{ width: 100%; height: 100%; }
 
 .cover-issue{
   display: inline-flex; gap: 12px; align-items: center;
   padding: 6px 14px;
-  background: var(--yellow); color: var(--ink);
-  border: 3px solid var(--ink);
-  box-shadow: 4px 4px 0 var(--magenta);
+  background: var(--ink); color: var(--yellow);
+  border: 2px solid var(--yellow);
+  box-shadow: 4px 4px 0 rgba(232,54,104,.35);
   font-family: var(--mono); font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; font-weight: 700;
   margin-bottom: 26px;
   position: relative; z-index: 2;
 }
 .ci-bang{ font-family: var(--bang); font-size: 1.05rem; letter-spacing: .04em; }
-.ci-meta{ color: rgba(5,5,16,.7); font-size: .58rem; }
+.ci-meta{ color: var(--faint); font-size: .58rem; }
 
 .cover-name{
   font-family: var(--bowl); font-weight: 400;
@@ -478,7 +478,7 @@ main#comic{ position: relative; z-index: 1; }
   background: var(--paper);
   color: var(--ink);
   border: 4px solid var(--ink);
-  box-shadow: 6px 6px 0 var(--magenta);
+  box-shadow: 6px 6px 0 rgba(232,54,104,.5);
   font-family: var(--gro); font-weight: 700;
   font-size: clamp(1.1rem, 1.8vw, 1.6rem);
   letter-spacing: -0.01em;
@@ -803,7 +803,7 @@ main#comic{ position: relative; z-index: 1; }
 .tl-strip{
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: clamp(14px, 1.6vw, 22px);
   position: relative;
 }
@@ -1021,7 +1021,7 @@ main#comic{ position: relative; z-index: 1; }
   .panel-img{ min-height: 240px; }
   .lab-grid{ grid-template-columns: 1fr; }
   .hw-grid{ grid-template-columns: 1fr; }
-  .tl-strip{ grid-template-columns: repeat(3, 1fr); }
+  .tl-strip{ grid-template-columns: repeat(2, 1fr); }
   .op-grid{ grid-template-columns: 1fr; grid-template-areas: "portrait" "bio" "stack" "stats" "repos"; }
   .op-portrait{ min-height: 240px; }
   .origin-grid{ grid-template-columns: 1fr; grid-template-rows: auto; }
