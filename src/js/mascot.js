@@ -27,7 +27,7 @@ const SCRIPT = [
     state: 'point',
     pos: { x: '96vw', y: '10vh', side: 'right', scale: .72, range: [10, 5] },
     lines: [
-      { t: 'Every beat on this page has a public repo behind it — none of this is retroactive storytelling.' },
+      { t: 'The software and simulation beats here all have public repos behind them — none of this is retroactive storytelling.' },
       { t: 'The simulators in panel 03? You can run them yourself on the very next page. From here on I\u2019ll stay quiet — click me anytime for the page intel.' }
     ]
   },
@@ -43,7 +43,7 @@ const SCRIPT = [
     state: 'inspect',
     pos: { x: '2vw', y: '60vh', side: 'left', scale: .95, range: [16, 22] },
     lines: [
-      { t: 'The benchmarks are reproducible — one script in the repo re-runs HaluEval and TruthfulQA.' },
+      { t: 'The HaluEval and TruthfulQA runs are guard smoke tests on fixtures — the repo documents how to re-run them.' },
       { t: 'The widget is a demo. The real numbers — council 94.0 — are in the benchmark report, linked on the EVIDENCE header.' }
     ]
   },

@@ -61,7 +61,7 @@
 html{
   background: var(--night);
   color: var(--text);
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
 }
 body{
@@ -266,7 +266,7 @@ main#comic{ position: relative; z-index: 1; }
   min-height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
-  overflow: hidden;
+  overflow-x: hidden; /* vertical overflow stays reachable — snap must not clip content */
   padding: var(--pad-y) var(--pad-x) clamp(50px, 6vh, 80px);
   display: flex; flex-direction: column;
   background: var(--night);
