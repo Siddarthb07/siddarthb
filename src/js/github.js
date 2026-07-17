@@ -152,7 +152,10 @@ export function renderRepoIndex(buckets, host){
     for (const repo of list){
       const proof = PROOF_LINES[repo.name] || (repo.language ? repo.language : 'open source');
       const desc = repo.description
-        ? repo.description.replace(/archived\.?\s*/i, '').trim()
+        ? repo.description
+            .replace(/archived[.,]?\s*/i, '')
+            .replace(/—\s*,\s*/g, '— ')
+            .trim()
         : proof;
       const upd = relAge(repo.pushed_at);
       parts.push(

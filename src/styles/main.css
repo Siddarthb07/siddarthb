@@ -345,7 +345,7 @@ main#comic{ position: relative; z-index: 1; }
   line-height: 1;
 }
 .sfx-cover  { right: 8%; bottom: 18%; transform: rotate(-12deg); color: var(--magenta); }
-.sfx-origin { right: 6%; bottom: 12%; transform: rotate(8deg); color: var(--yellow); }
+.sfx-origin { right: 4%; bottom: 27%; transform: rotate(8deg); color: var(--yellow); }
 .sfx-case   { right: 4%; bottom: 8%; }
 .sfx-yel    { color: var(--yellow); }
 .sfx-mag    { color: var(--magenta); }
@@ -556,6 +556,16 @@ main#comic{ position: relative; z-index: 1; }
   -webkit-text-stroke: 1px var(--ink);
 }
 .principles li b{ display: block; font-weight: 800; font-size: 1rem; color: var(--ink); margin-bottom: 2px; font-family: var(--gro); }
+.pr-quote{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(5,5,16,.3);
+  font-family: var(--type);
+  font-size: .8rem;
+  line-height: 1.55;
+  color: rgba(5,5,16,.75);
+  max-width: 90ch;
+}
 
 /* =========================================================
    CASE FILES — shared grid
