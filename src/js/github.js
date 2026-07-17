@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v4';
+export const GH_CACHE_KEY = 'sb_gh_repos_v5';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -25,7 +25,7 @@ export const REPO_HIDDEN = new Set([
 ]);
 
 export const REPO_TIERS = {
-  featured: ['Lexprobe', 'GeoQuant', 'Health-AI', 'Anima'],
+  featured: ['VidhiSethu', 'GeoQuant', 'Health-AI', 'Anima'],
   lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
   inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'sign-language-cv'],
   founder: ['Athera'],
@@ -33,7 +33,7 @@ export const REPO_TIERS = {
 };
 
 export const PROOF_LINES = {
-  Lexprobe: 'FastAPI · Postgres · Qdrant · citation audit',
+  VidhiSethu: 'FastAPI · Postgres · Qdrant · citation audit',
   GeoQuant: 'walk-forward · Alpaca paper · cost in optimizer',
   'Health-AI': 'ACC/AHA · FINDRISC · safety gates',
   Anima: 'HF hooks · valence / arousal / unc · MIT',

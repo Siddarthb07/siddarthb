@@ -51,7 +51,7 @@ const SCRIPT = [
     state: 'refuse',
     pos: { x: '95vw', y: '58vh', side: 'right', scale: .95, range: [16, 22] },
     lines: [
-      { t: 'The repo still carries the working name — Lexprobe. Same system, VidhiSethu is the product.' },
+      { t: 'Public architecture lives at github.com/Siddarthb07/VidhiSethu — the application itself stays closed source.' },
       { t: 'The app is closed beta, but the full architecture is public in the system-design doc below.' }
     ]
   },
