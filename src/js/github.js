@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v2';
+export const GH_CACHE_KEY = 'sb_gh_repos_v3';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -28,7 +28,8 @@ export const REPO_TIERS = {
   featured: ['Lexprobe', 'GeoQuant', 'Health-AI', 'Anima'],
   lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
   inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'sign-language-cv'],
-  founder: ['Athera', 'Elevyx']
+  founder: ['Athera'],
+  elevyx: ['Elevyx']
 };
 
 export const PROOF_LINES = {
@@ -42,16 +43,17 @@ export const PROOF_LINES = {
   'text2sql-rag': 'Spider benchmark · sqlglot validator · clean-room',
   'vortex-tracker': 'OpenCV · diameter + speed · IISc May 2025',
   Athera: 'AI automation · SMB workflows · no public client list',
-  Elevyx: 'lead recovery · real-estate · elevyx.in',
+  Elevyx: 'founding dev · lead recovery · elevyx.in',
   'sign-language-cv': 'MediaPipe · gesture pipeline · training scaffold'
 };
 
-const TIER_ORDER = ['featured', 'lab', 'inflight', 'founder', 'archived', 'other'];
+const TIER_ORDER = ['featured', 'lab', 'inflight', 'founder', 'elevyx', 'archived', 'other'];
 const TIER_LABELS = {
   featured: 'CASE FILES',
   lab: 'LAB',
   inflight: 'IN FLIGHT',
   founder: 'FOUNDER',
+  elevyx: 'ELEVYX',
   archived: 'ARCHIVED',
   other: 'OTHER'
 };
@@ -65,6 +67,7 @@ export function tierForRepo(name, description = ''){
   if (REPO_TIERS.lab.includes(name)) return 'lab';
   if (REPO_TIERS.inflight.includes(name)) return 'inflight';
   if (REPO_TIERS.founder.includes(name)) return 'founder';
+  if (REPO_TIERS.elevyx.includes(name)) return 'elevyx';
   if (/archived/i.test(description || '')) return 'archived';
   return 'other';
 }
@@ -128,6 +131,15 @@ export async function fetchAllRepos(){
   return repos;
 }
 
+export function relAge(iso){
+  if (!iso) return '';
+  const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+  if (days < 1) return 'today';
+  if (days < 30) return `${days}d ago`;
+  if (days < 365) return `${Math.floor(days / 30)}mo ago`;
+  return `${Math.floor(days / 365)}y ago`;
+}
+
 export function renderRepoIndex(buckets, host){
   if (!host) return;
 
@@ -142,9 +154,10 @@ export function renderRepoIndex(buckets, host){
       const desc = repo.description
         ? repo.description.replace(/archived\.?\s*/i, '').trim()
         : proof;
+      const upd = relAge(repo.pushed_at);
       parts.push(
         `<li><a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" data-cur="repo">` +
-        `<b>${repo.name}</b><span>${desc}</span></a></li>`
+        `<b>${repo.name}${upd ? `<i class="ri-upd">upd ${upd}</i>` : ''}</b><span>${desc}</span></a></li>`
       );
     }
     parts.push('</ul></div>');

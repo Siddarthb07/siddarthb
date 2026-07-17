@@ -298,6 +298,7 @@
             github.com/Lexprobe ↗
           </a>
           <p class="case-proof">FastAPI · Postgres · Qdrant · citation audit</p>
+          <p class="case-proof">closed source · public design docs</p>
         </div>
 
         <div class="panel narr panel-paper tilt-l">
@@ -314,7 +315,7 @@
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><b>DEMO · AUDIT</b>
+            <span>EVIDENCE</span><b>UI MOCK · ILLUSTRATIVE</b>
           </div>
           <div class="audit" data-audit>
             <div class="aud-row"><span>Article 22 · Detention</span><b class="ok">VERIFIED</b></div>
@@ -328,7 +329,7 @@
             <span>REMOVED <b class="bad">1</b></span>
             <span>RATE <b class="ok">80%</b></span>
           </div>
-          <p class="ev-note">Illustrative UI demo — production audit runs in Lexprobe repo.</p>
+          <p class="ev-note">Illustrative mock of the audit UI — not measured output. Application is closed source (closed beta); architecture is public: <a href="https://github.com/Siddarthb07/Lexprobe/blob/main/VidhiSetu_System_Design.docx" target="_blank" rel="noopener noreferrer">system design doc ↗</a></p>
         </div>
 
         <div class="sfx sfx-case">AUDIT!</div>
@@ -365,6 +366,7 @@
             github.com/GeoQuant ↗
           </a>
           <p class="case-proof">walk-forward · Alpaca paper · cost in optimizer</p>
+          <p class="case-proof">MIT · <code>.\run_all.ps1</code></p>
         </div>
 
         <div class="panel narr panel-paper tilt-r">
@@ -381,7 +383,7 @@
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><b>PAPER · 12M SIM</b>
+            <span>EVIDENCE</span><b>ILLUSTRATIVE · NOT MEASURED</b>
           </div>
           <div class="equity">
             <svg viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
@@ -389,13 +391,13 @@
               <path id="eqLine" d="" stroke="var(--yellow)" stroke-width="2" fill="none"/>
             </svg>
             <div class="eq-meta">
-              <div><span>SHARPE</span><b>1.78</b></div>
-              <div><span>MDD</span><b>11.2%</b></div>
-              <div><span>HIT</span><b>57%</b></div>
-              <div><span>YR</span><b>+24%</b></div>
+              <div><span>SHARPE</span><b>—</b></div>
+              <div><span>MDD</span><b>—</b></div>
+              <div><span>HIT</span><b>—</b></div>
+              <div><span>YR</span><b>—</b></div>
             </div>
           </div>
-          <p class="ev-note">Illustrative curve — see GeoQuant repo for walk-forward harness.</p>
+          <p class="ev-note">Illustrative curve, not a measured result. Every real run exports <b>report.json</b> + equity curves — harness: <a href="https://github.com/Siddarthb07/GeoQuant/blob/main/backend/app/services/walk_forward_validation.py" target="_blank" rel="noopener noreferrer">walk_forward_validation.py ↗</a></p>
         </div>
 
         <div class="sfx sfx-case sfx-yel">SHIP!</div>
@@ -432,6 +434,7 @@
             github.com/Health-AI ↗
           </a>
           <p class="case-proof">ACC/AHA · FINDRISC · safety gates</p>
+          <p class="case-proof">MIT · <code>python app_v5.py</code></p>
         </div>
 
         <div class="panel narr panel-paper tilt-l">
@@ -466,7 +469,7 @@
               <div class="rbb"><span>BMI</span><div class="rbar"><i style="--w:48%"></i></div></div>
             </div>
           </div>
-          <p class="ev-note">Demo dial — clinical path documented in <a href="https://github.com/Siddarthb07/Health-AI/blob/main/AUDIT_AND_DESIGN.md" target="_blank" rel="noopener noreferrer">AUDIT_AND_DESIGN.md ↗</a></p>
+          <p class="ev-note">Demo dial — not a real patient. Clinical models live in <a href="https://github.com/Siddarthb07/Health-AI/blob/main/risk_calculators.py" target="_blank" rel="noopener noreferrer">risk_calculators.py ↗</a> · design + audit in <a href="https://github.com/Siddarthb07/Health-AI/blob/main/ml/AUDIT_AND_DESIGN.md" target="_blank" rel="noopener noreferrer">AUDIT_AND_DESIGN.md ↗</a></p>
         </div>
 
         <div class="sfx sfx-case sfx-red">REFUSE!</div>
@@ -502,7 +505,8 @@
           <a class="case-repo" href="https://github.com/Siddarthb07/Anima" target="_blank" rel="noopener noreferrer" data-cur="open repo">
             github.com/Anima ↗
           </a>
-          <p class="case-proof">HF hooks · valence / arousal / unc · MIT</p>
+          <p class="case-proof">HF hooks · valence / arousal / unc</p>
+          <p class="case-proof">MIT · <code>anima api --port 8010</code></p>
         </div>
 
         <div class="panel narr panel-paper tilt-r">
@@ -519,7 +523,7 @@
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><b>BENCH · DISTILGPT2</b>
+            <span>EVIDENCE</span><b>BENCH · TINYLLAMA 1.1B</b>
           </div>
           <div class="probe">
             <div class="probe-bars" id="probeBars"></div>
@@ -534,7 +538,7 @@
               <div><span>STATE</span><b id="probeState">STREAM</b></div>
             </div>
           </div>
-          <p class="ev-note">Live widget demo · guard AUROC 1.00 · GoEmotions val r 0.48 — <a href="https://github.com/Siddarthb07/Anima#benchmarks-v1" target="_blank" rel="noopener noreferrer">benchmarks ↗</a></p>
+          <p class="ev-note">Widget is a demo · real numbers: council 94.0 · GoEmotions r 0.19 val / 0.41 aro — <a href="https://github.com/Siddarthb07/Anima/blob/main/docs/BENCHMARK_REPORT.md" target="_blank" rel="noopener noreferrer">benchmark report ↗</a> · <a href="https://huggingface.co/spaces/sidb078/Anima" target="_blank" rel="noopener noreferrer">live demo on HF Spaces ↗</a></p>
         </div>
 
         <div class="sfx sfx-case sfx-mag">PROBE!</div>
@@ -580,6 +584,7 @@
             </div>
             <a class="lp-link" href="https://github.com/Siddarthb07/Propeller-simulator" target="_blank" rel="noopener noreferrer" data-cur="repo">github.com/Propeller-simulator ↗</a>
             <p class="case-proof">BEMT · GUI + CLI · CSV sweeps</p>
+            <p class="case-proof">MIT · <code>python main.py</code></p>
           </div>
         </article>
 
@@ -611,7 +616,28 @@
             </div>
             <a class="lp-link" href="https://github.com/Siddarthb07/Drone-Vortex-Ring-Simulation" target="_blank" rel="noopener noreferrer" data-cur="repo">github.com/Drone-Vortex-Ring-Simulation ↗</a>
             <p class="case-proof">Helmholtz · Kelvin Γ · viscous decay</p>
+            <p class="case-proof">MIT · <code>python vortex_rings_simulation.py</code></p>
           </div>
+        </article>
+
+        <article class="panel lab-hw panel-ink tilt-l">
+          <div class="ev-head"><span>FIELD WORK</span><b>HARDWARE · BUILT &amp; FLOWN</b></div>
+          <p class="hw-intro">The simulators above aren't paper exercises — they're tools built to design and tune the aircraft below. Sim and hardware are the same project told from two ends.</p>
+          <div class="hw-grid">
+            <div class="hw-cell">
+              <span class="hw-tag">MULTIROTOR</span>
+              <p>Quadcopter + hexacopter builds — frame up: motors, ESCs, flight controller, radio. PID tuning, propeller selection informed by the BEMT solver, telemetry logging per flight.</p>
+            </div>
+            <div class="hw-cell">
+              <span class="hw-tag">GROUND + HOME</span>
+              <p>Rovers, an automated plant-watering system, and home automation on ESP8266-class microcontrollers.</p>
+            </div>
+            <div class="hw-cell">
+              <span class="hw-tag">HOMELAB</span>
+              <p>Raspberry Pi NAS with sanitized configs, media + monitoring stack, and distributed-computing experiments.</p>
+            </div>
+          </div>
+          <p class="ev-note">Build dossiers (BOMs, flight logs, safety notes) are kept in a structured build-log repo — going public with photos and per-flight data.</p>
         </article>
 
         <div class="sfx sfx-lab">SIMULATE!</div>
@@ -656,9 +682,17 @@
         <article class="panel tl-cell panel-red tilt-r live">
           <div class="tl-num">PANEL 4 · ONGOING</div>
           <div class="tl-date">NOW</div>
-          <div class="tl-org">ATHERA · ELEVYX</div>
+          <div class="tl-org">ATHERA</div>
           <h3 class="tl-name">Founder</h3>
-          <p>AI automation for small businesses — backend integrations, lead workflows, and sites. Shipping <a href="https://elevyx.in" target="_blank" rel="noopener noreferrer" data-cur="repo">Elevyx</a> (elevyx.in): lead-recovery automation for real-estate teams. Client details not public.</p>
+          <p>AI automation and workflow systems for small businesses — backend integrations, lead workflows, and sites. 6+ months building; client details not public.</p>
+        </article>
+
+        <article class="panel tl-cell panel-cyan tilt-l live">
+          <div class="tl-num">PANEL 5 · ONGOING</div>
+          <div class="tl-date">NOW</div>
+          <div class="tl-org">ELEVYX</div>
+          <h3 class="tl-name">Founding Developer</h3>
+          <p>Backend architecture and lead-recovery automation for real-estate teams — <a href="https://elevyx.in" target="_blank" rel="noopener noreferrer" data-cur="repo">elevyx.in</a>.</p>
         </article>
 
         <div class="sfx sfx-tl">SHIP!</div>
@@ -775,6 +809,8 @@
           <a href="https://github.com/Siddarthb07" target="_blank" rel="noopener noreferrer" data-cur="github">GITHUB <i>↗</i></a>
           <span class="sf-dot">·</span>
           <a href="https://www.linkedin.com/in/siddarth-boggarapu-12411339b/" target="_blank" rel="noopener noreferrer" data-cur="linkedin">LINKEDIN <i>↗</i></a>
+          <span class="sf-dot">·</span>
+          <a href="assets/Siddarth_Boggarapu_Resume.pdf" target="_blank" rel="noopener noreferrer" data-cur="resume">RESUME <i>↓</i></a>
           <span class="sf-dot">·</span>
           <a href="mailto:siddarthb078@gmail.com" data-cur="email">EMAIL <i>↗</i></a>
         </div>
