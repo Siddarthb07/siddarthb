@@ -43,7 +43,7 @@ export const PROOF_LINES = {
   'text2sql-rag': 'Spider benchmark · sqlglot validator · clean-room',
   'vortex-tracker': 'OpenCV · diameter + speed · IISc May 2025',
   Athera: 'AI automation · SMB workflows · no public client list',
-  Elevyx: 'founding dev · lead recovery · elevyx.in',
+  Elevyx: 'founding dev · lead recovery · ended May 2026',
   'sign-language-cv': 'MediaPipe · gesture pipeline · training scaffold'
 };
 
@@ -53,7 +53,7 @@ const TIER_LABELS = {
   lab: 'LAB',
   inflight: 'OTHER PROJECTS',
   founder: 'FOUNDER · ATHERA',
-  elevyx: 'FOUNDER · ELEVYX',
+  elevyx: 'FOUNDING DEV · ELEVYX',
   archived: 'ARCHIVED',
   other: 'OTHER'
 };
