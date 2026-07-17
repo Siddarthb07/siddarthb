@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@300..800&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles/main.css" />
+  <link rel="stylesheet" href="src/styles/main.css?v=sb01-15" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
   <script type="application/ld+json">
@@ -147,11 +147,11 @@
   <nav class="rail" aria-label="Pages">
     <a href="#cover"     data-jump="0" class="r-tick on"  data-num="01" data-name="COVER"><span></span></a>
     <a href="#origin"    data-jump="1" class="r-tick"     data-num="02" data-name="ORIGIN"><span></span></a>
-    <a href="#case-1"    data-jump="2" class="r-tick"     data-num="03" data-name="ANIMA"><span></span></a>
-    <a href="#case-2"    data-jump="3" class="r-tick"     data-num="04" data-name="LEXPROBE"><span></span></a>
-    <a href="#case-3"    data-jump="4" class="r-tick"     data-num="05" data-name="GEOQUANT"><span></span></a>
-    <a href="#case-4"    data-jump="5" class="r-tick"     data-num="06" data-name="HEALTH"><span></span></a>
-    <a href="#lab"       data-jump="6" class="r-tick"     data-num="07" data-name="LAB"><span></span></a>
+    <a href="#lab"       data-jump="2" class="r-tick"     data-num="03" data-name="LAB"><span></span></a>
+    <a href="#case-1"    data-jump="3" class="r-tick"     data-num="04" data-name="ANIMA"><span></span></a>
+    <a href="#case-2"    data-jump="4" class="r-tick"     data-num="05" data-name="VIDHISETHU"><span></span></a>
+    <a href="#case-3"    data-jump="5" class="r-tick"     data-num="06" data-name="GEOQUANT"><span></span></a>
+    <a href="#case-4"    data-jump="6" class="r-tick"     data-num="07" data-name="HEALTH"><span></span></a>
     <a href="#timeline"  data-jump="7" class="r-tick"     data-num="08" data-name="TIMELINE"><span></span></a>
     <a href="#operator"  data-jump="8" class="r-tick"     data-num="09" data-name="OPERATOR"><span></span></a>
     <a href="#signal"    data-jump="9" class="r-tick"     data-num="10" data-name="SIGNAL"><span></span></a>
@@ -170,13 +170,13 @@
         <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
           <defs>
             <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#00d4ff" stop-opacity=".5"/>
-              <stop offset="55%" stop-color="#ff2d70" stop-opacity=".22"/>
+              <stop offset="0%" stop-color="#38c4e0" stop-opacity=".34"/>
+              <stop offset="55%" stop-color="#d64a72" stop-opacity=".14"/>
               <stop offset="100%" stop-color="#0a0a2e" stop-opacity="0"/>
             </radialGradient>
           </defs>
           <circle cx="400" cy="400" r="400" fill="url(#rg1)"/>
-          <g stroke="#00d4ff" stroke-width="3" opacity=".4">
+          <g stroke="#38c4e0" stroke-width="3" opacity=".26">
             <line x1="400" y1="0" x2="400" y2="800"/>
             <line x1="0" y1="400" x2="800" y2="400"/>
             <line x1="80" y1="80" x2="720" y2="720"/>
@@ -211,12 +211,16 @@
 
       <div class="cover-foot">
         <span class="cf-pages" id="coverMeta">10 PAGES · 04 CASE FILES · 02 LIVE SIMS · ·· REPOS</span>
-        <a href="#origin" class="cf-cta" data-jump="1" data-cur="open">
-          <span>OPEN THE DOSSIER ↓</span>
-        </a>
+        <div class="cf-ctas">
+          <a href="#origin" class="cf-cta" data-jump="1" data-cur="open">
+            <span>OPEN THE DOSSIER ↓</span>
+          </a>
+          <a href="#lab" class="cf-cta cf-cta-alt" data-jump="1" data-cur="open">
+            <span>TRY THE LIVE SIMS →</span>
+          </a>
+        </div>
       </div>
 
-      <div class="sfx sfx-cover">CLASSIFIED!</div>
     </section>
 
     <!-- ════════ 02 · ORIGIN — manifesto in narration panels ════════ -->
@@ -226,28 +230,36 @@
       <header class="page-head">
         <div class="ph-num">PAGE / 02</div>
         <h2 class="ph-title chromatic">ORIGIN <em>STORY</em></h2>
-        <div class="ph-sub">— hardware first, then everything else —</div>
+        <div class="ph-sub">— hardware → software → simulation → models —</div>
       </header>
 
       <div class="origin-grid">
         <div class="panel narr panel-yel tilt-l">
           <span class="narr-tag">/01 — HARDWARE</span>
           <p>
-            It started with <em>drones I build and fly</em> — quads and hexes, frame up. Descend too fast and a rotor drops into its own downwash: <em>vortex ring state</em>. Invisible, violent, and entirely predictable if you do the math.
+            It started with <em>drones I build and fly</em> — homemade F450 and F660 frames, built up from motors, ESCs, flight controller, radio. Descend too fast and a rotor drops into its own downwash: <em>vortex ring state</em>. The aircraft could show me the failure — it couldn't explain it.
           </p>
         </div>
 
-        <div class="panel narr panel-mag tilt-r">
-          <span class="narr-tag">/02 — SIMULATION</span>
+        <div class="panel narr panel-cyan tilt-r">
+          <span class="narr-tag">/02 — SOFTWARE</span>
           <p>
-            Crashed airframes cost real money, so I wrote the physics instead — <em>vortex-ring dynamics, propeller BEMT</em> — and started finding the unstable zones on a screen before the hardware found them in the dirt. Simulation is how I afford to be wrong.
+            So I wrote code to ask the hardware better questions — <em>telemetry logging, tuning tools</em>, scripts that turned every flight into data I could interrogate. Software became the instrument layer between what the machine did and what I actually understood about it.
           </p>
         </div>
 
-        <div class="panel narr panel-cyan tilt-l">
-          <span class="narr-tag">/03 — THE PATTERN</span>
+        <div class="panel narr panel-mag tilt-l">
+          <span class="narr-tag">/03 — SIMULATION</span>
           <p>
-            That instinct — catch the failure before it happens — became <em>Anima</em>: forward hooks into a model's internals, probe heads trained to read valence, arousal, and uncertainty straight out of the activations. Benchmarked against HaluEval and TruthfulQA, it's the same question as the drone: can you see instability building <em>before the model commits to an answer</em>. Legal AI citing cases that don't exist, backtests that assume free execution — different domains, same missing layer.
+            The logs said <em>what</em> happened, never <em>why</em>. For that I had to build the physics myself — vortex-ring dynamics, propeller BEMT — and walk the whole flight envelope on a screen, including the corners too dangerous to fly. Simulation is how I push a system to failure without breaking it.
+          </p>
+          <a class="narr-jump" href="#lab" data-jump="1" data-cur="open">▶ run them live — next page</a>
+        </div>
+
+        <div class="panel narr panel-ink tilt-r">
+          <span class="narr-tag">/04 — THE PATTERN</span>
+          <p>
+            <em>Anima</em> is that same instinct pointed at language models: forward hooks into the internals, probe heads reading valence, arousal, and uncertainty straight from the activations — benchmarked on HaluEval and TruthfulQA. Hardware, software, simulation, models — the question never changed: can you see instability building <em>before the system commits</em>.
           </p>
         </div>
 
@@ -265,12 +277,111 @@
       </div>
     </section>
 
-    <!-- ════════ 03 · CASE FILE #01 — ANIMA (HERO) ════════ -->
-    <section class="page case" id="case-1" data-page="2" data-name="ANIMA" data-acc="magenta">
+    <!-- ════════ 03 · THE LAB — sim experiments ════════ -->
+    <section class="page lab" id="lab" data-page="2" data-name="THE LAB" data-acc="cyan">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
         <div class="ph-num">PAGE / 03</div>
+        <h2 class="ph-title chromatic">THE <em>LAB</em></h2>
+        <div class="ph-sub">— PHYSICS · CFD · SELF-DRIVEN — demo curves, real solvers in the repos — drag ↓</div>
+      </header>
+
+      <div class="lab-grid">
+        <article class="panel lab-piece panel-paper tilt-l">
+          <figure class="panel-img-inline" data-img-fx="comic-cyan-yel">
+            <img src="src/images/proj-propeller.webp" alt="propeller" />
+            <div class="img-halftone"></div>
+          </figure>
+          <div class="lp-body">
+            <span class="lp-tag">EXPERIMENT 01 · BEMT</span>
+            <h3 class="lp-name">Propeller Simulator</h3>
+            <p>Demo curves shaped like the solver's output — the real BEMT code (RPM × pitch × blade count) lives in the repo below. Drag to explore thrust / efficiency / power.</p>
+            <div class="rig">
+              <svg class="rig-chart" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0,110 L320,110" stroke="rgba(5,5,16,.15)"/>
+                <path id="thrustCurve" d="" stroke="var(--ink)" stroke-width="2" fill="none"/>
+                <line id="rpmCursor" x1="0" y1="0" x2="0" y2="120" stroke="var(--magenta)" stroke-width="1.4"/>
+                <circle id="rpmPoint" cx="0" cy="0" r="6" fill="var(--magenta)" stroke="var(--ink)" stroke-width="2"/>
+              </svg>
+              <div class="rig-row">
+                <label>RPM <b id="rpmVal">4400</b></label>
+                <input id="rpmRange" type="range" min="1500" max="8500" value="4400" step="50" />
+              </div>
+              <div class="rig-readout">
+                <div><span>THRUST</span><b id="thrustVal">18.4</b><i>N</i></div>
+                <div><span>η</span><b id="effVal">0.71</b></div>
+                <div><span>POWER</span><b id="pwrVal">112</b><i>W</i></div>
+              </div>
+            </div>
+            <a class="lp-link" href="https://github.com/Siddarthb07/Propeller-simulator" target="_blank" rel="noopener noreferrer" data-cur="repo">github.com/Propeller-simulator ↗</a>
+            <p class="case-proof">BEMT · GUI + CLI · CSV sweeps</p>
+            <p class="case-proof">MIT · <code>python main.py</code></p>
+          </div>
+        </article>
+
+        <article class="panel lab-piece panel-paper tilt-r">
+          <figure class="panel-img-inline" data-img-fx="comic-cyan-mag">
+            <img src="src/images/proj-vortex.webp" alt="vortex ring" />
+            <div class="img-halftone"></div>
+          </figure>
+          <div class="lp-body">
+            <span class="lp-tag">EXPERIMENT 02 · VRS</span>
+            <h3 class="lp-name">Drone VRS</h3>
+            <p>Illustrative VRS envelope — the actual vortex-ring simulator is in the repo below. Drag to find the unstable zone.</p>
+            <div class="rig">
+              <svg class="rig-chart vrs" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0,110 L320,110" stroke="rgba(5,5,16,.15)"/>
+                <path id="vrsField" d="" stroke="var(--red)" stroke-width="1.6" fill="rgba(232,54,104,.15)"/>
+                <line id="vdLine" x1="0" y1="0" x2="0" y2="120" stroke="var(--cyan)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                <circle id="vrsPoint" cx="160" cy="60" r="6" fill="var(--cyan)" stroke="var(--ink)" stroke-width="2"/>
+              </svg>
+              <div class="rig-row">
+                <label>DESCENT <b id="vdVal">6.2</b><i>m/s</i></label>
+                <input id="vdRange" type="range" min="0" max="12" value="6.2" step="0.1" />
+              </div>
+              <div class="rig-readout">
+                <div><span>REGIME</span><b id="vrsRegime">UNSTABLE</b></div>
+                <div><span>RECOVERY</span><b id="vrsRec">↗ +6 m/s lat</b></div>
+                <div><span>RISK</span><b id="vrsRisk">HIGH</b></div>
+              </div>
+            </div>
+            <a class="lp-link" href="https://github.com/Siddarthb07/Drone-Vortex-Ring-Simulation" target="_blank" rel="noopener noreferrer" data-cur="repo">github.com/Drone-Vortex-Ring-Simulation ↗</a>
+            <p class="case-proof">Helmholtz · Kelvin Γ · viscous decay</p>
+            <p class="case-proof">MIT · <code>python vortex_rings_simulation.py</code></p>
+          </div>
+        </article>
+
+        <article class="panel lab-hw panel-ink tilt-l">
+          <div class="ev-head"><span>FIELD WORK</span><b>HARDWARE · BUILT &amp; FLOWN</b></div>
+          <p class="hw-intro">The simulators above aren't paper exercises — they're tools built to design and tune the aircraft below. Sim and hardware are the same project told from two ends.</p>
+          <div class="hw-grid">
+            <div class="hw-cell">
+              <span class="hw-tag">MULTIROTOR</span>
+              <p>Homemade F450 quad + F660 hex builds — frame up: motors, ESCs, flight controller, radio. PID tuning, propeller selection informed by the BEMT solver, telemetry logging per flight.</p>
+            </div>
+            <div class="hw-cell">
+              <span class="hw-tag">GROUND + HOME</span>
+              <p>Rovers, an automated plant-watering system, and home automation on ESP8266-class microcontrollers.</p>
+            </div>
+            <div class="hw-cell">
+              <span class="hw-tag">HOMELAB</span>
+              <p>Raspberry Pi NAS with sanitized configs, media + monitoring stack, and distributed-computing experiments.</p>
+            </div>
+          </div>
+          <p class="ev-note">Build dossiers (BOMs, flight logs, safety notes) are kept in a structured build-log repo — going public with photos and per-flight data.</p>
+        </article>
+
+        <div class="sfx sfx-lab">SIMULATE!</div>
+      </div>
+    </section>
+
+    <!-- ════════ 04 · CASE FILE #01 — ANIMA (HERO) ════════ -->
+    <section class="page case" id="case-1" data-page="3" data-name="ANIMA" data-acc="magenta">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 04</div>
         <h2 class="ph-title chromatic">CASE FILE <em>#01</em></h2>
         <div class="ph-sub">— LLM INTERNALS · INTERPRETABILITY · HERO FILE —</div>
       </header>
@@ -313,7 +424,7 @@
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><b>BENCH · TINYLLAMA 1.1B</b>
+            <span>EVIDENCE</span><a href="https://github.com/Siddarthb07/Anima/blob/main/docs/BENCHMARK_REPORT.md" target="_blank" rel="noopener noreferrer" data-cur="report"><b>BENCH · TINYLLAMA 1.1B ↗</b></a>
           </div>
           <div class="probe">
             <div class="probe-bars" id="probeBars"></div>
@@ -336,11 +447,11 @@
     </section>
 
     <!-- ════════ 04 · CASE FILE #02 — LEXPROBE ════════ -->
-    <section class="page case" id="case-2" data-page="3" data-name="LEXPROBE" data-acc="cyan">
+    <section class="page case" id="case-2" data-page="4" data-name="VIDHISETHU" data-acc="cyan">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
-        <div class="ph-num">PAGE / 04</div>
+        <div class="ph-num">PAGE / 05</div>
         <h2 class="ph-title chromatic">CASE FILE <em>#02</em></h2>
         <div class="ph-sub">— LEGAL · INDIA · RAG —</div>
       </header>
@@ -357,12 +468,12 @@
 
         <div class="panel panel-title panel-yel tilt-l">
           <span class="pt-pre">CASE FILE #02</span>
-          <h3 class="case-name">LEXPROBE</h3>
+          <h3 class="case-name">VIDHISETHU</h3>
           <p class="case-pull">
             "When the answer matters, <em>verify before you speak</em>."
           </p>
           <a class="case-repo" href="https://github.com/Siddarthb07/Lexprobe" target="_blank" rel="noopener noreferrer" data-cur="open repo">
-            github.com/Lexprobe ↗
+            github.com/Lexprobe · working name ↗
           </a>
           <p class="case-proof">FastAPI · Postgres · Qdrant · citation audit</p>
           <p class="case-proof">closed source · public design docs</p>
@@ -404,11 +515,11 @@
     </section>
 
     <!-- ════════ 05 · CASE FILE #03 — GEOQUANT ════════ -->
-    <section class="page case" id="case-3" data-page="4" data-name="GEOQUANT" data-acc="yellow">
+    <section class="page case" id="case-3" data-page="5" data-name="GEOQUANT" data-acc="yellow">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
-        <div class="ph-num">PAGE / 05</div>
+        <div class="ph-num">PAGE / 06</div>
         <h2 class="ph-title chromatic">CASE FILE <em>#03</em></h2>
         <div class="ph-sub">— QUANT · DIRECTIONAL · WALK-FORWARD —</div>
       </header>
@@ -454,7 +565,7 @@
           </div>
           <div class="equity">
             <svg viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
-              <path id="eqFill" d="" fill="rgba(255,214,10,.20)"/>
+              <path id="eqFill" d="" fill="rgba(212,180,100,.20)"/>
               <path id="eqLine" d="" stroke="var(--yellow)" stroke-width="2" fill="none"/>
             </svg>
             <div class="eq-meta">
@@ -472,11 +583,11 @@
     </section>
 
     <!-- ════════ 06 · CASE FILE #04 — HEALTH AI ════════ -->
-    <section class="page case" id="case-4" data-page="5" data-name="HEALTH AI" data-acc="red">
+    <section class="page case" id="case-4" data-page="6" data-name="HEALTH AI" data-acc="red">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
-        <div class="ph-num">PAGE / 06</div>
+        <div class="ph-num">PAGE / 07</div>
         <h2 class="ph-title chromatic">CASE FILE <em>#04</em></h2>
         <div class="ph-sub">— HEALTH · CALIBRATED RISK · OOD-SAFE —</div>
       </header>
@@ -543,105 +654,6 @@
       </div>
     </section>
 
-    <!-- ════════ 07 · THE LAB — sim experiments ════════ -->
-    <section class="page lab" id="lab" data-page="6" data-name="THE LAB" data-acc="cyan">
-      <div class="page-bg-halftone"></div>
-
-      <header class="page-head">
-        <div class="ph-num">PAGE / 07</div>
-        <h2 class="ph-title chromatic">THE <em>LAB</em></h2>
-        <div class="ph-sub">— PHYSICS · CFD · SELF-DRIVEN — drag the sliders ↓</div>
-      </header>
-
-      <div class="lab-grid">
-        <article class="panel lab-piece panel-paper tilt-l">
-          <figure class="panel-img-inline" data-img-fx="comic-cyan-yel">
-            <img src="src/images/proj-propeller.webp" alt="propeller" />
-            <div class="img-halftone"></div>
-          </figure>
-          <div class="lp-body">
-            <span class="lp-tag">EXPERIMENT 01 · BEMT</span>
-            <h3 class="lp-name">Propeller Simulator</h3>
-            <p>BEMT solver across RPM × pitch × blade count. Self-driven CFD work — drag to see thrust / efficiency / power.</p>
-            <div class="rig">
-              <svg class="rig-chart" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M0,110 L320,110" stroke="rgba(5,5,16,.15)"/>
-                <path id="thrustCurve" d="" stroke="var(--ink)" stroke-width="2" fill="none"/>
-                <line id="rpmCursor" x1="0" y1="0" x2="0" y2="120" stroke="var(--magenta)" stroke-width="1.4"/>
-                <circle id="rpmPoint" cx="0" cy="0" r="6" fill="var(--magenta)" stroke="var(--ink)" stroke-width="2"/>
-              </svg>
-              <div class="rig-row">
-                <label>RPM <b id="rpmVal">4400</b></label>
-                <input id="rpmRange" type="range" min="1500" max="8500" value="4400" step="50" />
-              </div>
-              <div class="rig-readout">
-                <div><span>THRUST</span><b id="thrustVal">18.4</b><i>N</i></div>
-                <div><span>η</span><b id="effVal">0.71</b></div>
-                <div><span>POWER</span><b id="pwrVal">112</b><i>W</i></div>
-              </div>
-            </div>
-            <a class="lp-link" href="https://github.com/Siddarthb07/Propeller-simulator" target="_blank" rel="noopener noreferrer" data-cur="repo">github.com/Propeller-simulator ↗</a>
-            <p class="case-proof">BEMT · GUI + CLI · CSV sweeps</p>
-            <p class="case-proof">MIT · <code>python main.py</code></p>
-          </div>
-        </article>
-
-        <article class="panel lab-piece panel-paper tilt-r">
-          <figure class="panel-img-inline" data-img-fx="comic-cyan-mag">
-            <img src="src/images/proj-vortex.webp" alt="vortex ring" />
-            <div class="img-halftone"></div>
-          </figure>
-          <div class="lp-body">
-            <span class="lp-tag">EXPERIMENT 02 · VRS</span>
-            <h3 class="lp-name">Drone VRS</h3>
-            <p>Vortex Ring State across the descent envelope. Self-driven simulator — drag to find the unstable zone.</p>
-            <div class="rig">
-              <svg class="rig-chart vrs" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M0,110 L320,110" stroke="rgba(5,5,16,.15)"/>
-                <path id="vrsField" d="" stroke="var(--red)" stroke-width="1.6" fill="rgba(255,23,68,.18)"/>
-                <line id="vdLine" x1="0" y1="0" x2="0" y2="120" stroke="var(--cyan)" stroke-width="1.4" stroke-dasharray="4 4"/>
-                <circle id="vrsPoint" cx="160" cy="60" r="6" fill="var(--cyan)" stroke="var(--ink)" stroke-width="2"/>
-              </svg>
-              <div class="rig-row">
-                <label>DESCENT <b id="vdVal">6.2</b><i>m/s</i></label>
-                <input id="vdRange" type="range" min="0" max="12" value="6.2" step="0.1" />
-              </div>
-              <div class="rig-readout">
-                <div><span>REGIME</span><b id="vrsRegime">UNSTABLE</b></div>
-                <div><span>RECOVERY</span><b id="vrsRec">↗ +6 m/s lat</b></div>
-                <div><span>RISK</span><b id="vrsRisk">HIGH</b></div>
-              </div>
-            </div>
-            <a class="lp-link" href="https://github.com/Siddarthb07/Drone-Vortex-Ring-Simulation" target="_blank" rel="noopener noreferrer" data-cur="repo">github.com/Drone-Vortex-Ring-Simulation ↗</a>
-            <p class="case-proof">Helmholtz · Kelvin Γ · viscous decay</p>
-            <p class="case-proof">MIT · <code>python vortex_rings_simulation.py</code></p>
-          </div>
-        </article>
-
-        <article class="panel lab-hw panel-ink tilt-l">
-          <div class="ev-head"><span>FIELD WORK</span><b>HARDWARE · BUILT &amp; FLOWN</b></div>
-          <p class="hw-intro">The simulators above aren't paper exercises — they're tools built to design and tune the aircraft below. Sim and hardware are the same project told from two ends.</p>
-          <div class="hw-grid">
-            <div class="hw-cell">
-              <span class="hw-tag">MULTIROTOR</span>
-              <p>Quadcopter + hexacopter builds — frame up: motors, ESCs, flight controller, radio. PID tuning, propeller selection informed by the BEMT solver, telemetry logging per flight.</p>
-            </div>
-            <div class="hw-cell">
-              <span class="hw-tag">GROUND + HOME</span>
-              <p>Rovers, an automated plant-watering system, and home automation on ESP8266-class microcontrollers.</p>
-            </div>
-            <div class="hw-cell">
-              <span class="hw-tag">HOMELAB</span>
-              <p>Raspberry Pi NAS with sanitized configs, media + monitoring stack, and distributed-computing experiments.</p>
-            </div>
-          </div>
-          <p class="ev-note">Build dossiers (BOMs, flight logs, safety notes) are kept in a structured build-log repo — going public with photos and per-flight data.</p>
-        </article>
-
-        <div class="sfx sfx-lab">SIMULATE!</div>
-      </div>
-    </section>
-
     <!-- ════════ 08 · TIMELINE — career strip ════════ -->
     <section class="page timeline" id="timeline" data-page="7" data-name="TIMELINE" data-acc="yellow">
       <div class="page-bg-halftone"></div>
@@ -674,7 +686,7 @@
           <div class="tl-date">2026 · Q1</div>
           <div class="tl-org">VEGAM CO</div>
           <h3 class="tl-name">Engineering Intern</h3>
-          <p>Built a text-to-SQL RAG pipeline with schema linking and SQL validation. NDA-restricted — details not public.</p>
+          <p>Built a text-to-SQL RAG pipeline with schema linking and SQL validation. NDA-restricted — details not public. Public clean-room twin: <a href="https://github.com/Siddarthb07/text2sql-rag" target="_blank" rel="noopener noreferrer" data-cur="repo">text2sql-rag ↗</a></p>
         </article>
 
         <article class="panel tl-cell panel-red tilt-r live">
@@ -759,13 +771,13 @@
         <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
           <defs>
             <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#00d4ff" stop-opacity=".5"/>
-              <stop offset="55%" stop-color="#ff2d70" stop-opacity=".22"/>
+              <stop offset="0%" stop-color="#38c4e0" stop-opacity=".34"/>
+              <stop offset="55%" stop-color="#d64a72" stop-opacity=".14"/>
               <stop offset="100%" stop-color="#0a0a2e" stop-opacity="0"/>
             </radialGradient>
           </defs>
           <circle cx="400" cy="400" r="400" fill="url(#rg2)"/>
-          <g stroke="#00d4ff" stroke-width="3" opacity=".4">
+          <g stroke="#38c4e0" stroke-width="3" opacity=".26">
             <line x1="400" y1="0" x2="400" y2="800"/>
             <line x1="0" y1="400" x2="800" y2="400"/>
             <line x1="80" y1="80" x2="720" y2="720"/>
@@ -815,6 +827,126 @@
 
   </main>
 
-  <script type="module" src="src/js/main.js"></script>
+  <!-- =========================================================
+       SB-01 — dossier guide mascot
+       ========================================================= -->
+  <div id="sb01" class="sb01" data-state="wave">
+    <div class="sb01-drift" id="sb01Drift">
+    <div class="sb01-bubble" id="sb01Bubble" role="status" aria-live="polite" data-cur="next">
+      <span class="sb01-text" id="sb01Text"></span>
+      <span class="sb01-more" id="sb01More" hidden>CLICK ▸ NEXT</span>
+      <button class="sb01-close" id="sb01Close" aria-label="Quiet the guide" data-cur="hush">×</button>
+    </div>
+    <button class="sb01-hint" id="sb01Hint" hidden data-cur="talk">CLICK ME · MORE INFO</button>
+    <div class="sb01-bot" id="sb01Bot" data-cur="talk">
+      <svg class="sb01-svg" viewBox="0 0 150 175" aria-hidden="true">
+        <!-- thruster ground glow -->
+        <ellipse class="s-glow" cx="70" cy="168" rx="21" ry="5" fill="#38c4e0" opacity=".16"/>
+        <!-- antenna -->
+        <line x1="70" y1="18" x2="70" y2="7" stroke="#050510" stroke-width="3"/>
+        <circle class="s-tip" cx="70" cy="6" r="4" fill="#38c4e0" stroke="#050510" stroke-width="2.2"/>
+        <circle cx="68.6" cy="4.6" r="1.2" fill="#f4fbfd" opacity=".9"/>
+        <!-- arms -->
+        <g class="s-arm s-arm-l">
+          <rect x="15" y="78" width="15" height="33" rx="7.5" fill="#f3ede0" stroke="#050510" stroke-width="3.2"/>
+          <line x1="17.5" y1="94" x2="27.5" y2="94" stroke="#050510" stroke-width="2" opacity=".4"/>
+          <circle cx="22.5" cy="114" r="6.5" fill="#101024" stroke="#050510" stroke-width="2.6"/>
+        </g>
+        <g class="s-arm s-arm-r">
+          <rect x="110" y="78" width="15" height="33" rx="7.5" fill="#f3ede0" stroke="#050510" stroke-width="3.2"/>
+          <line x1="112.5" y1="94" x2="122.5" y2="94" stroke="#050510" stroke-width="2" opacity=".4"/>
+          <circle cx="117.5" cy="114" r="6.5" fill="#101024" stroke="#050510" stroke-width="2.6"/>
+        </g>
+        <!-- head -->
+        <rect x="19" y="32" width="10" height="22" rx="5" fill="#f3ede0" stroke="#050510" stroke-width="3"/>
+        <rect x="111" y="32" width="10" height="22" rx="5" fill="#f3ede0" stroke="#050510" stroke-width="3"/>
+        <rect x="27" y="16" width="86" height="52" rx="14" fill="#f3ede0" stroke="#050510" stroke-width="3.5"/>
+        <circle cx="34" cy="23" r="1.6" fill="#050510" opacity=".45"/>
+        <circle cx="106" cy="23" r="1.6" fill="#050510" opacity=".45"/>
+        <rect x="36" y="25" width="68" height="34" rx="8" fill="#0b0b1c" stroke="#050510" stroke-width="2.2"/>
+        <rect x="39" y="28" width="62" height="8" rx="4" fill="#f3ede0" opacity=".06"/>
+        <!-- faces -->
+        <g class="s-face s-face-idle">
+          <circle cx="56" cy="44" r="6.5" fill="#cfeef7" opacity=".16"/>
+          <circle cx="84" cy="44" r="6.5" fill="#cfeef7" opacity=".16"/>
+          <circle class="s-eye" cx="56" cy="44" r="4.8" fill="#f4fbfd"/>
+          <circle class="s-eye" cx="84" cy="44" r="4.8" fill="#f4fbfd"/>
+        </g>
+        <g class="s-face s-face-happy">
+          <path d="M50,46 q6,-9 12,0" stroke="#f4fbfd" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <path d="M78,46 q6,-9 12,0" stroke="#f4fbfd" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+        </g>
+        <g class="s-face s-face-x">
+          <path d="M51,39 l10,10 M61,39 l-10,10" stroke="#e0698a" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M79,39 l10,10 M89,39 l-10,10" stroke="#e0698a" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+        <g class="s-face s-face-wave">
+          <path d="M41,44 h8 l3,-10 l5,18 l4,-12 l3,7 l5,-5 h7 l3,2 h11"
+                stroke="#38c4e0" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="s-face s-face-closed">
+          <path d="M50,43 q6,6 12,0" stroke="#f4fbfd" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <path d="M78,43 q6,6 12,0" stroke="#f4fbfd" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+        </g>
+        <g class="s-face s-face-wink">
+          <circle class="s-eye" cx="56" cy="44" r="4.8" fill="#f4fbfd"/>
+          <path d="M78,45 q6,-8 12,0" stroke="#f4fbfd" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+        </g>
+        <g class="s-face s-face-look">
+          <circle cx="56" cy="44" r="5.4" fill="none" stroke="#f4fbfd" stroke-width="2.4"/>
+          <circle cx="84" cy="44" r="5.4" fill="none" stroke="#f4fbfd" stroke-width="2.4"/>
+          <circle class="s-pupil" cx="53.5" cy="43" r="2.3" fill="#f4fbfd"/>
+          <circle class="s-pupil" cx="81.5" cy="43" r="2.3" fill="#f4fbfd"/>
+        </g>
+        <g class="s-face s-face-surprise">
+          <circle cx="56" cy="42" r="5.6" fill="none" stroke="#f4fbfd" stroke-width="3"/>
+          <circle cx="84" cy="42" r="5.6" fill="none" stroke="#f4fbfd" stroke-width="3"/>
+          <circle cx="70" cy="53" r="2.6" fill="#f4fbfd"/>
+        </g>
+        <g class="s-face s-face-think">
+          <path d="M50,42 q6,-4 12,-1" stroke="#f4fbfd" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M78,41 q6,-3 12,1" stroke="#f4fbfd" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle class="s-dot s-dot1" cx="60" cy="53" r="1.8" fill="#38c4e0"/>
+          <circle class="s-dot s-dot2" cx="70" cy="53" r="1.8" fill="#38c4e0"/>
+          <circle class="s-dot s-dot3" cx="80" cy="53" r="1.8" fill="#38c4e0"/>
+        </g>
+        <g class="s-face s-face-care">
+          <path d="M50,41 q6,-4 12,0" stroke="#f4fbfd" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M78,41 q6,-4 12,0" stroke="#f4fbfd" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M64,51 q6,3 12,0" stroke="#38c4e0" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        </g>
+        <!-- magnifier · inspect only (held by raised right hand) -->
+        <g class="s-mag">
+          <line x1="136" y1="57" x2="132" y2="50" stroke="#050510" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="127" cy="41" r="11" fill="rgba(56,196,224,.22)" stroke="#050510" stroke-width="3.2"/>
+          <path d="M121,36 a8,8 0 0 1 6,-3" stroke="#f4fbfd" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/>
+        </g>
+        <!-- neck + body -->
+        <rect x="62" y="68" width="16" height="7" rx="2" fill="#101024" stroke="#050510" stroke-width="2"/>
+        <rect x="34" y="74" width="72" height="52" rx="13" fill="#f3ede0" stroke="#050510" stroke-width="3.5"/>
+        <rect x="47" y="82" width="46" height="16" rx="3.5" fill="#fbf8ee" stroke="#050510" stroke-width="2.2"/>
+        <text x="70" y="94" text-anchor="middle" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="800" fill="#050510">SB-01</text>
+        <rect x="47" y="104" width="18" height="2.6" rx="1.3" fill="#050510" opacity=".5"/>
+        <rect x="47" y="109" width="18" height="2.6" rx="1.3" fill="#050510" opacity=".5"/>
+        <rect x="47" y="114" width="18" height="2.6" rx="1.3" fill="#050510" opacity=".5"/>
+        <circle class="s-light" cx="90" cy="110" r="4" fill="#d4b464" stroke="#050510" stroke-width="2"/>
+        <circle cx="39.5" cy="79.5" r="1.6" fill="#050510" opacity=".4"/>
+        <circle cx="100.5" cy="79.5" r="1.6" fill="#050510" opacity=".4"/>
+        <circle cx="39.5" cy="120.5" r="1.6" fill="#050510" opacity=".4"/>
+        <circle cx="100.5" cy="120.5" r="1.6" fill="#050510" opacity=".4"/>
+        <!-- stamp · verified only -->
+        <g class="s-stamp" transform="rotate(-8 101 122)">
+          <rect x="84" y="115" width="34" height="14" rx="2.5" fill="#d4b464" stroke="#050510" stroke-width="2.2"/>
+          <text x="101" y="125" text-anchor="middle" font-size="7" font-family="'JetBrains Mono', monospace" font-weight="800" fill="#050510">VERIFIED</text>
+        </g>
+        <!-- thruster -->
+        <path d="M54,126 h32 l-4.5,10 h-23 z" fill="#101024" stroke="#050510" stroke-width="2.2"/>
+        <path class="s-flame"  d="M58,136 Q70,164 82,136 Z" fill="#38c4e0" opacity=".9"/>
+        <path class="s-flame2" d="M63,136 Q70,152 77,136 Z" fill="#bfeaf5"/>
+      </svg>
+    </div>
+    </div>
+  </div>
+  <script type="module" src="src/js/main.js?v=sb01-15"></script>
 </body>
 </html>

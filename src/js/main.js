@@ -7,6 +7,7 @@ import {
   SITE, fetchAllRepos, categorizeRepos, inflightCount,
   padStat, renderRepoIndex
 } from './github.js';
+import { initMascot } from './mascot.js?v=sb01-15';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = matchMedia('(hover: none)').matches;
@@ -18,11 +19,11 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const PAGES = [
   { num: '01', name: 'COVER' },
   { num: '02', name: 'ORIGIN' },
-  { num: '03', name: 'ANIMA' },
-  { num: '04', name: 'LEXPROBE' },
-  { num: '05', name: 'GEOQUANT' },
-  { num: '06', name: 'HEALTH AI' },
-  { num: '07', name: 'THE LAB' },
+  { num: '03', name: 'THE LAB' },
+  { num: '04', name: 'ANIMA' },
+  { num: '05', name: 'VIDHISETHU' },
+  { num: '06', name: 'GEOQUANT' },
+  { num: '07', name: 'HEALTH AI' },
   { num: '08', name: 'TIMELINE' },
   { num: '09', name: 'OPERATOR' },
   { num: '10', name: 'SIGNAL' }
@@ -431,6 +432,7 @@ ready(() => {
   startMagnets();
   startKeys();
   startPages();
+  initMascot();
   loadGitHubData();
 
   boot();
