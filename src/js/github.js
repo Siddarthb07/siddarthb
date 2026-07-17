@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v3';
+export const GH_CACHE_KEY = 'sb_gh_repos_v4';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -51,9 +51,9 @@ const TIER_ORDER = ['featured', 'lab', 'inflight', 'founder', 'elevyx', 'archive
 const TIER_LABELS = {
   featured: 'CASE FILES',
   lab: 'LAB',
-  inflight: 'IN FLIGHT',
-  founder: 'FOUNDER',
-  elevyx: 'ELEVYX',
+  inflight: 'OTHER PROJECTS',
+  founder: 'FOUNDER · ATHERA',
+  elevyx: 'FOUNDER · ELEVYX',
   archived: 'ARCHIVED',
   other: 'OTHER'
 };

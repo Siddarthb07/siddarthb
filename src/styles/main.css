@@ -353,7 +353,6 @@ main#comic{ position: relative; z-index: 1; }
 .sfx-cyan   { color: var(--cyan); }
 .sfx-lab    { right: 6%; top: 14%; transform: rotate(10deg); color: var(--cyan); }
 .sfx-tl     { right: 5%; bottom: 10%; transform: rotate(-6deg); color: var(--yellow); }
-.sfx-op     { right: 6%; bottom: 12%; transform: rotate(-10deg); color: var(--cyan); }
 .sfx-signal { left: 50%; top: 18%; transform: translateX(-50%) rotate(-4deg); color: var(--yellow); font-size: clamp(3rem, 8vw, 7rem); }
 
 /* =========================================================
@@ -1011,7 +1010,6 @@ main#comic{ position: relative; z-index: 1; }
 .page.in .sfx-case{ transform: rotate(-8deg) scale(1); }
 .page.in .sfx-lab{ transform: rotate(10deg) scale(1); }
 .page.in .sfx-tl{ transform: rotate(-6deg) scale(1); }
-.page.in .sfx-op{ transform: rotate(-10deg) scale(1); }
 .page.in .sfx-signal{ transform: translateX(-50%) rotate(-4deg) scale(1); }
 
 /* =========================================================
