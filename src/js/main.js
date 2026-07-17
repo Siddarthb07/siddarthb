@@ -128,7 +128,9 @@ function startPages(){
         }
       }
     }
-  }, { threshold: 0.25 });
+  }, { threshold: 0.06 });
+  /* tall stacked pages on mobile never hit a high visibility ratio,
+     so a low threshold is required for panels to reveal at all */
   pages.forEach(p => revealIO.observe(p));
 
   const activeIO = new IntersectionObserver(entries => {
@@ -142,7 +144,9 @@ function startPages(){
       const idx = pages.indexOf(best.target);
       if (idx >= 0) setActive(idx);
     }
-  }, { threshold: [0.4, 0.6, 0.8] });
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+  /* a page is "active" when it crosses the middle band of the viewport —
+     ratio thresholds fail on mobile where a page spans several screens */
   pages.forEach(p => activeIO.observe(p));
 
   $$('a[data-jump]').forEach(a => {

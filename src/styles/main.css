@@ -1089,9 +1089,13 @@ main#comic{ position: relative; z-index: 1; }
   .lab-grid{ grid-template-columns: 1fr; }
   .hw-grid{ grid-template-columns: 1fr; }
   .tl-strip{ grid-template-columns: repeat(2, 1fr); }
-  .op-grid{ grid-template-columns: 1fr; grid-template-areas: "portrait" "bio" "stack" "stats" "repos"; }
+  .op-grid{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "portrait" "bio" "stack" "stats" "repos";
+  }
   .op-portrait{ min-height: 240px; }
-  .origin-grid{ grid-template-columns: 1fr; grid-template-rows: auto; }
+  .origin-grid{ grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
 }
 @media (max-width: 720px){
   body, a, button, input{ cursor: auto; }
@@ -1106,6 +1110,25 @@ main#comic{ position: relative; z-index: 1; }
   .case-name, .lp-name{ font-size: clamp(1.8rem, 8vw, 2.4rem); }
   .tl-strip{ grid-template-columns: 1fr; }
   .panel{ padding: 16px; box-shadow: 4px 4px 0 var(--ink); }
+
+  /* origin — single column, tighter type, no cramped 3-col principles */
+  .origin-grid{ grid-template-columns: 1fr; gap: 14px; }
+  .narr{ padding: 14px 16px; font-size: .92rem; line-height: 1.5; }
+  .principles{ padding: 16px 18px; }
+  .principles ol{ grid-template-columns: 1fr; gap: 12px; }
+  .tilt-l, .tilt-r{ transform: none; }
+
+  /* operator — smaller quote, single-column repo index, compact panels */
+  .op-portrait{ min-height: 200px; }
+  .op-bio, .op-stack, .op-stats, .op-repos{ padding: 14px 16px; }
+  .op-quote{ font-size: 1.25rem; }
+  .repo-index{ grid-template-columns: 1fr; }
+
+  /* mascot — pin small to the bottom-right, readable bubble */
+  .sb01{ left: auto !important; right: 10px; top: auto !important; bottom: 14px; --sb-tx: 0%; }
+  .sb01[data-side="left"] .sb01-drift{ flex-direction: row; } /* bubble must open leftward when pinned right */
+  .sb01-bot{ width: 72px; }
+  .sb01-bubble{ max-width: min(300px, 74vw); margin-bottom: 20px; }
 }
 
 /* =========================================================
