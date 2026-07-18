@@ -200,24 +200,47 @@ async function loadGitHubData(){
 }
 
 /* =========================================================
-   6. EQUITY (illustrative)
+   6. EQUITY (measured GeoQuant walk-forward sparkline)
    ========================================================= */
-function drawEquity(){
+async function drawEquity(){
   const line = $('#eqLine');
   const fill = $('#eqFill');
   if (!line) return;
-  const N = 80, W = 320, H = 90;
-  let v = 50; const pts = [];
-  let seed = 7;
-  const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
-  for (let i = 0; i < N; i++){
-    v += (rand() - 0.4) * 4 + 0.6;
-    pts.push([i * (W / (N - 1)), H - clamp(v, 5, 85)]);
+  const W = 320, H = 90;
+  let pts = null;
+  try {
+    const res = await fetch(`src/data/geoquant-equity.json?v=1`);
+    if (res.ok) {
+      const data = await res.json();
+      const vals = Array.isArray(data?.points) ? data.points.map(Number).filter(Number.isFinite) : [];
+      if (vals.length >= 2) {
+        const lo = Math.min(...vals), hi = Math.max(...vals);
+        const span = Math.max(hi - lo, 1);
+        pts = vals.map((v, i) => {
+          const x = i * (W / (vals.length - 1));
+          const y = H - 8 - ((v - lo) / span) * (H - 16);
+          return [x, clamp(y, 4, H - 4)];
+        });
+      }
+    }
+  } catch { /* fall through to placeholder */ }
+
+  if (!pts) {
+    // Fallback placeholder if the measured JSON fails to load
+    let v = 50; const seedPts = [];
+    let seed = 7;
+    const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    for (let i = 0; i < 80; i++){
+      v += (rand() - 0.4) * 4 + 0.6;
+      seedPts.push([i * (W / 79), H - clamp(v, 5, 85)]);
+    }
+    pts = seedPts;
   }
+
   const d  = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
   const df = `M0,${H} ` + pts.map(p => 'L' + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ') + ` L${W},${H} Z`;
   line.setAttribute('d', d);
-  fill.setAttribute('d', df);
+  if (fill) fill.setAttribute('d', df);
 }
 
 /* =========================================================

@@ -544,8 +544,8 @@
           <a class="case-repo" href="https://github.com/Siddarthb07/GeoQuant" target="_blank" rel="noopener noreferrer" data-cur="open repo">
             github.com/GeoQuant ↗
           </a>
-          <p class="case-proof">walk-forward · Alpaca paper · cost in optimizer</p>
-          <p class="case-proof">MIT · <code>.\run_all.ps1</code></p>
+          <p class="case-proof">walk-forward · Sharpe −0.47 · costs in optimizer</p>
+          <p class="case-proof">MIT · <code>results/2026-07-18_daily_v1</code></p>
         </div>
 
         <div class="panel narr panel-paper tilt-l">
@@ -562,7 +562,7 @@
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><b>ILLUSTRATIVE · NOT MEASURED</b>
+            <span>EVIDENCE</span><b>MEASURED · WALK-FORWARD</b>
           </div>
           <div class="equity">
             <svg viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
@@ -570,13 +570,13 @@
               <path id="eqLine" d="" stroke="var(--yellow)" stroke-width="2" fill="none"/>
             </svg>
             <div class="eq-meta">
-              <div><span>SHARPE</span><b>—</b></div>
-              <div><span>MDD</span><b>—</b></div>
-              <div><span>HIT</span><b>—</b></div>
-              <div><span>YR</span><b>—</b></div>
+              <div><span>SHARPE</span><b>−0.47</b></div>
+              <div><span>MDD</span><b>37%</b></div>
+              <div><span>HIT</span><b>51%</b></div>
+              <div><span>YR</span><b>4</b></div>
             </div>
           </div>
-          <p class="ev-note">Illustrative curve, not a measured result. Every real run exports <b>report.json</b> + equity curves — harness: <a href="https://github.com/Siddarthb07/GeoQuant/blob/main/backend/app/services/walk_forward_validation.py" target="_blank" rel="noopener noreferrer">walk_forward_validation.py ↗</a></p>
+          <p class="ev-note">Measured daily walk-forward (2022–2025, 10 symbols, 10+5 bps costs in). Sharpe −0.47 · underperforms buy-and-hold — <em>weak but expected for a first cost-aware baseline, not a marketing curve</em>. Curve from this run — <a href="https://github.com/Siddarthb07/GeoQuant/blob/main/results/2026-07-18_daily_v1/SUMMARY.md" target="_blank" rel="noopener noreferrer">SUMMARY ↗</a> · <a href="https://github.com/Siddarthb07/GeoQuant/blob/main/results/2026-07-18_daily_v1/report.json" target="_blank" rel="noopener noreferrer">report.json ↗</a></p>
         </div>
 
         <div class="sfx sfx-case sfx-yel">SHIP!</div>
@@ -1115,6 +1115,6 @@
     </div>
     </div>
   </div>
-  <script type="module" src="src/js/main.js?v=sb01-19"></script>
+  <script type="module" src="src/js/main.js?v=sb01-20"></script>
 </body>
 </html>
