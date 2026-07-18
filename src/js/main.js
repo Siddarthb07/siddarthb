@@ -7,7 +7,7 @@ import {
   SITE, fetchAllRepos, categorizeRepos, inflightCount,
   padStat, renderRepoIndex
 } from './github.js';
-import { initMascot } from './mascot.js?v=sb01-17';
+import { initMascot } from './mascot.js?v=sb01-18';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = matchMedia('(hover: none)').matches;
@@ -24,9 +24,10 @@ const PAGES = [
   { num: '05', name: 'VIDHISETHU' },
   { num: '06', name: 'GEOQUANT' },
   { num: '07', name: 'HEALTH AI' },
-  { num: '08', name: 'TIMELINE' },
-  { num: '09', name: 'OPERATOR' },
-  { num: '10', name: 'SIGNAL' }
+  { num: '08', name: 'ORQIS' },
+  { num: '09', name: 'TIMELINE' },
+  { num: '10', name: 'OPERATOR' },
+  { num: '11', name: 'SIGNAL' }
 ];
 
 /* =========================================================
@@ -81,7 +82,7 @@ async function boot(){
     '> printing cover...........<span class="ok">ok</span>',
     '> mixing inks · CMYK......<span class="ok">ok</span>',
     '> stamping halftone.......<span class="ok">ok</span>',
-    '> binding 10 pages........<span class="ok">ok</span>',
+    '> binding 11 pages........<span class="ok">ok</span>',
     '> syncing GitHub index....<span class="ok">live</span>',
     '> mounting widgets........<span class="ok">04</span>',
     '<span class="ok">[ ready ]</span> Issue 001 — scroll to read'
@@ -122,10 +123,8 @@ function startPages(){
     for (const e of entries){
       if (e.isIntersecting){
         e.target.classList.add('in');
-        if (e.target.id === 'case-2'){
-          const audit = $('.audit', e.target);
-          if (audit) audit.classList.add('run');
-        }
+        const audit = $('.audit', e.target);
+        if (audit) audit.classList.add('run');
       }
     }
   }, { threshold: 0.06 });
@@ -185,7 +184,7 @@ async function loadGitHubData(){
     if (sourceEl) sourceEl.textContent = 'GITHUB · LIVE';
     if (coverMeta){
       coverMeta.textContent =
-        `10 PAGES · ${padStat(SITE.caseFiles)} CASE FILES · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(visible.length)} REPOS`;
+        `11 PAGES · ${padStat(SITE.caseFiles)} CASE FILES · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(visible.length)} REPOS`;
     }
 
     renderRepoIndex(buckets, indexHost);
@@ -405,7 +404,7 @@ function startKeys(){
       const i = +e.key - 1;
       pages[i]?.scrollIntoView({ behavior: 'smooth' });
     }
-    if (e.key === '0') pages[9]?.scrollIntoView({ behavior: 'smooth' });
+    if (e.key === '0') pages[10]?.scrollIntoView({ behavior: 'smooth' });
     if (e.key === 'ArrowDown' || e.key === 'PageDown'){
       const cur = +(document.documentElement.dataset.page || 0);
       pages[Math.min(pages.length-1, cur+1)]?.scrollIntoView({ behavior: 'smooth' });

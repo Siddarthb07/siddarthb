@@ -20,7 +20,7 @@ const SCRIPT = [
     pos: { x: '96vw', y: '68vh', side: 'right', scale: 1.2, range: [14, 10] },
     lines: [
       { t: 'Hey — SB-01. I keep this dossier.' },
-      { t: 'Ten pages, four case files — and two live simulators on page 03. Scroll, I\u2019ll walk you through.' }
+      { t: 'Eleven pages, five case files — and two live simulators on page 03. Scroll, I\u2019ll walk you through.' }
     ]
   },
   { // 01 · ORIGIN — round eyes, pointing at the panels
@@ -70,21 +70,29 @@ const SCRIPT = [
       { t: 'The failure modes are documented too — there\u2019s a whole ethics-and-failures file in the repo.' }
     ]
   },
-  { // 07 · TIMELINE — scanning pupils, hand shading brow
+  { // 07 · ORQIS — focus face, presenting the VERIFIED stamp (patch)
+    state: 'patch',
+    pos: { x: '2vw', y: '58vh', side: 'left', scale: .95, range: [14, 18] },
+    lines: [
+      { t: 'Case five closes the pattern — same detect-before-commit instinct, now aimed at agent ops.' },
+      { t: 'He cofounded Orqis: runaway loops get explained, patched, and held for human review — never a silent push to main.' }
+    ]
+  },
+  { // 08 · TIMELINE — scanning pupils, hand shading brow
     state: 'scan',
     pos: { x: '95vw', y: '5vh', side: 'right', scale: .8, range: [12, 6] },
     lines: [
       { t: 'The NDA panel has a public twin — a clean-room text-to-SQL rebuild on his GitHub.' }
     ]
   },
-  { // 08 · OPERATOR — happy arcs, cheering arms
+  { // 09 · OPERATOR — happy arcs, cheering arms
     state: 'cheer',
     pos: { x: '97vw', y: '76vh', side: 'right', scale: .8, range: [10, 8] },
     lines: [
-      { t: 'The repo index below is live from the GitHub API. Nothing staged.' }
+      { t: 'The All-India CBSE football 2nd is the one credential on this page with zero asterisks — look for the VERIFIED stamp.' }
     ]
   },
-  { // 09 · SIGNAL — eyes closed, bowing out with the VERIFIED stamp
+  { // 10 · SIGNAL — eyes closed, bowing out with the VERIFIED stamp
     state: 'bow',
     pos: { x: '98vw', y: '72vh', side: 'right', scale: 1.05, range: [12, 10] },
     lines: [
@@ -246,6 +254,7 @@ export function initMascot(){
       userOpened = true;
       openGuide();
     } else {
+      userOpened = true; // sticky-open once the visitor engages
       next();
     }
   }));

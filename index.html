@@ -7,12 +7,12 @@
   <meta name="description" content="Siddarth Boggarapu — applied ML and production systems across legal AI, quant, healthcare, LLM instrumentation, and physical simulation. Operator-Verse portfolio dossier." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a2e'/><text x='50' y='66' font-size='48' text-anchor='middle' fill='%23ffd60a' font-family='monospace' font-weight='800'>SB</text></svg>" />
 
-  <link rel="preload" as="image" href="src/images/proj-lexprobe.webp">
+  <link rel="preload" as="image" href="src/images/proj-orqis.webp?v=2">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@300..800&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles/main.css?v=sb01-19" />
+  <link rel="stylesheet" href="src/styles/main.css?v=sb01-22" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
   <script type="application/ld+json">
@@ -26,13 +26,14 @@
       "https://github.com/Siddarthb07",
       "https://www.linkedin.com/in/siddarth-boggarapu-12411339b/"
     ],
-    "description": "Engineer building systems under uncertainty across legal AI, quant, healthcare, LLM instrumentation, and physical simulation.",
-    "knowsAbout": ["machine learning", "computational fluid dynamics", "legal RAG", "quantitative finance"],
+    "description": "Engineer building systems under uncertainty across legal AI, quant, healthcare, LLM instrumentation, agent ops, and physical simulation.",
+    "knowsAbout": ["machine learning", "computational fluid dynamics", "legal RAG", "quantitative finance", "agent ops"],
     "subjectOf": [
+      { "@type": "SoftwareSourceCode", "name": "Anima", "codeRepository": "https://github.com/Siddarthb07/Anima", "programmingLanguage": "Python" },
       { "@type": "SoftwareSourceCode", "name": "VidhiSethu", "codeRepository": "https://github.com/Siddarthb07/VidhiSethu", "programmingLanguage": "Python" },
       { "@type": "SoftwareSourceCode", "name": "GeoQuant", "codeRepository": "https://github.com/Siddarthb07/GeoQuant", "programmingLanguage": "Python" },
       { "@type": "SoftwareSourceCode", "name": "Health-AI", "codeRepository": "https://github.com/Siddarthb07/Health-AI", "programmingLanguage": "Python" },
-      { "@type": "SoftwareSourceCode", "name": "Anima", "codeRepository": "https://github.com/Siddarthb07/Anima", "programmingLanguage": "Python" }
+      { "@type": "SoftwareSourceCode", "name": "Orqis", "codeRepository": "https://github.com/VoidRaghav/Orqis-Auto-Agent-DevOps", "programmingLanguage": "Python" }
     ]
   }
   </script>
@@ -133,7 +134,7 @@
     <div class="page-tag">
       <span class="pt-num" id="hudNum">01</span>
       <span class="pt-sep">/</span>
-      <span class="pt-tot">10</span>
+      <span class="pt-tot">11</span>
       <span class="pt-name" id="hudName">COVER</span>
     </div>
 
@@ -152,9 +153,10 @@
     <a href="#case-2"    data-jump="4" class="r-tick"     data-num="05" data-name="VIDHISETHU"><span></span></a>
     <a href="#case-3"    data-jump="5" class="r-tick"     data-num="06" data-name="GEOQUANT"><span></span></a>
     <a href="#case-4"    data-jump="6" class="r-tick"     data-num="07" data-name="HEALTH"><span></span></a>
-    <a href="#timeline"  data-jump="7" class="r-tick"     data-num="08" data-name="TIMELINE"><span></span></a>
-    <a href="#operator"  data-jump="8" class="r-tick"     data-num="09" data-name="OPERATOR"><span></span></a>
-    <a href="#signal"    data-jump="9" class="r-tick"     data-num="10" data-name="SIGNAL"><span></span></a>
+    <a href="#case-5"    data-jump="7" class="r-tick"     data-num="08" data-name="ORQIS"><span></span></a>
+    <a href="#timeline"  data-jump="8" class="r-tick"     data-num="09" data-name="TIMELINE"><span></span></a>
+    <a href="#operator"  data-jump="9" class="r-tick"     data-num="10" data-name="OPERATOR"><span></span></a>
+    <a href="#signal"    data-jump="10" class="r-tick"    data-num="11" data-name="SIGNAL"><span></span></a>
   </nav>
 
   <!-- =========================================================
@@ -210,7 +212,7 @@
       </div>
 
       <div class="cover-foot">
-        <span class="cf-pages" id="coverMeta">10 PAGES · 04 CASE FILES · 02 LIVE SIMS · ·· REPOS</span>
+        <span class="cf-pages" id="coverMeta">11 PAGES · 05 CASE FILES · 02 LIVE SIMS · ·· REPOS</span>
         <div class="cf-ctas">
           <a href="#origin" class="cf-cta" data-jump="1" data-cur="open">
             <span>OPEN THE DOSSIER ↓</span>
@@ -259,7 +261,7 @@
         <div class="panel narr panel-ink tilt-r">
           <span class="narr-tag">/04 — THE PATTERN</span>
           <p>
-            <em>Anima</em> is that same instinct pointed at language models: forward hooks into the internals, probe heads reading valence, arousal, and uncertainty straight from the activations — probes benchmarked on GoEmotions, guard smoke-tested on HaluEval and TruthfulQA fixtures. Hardware, software, simulation, models — the question never changed: can you see instability building <em>before the system commits</em>.
+            <em>Anima</em> is that same instinct pointed at language models: forward hooks into the internals, probe heads reading valence, arousal, and uncertainty straight from the activations — probes benchmarked on GoEmotions, guard smoke-tested on HaluEval and TruthfulQA fixtures. The same pattern shows up in legal citation audit, cost-aware trading, clinical refusal, and agent self-healing. Hardware, software, simulation, models, ops — the question never changed: can you see instability building <em>before the system commits</em>.
           </p>
         </div>
 
@@ -439,7 +441,7 @@
               <div><span>STATE</span><b id="probeState">STREAM</b></div>
             </div>
           </div>
-          <p class="ev-note">Widget is a demo · real numbers: council 94.0 · GoEmotions r 0.19 val / 0.41 aro — <a href="https://github.com/Siddarthb07/Anima/blob/main/docs/BENCHMARK_REPORT.md" target="_blank" rel="noopener noreferrer">benchmark report ↗</a> · <a href="https://huggingface.co/spaces/sidb078/Anima" target="_blank" rel="noopener noreferrer">live demo on HF Spaces ↗</a></p>
+          <p class="ev-note">Widget is a demo · real numbers: council 94.0 · GoEmotions r 0.19 val / 0.41 aro <em>(weak but expected for single-token activation snapshots — meets the ≥0.15 gate, not a strong emotion classifier)</em> — <a href="https://github.com/Siddarthb07/Anima/blob/main/docs/BENCHMARK_REPORT.md" target="_blank" rel="noopener noreferrer">benchmark report ↗</a> · <a href="https://huggingface.co/spaces/sidb078/Anima" target="_blank" rel="noopener noreferrer">live demo on HF Spaces ↗</a></p>
         </div>
 
         <div class="sfx sfx-case sfx-mag">PROBE!</div>
@@ -493,7 +495,7 @@
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><b>UI MOCK · ILLUSTRATIVE</b>
+            <span>EVIDENCE</span><b>STACK · REAL · UI MOCK</b>
           </div>
           <div class="audit" data-audit>
             <div class="aud-row"><span>Article 22 · Detention</span><b class="ok">VERIFIED</b></div>
@@ -507,7 +509,7 @@
             <span>REMOVED <b class="bad">1</b></span>
             <span>RATE <b class="ok">80%</b></span>
           </div>
-          <p class="ev-note">Illustrative mock of the audit UI — not measured output. Application is closed source (closed beta); architecture is public: <a href="https://github.com/Siddarthb07/VidhiSethu/blob/main/VidhiSethu_System_Design.docx" target="_blank" rel="noopener noreferrer">system design doc ↗</a></p>
+          <p class="ev-note">Audit UI is a mock — not measured output. Real stack fact: <strong>~1,300+ Indian legal instruments</strong> indexed in production (Qdrant). Application closed source (closed beta); architecture public: <a href="https://github.com/Siddarthb07/VidhiSethu/blob/main/VidhiSethu_System_Design.docx" target="_blank" rel="noopener noreferrer">system design doc ↗</a></p>
         </div>
 
         <div class="sfx sfx-case">AUDIT!</div>
@@ -526,7 +528,7 @@
 
       <div class="case-grid">
         <figure class="panel panel-img panel-yel tilt-l" data-img-fx="comic-mag-yel">
-          <img src="src/images/proj-geoquant.webp" alt="market chart" />
+          <img src="src/images/proj-geoquant.webp?v=2" alt="cost-aware walk-forward trading research exhibit" />
           <div class="img-halftone"></div>
           <figcaption class="img-cap">
             <span class="ic-num">EXHIBIT C</span>
@@ -629,7 +631,7 @@
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><b>ACC/AHA · DEMO</b>
+            <span>EVIDENCE</span><b>ACC/AHA · PUBLISHED</b>
           </div>
           <div class="risk">
             <div class="risk-dial">
@@ -647,19 +649,87 @@
               <div class="rbb"><span>BMI</span><div class="rbar"><i style="--w:48%"></i></div></div>
             </div>
           </div>
-          <p class="ev-note">Demo dial — not a real patient. Clinical models live in <a href="https://github.com/Siddarthb07/Health-AI/blob/main/risk_calculators.py" target="_blank" rel="noopener noreferrer">risk_calculators.py ↗</a> · design + audit in <a href="https://github.com/Siddarthb07/Health-AI/blob/main/ml/AUDIT_AND_DESIGN.md" target="_blank" rel="noopener noreferrer">AUDIT_AND_DESIGN.md ↗</a></p>
+          <p class="ev-note">Dial is a demo patient — not a clinical case. The CVD / diabetes scores come from the published <strong>ACC/AHA Pooled Cohort</strong> and <strong>FINDRISC</strong> equations in <a href="https://github.com/Siddarthb07/Health-AI/blob/main/risk_calculators.py" target="_blank" rel="noopener noreferrer">risk_calculators.py ↗</a> · design + audit in <a href="https://github.com/Siddarthb07/Health-AI/blob/main/ml/AUDIT_AND_DESIGN.md" target="_blank" rel="noopener noreferrer">AUDIT_AND_DESIGN.md ↗</a></p>
         </div>
 
         <div class="sfx sfx-case sfx-red">REFUSE!</div>
       </div>
     </section>
 
-    <!-- ════════ 08 · TIMELINE — career strip ════════ -->
-    <section class="page timeline" id="timeline" data-page="7" data-name="TIMELINE" data-acc="yellow">
+    <!-- ════════ CASE FILE #05 — ORQIS ════════ -->
+    <section class="page case" id="case-5" data-page="7" data-name="ORQIS" data-acc="cyan">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
         <div class="ph-num">PAGE / 08</div>
+        <h2 class="ph-title chromatic">CASE FILE <em>#05</em></h2>
+        <div class="ph-sub">— DEVOPS · AGENTS · SELF-HEALING —</div>
+      </header>
+
+      <div class="case-grid">
+        <figure class="panel panel-img panel-cyan tilt-l" data-img-fx="comic-cyan-mag">
+          <img src="src/images/proj-orqis.webp?v=2" alt="robot inspecting a looping error terminal with a verified patch stamp" />
+          <div class="img-halftone"></div>
+          <figcaption class="img-cap">
+            <span class="ic-num">EXHIBIT E</span>
+            <span class="ic-name">LOOP → PATCH</span>
+          </figcaption>
+        </figure>
+
+        <div class="panel panel-title panel-yel tilt-r">
+          <span class="pt-pre">CASE FILE #05 · COFOUNDER</span>
+          <h3 class="case-name">ORQIS</h3>
+          <p class="case-pull">
+            "Agents break in prod. <em>Ship the fix</em>."
+          </p>
+          <a class="case-repo" href="https://orqis-auto-agent-dev-ops.vercel.app" target="_blank" rel="noopener noreferrer" data-cur="open product">
+            orqis · live product ↗
+          </a>
+          <p class="case-proof">cofounder · runaway loops · verified patches</p>
+          <p class="case-proof">FastAPI · libcst · MCP · Redis</p>
+        </div>
+
+        <div class="panel narr panel-paper tilt-l">
+          <span class="narr-tag">DOSSIER · BRIEF</span>
+          <p>
+            Same failure-detection instinct as Anima's guard and VidhiSethu's audit — pointed at <strong>dev tooling</strong>. Orqis watches agent and app logs, classifies incidents (including runaway tool loops), explains the break in plain English, and opens a <strong>reviewable unified-diff patch / PR</strong>. Human approve before merge; never pushes to the default branch.
+          </p>
+          <ul class="case-bullets">
+            <li><b>Detect</b> — runaway loops, stack traces, repeated tool calls</li>
+            <li><b>Explain</b> — RCA summaries for the IDE via MCP</li>
+            <li><b>Patch</b> — deterministic libcst remediations + LLM assist, confidence-gated</li>
+            <li><b>Review</b> — local apply or GitHub PR-first; human in the loop</li>
+          </ul>
+        </div>
+
+        <div class="panel evidence panel-ink">
+          <div class="ev-head">
+            <span>EVIDENCE</span><a href="https://github.com/VoidRaghav/Orqis-Auto-Agent-DevOps" target="_blank" rel="noopener noreferrer" data-cur="repo"><b>PUBLIC PRODUCT · COFOUNDER ↗</b></a>
+          </div>
+          <div class="audit" data-audit>
+            <div class="aud-row"><span>Runaway tool loop · resolve_refund</span><b class="ok">DETECTED</b></div>
+            <div class="aud-row"><span>libcst bound retry + escalate</span><b class="ok">PATCHED</b></div>
+            <div class="aud-row"><span>Validation / confidence gate</span><b class="ok">PASSED</b></div>
+            <div class="aud-row"><span>Default branch push</span><b class="bad">REFUSED</b></div>
+            <div class="aud-row"><span>Human review before merge</span><b class="ok">REQUIRED</b></div>
+          </div>
+          <div class="ev-tally">
+            <span>PATTERN <b class="ok">5/5</b></span>
+            <span>SHIP <b class="ok">LIVE</b></span>
+          </div>
+          <p class="ev-note">Cofounder. Product + source: <a href="https://github.com/VoidRaghav/Orqis-Auto-Agent-DevOps" target="_blank" rel="noopener noreferrer">Orqis-Auto-Agent-DevOps ↗</a> · demo landing <a href="https://orqis-auto-agent-dev-ops.vercel.app" target="_blank" rel="noopener noreferrer">orqis ↗</a>. Rows above mirror a real dogfood incident pattern (detect → patch → refuse silent push) — not a published accuracy score.</p>
+        </div>
+
+        <div class="sfx sfx-case sfx-cyan sfx-orqis">PATCH!</div>
+      </div>
+    </section>
+
+    <!-- ════════ TIMELINE — career strip ════════ -->
+    <section class="page timeline" id="timeline" data-page="8" data-name="TIMELINE" data-acc="yellow">
+      <div class="page-bg-halftone"></div>
+
+      <header class="page-head">
+        <div class="ph-num">PAGE / 09</div>
         <h2 class="ph-title chromatic">THE <em>TIMELINE</em></h2>
         <div class="ph-sub">— shipped every quarter —</div>
       </header>
@@ -701,12 +771,12 @@
       </div>
     </section>
 
-    <!-- ════════ 09 · THE OPERATOR — character profile ════════ -->
-    <section class="page operator" id="operator" data-page="8" data-name="OPERATOR" data-acc="cyan">
+    <!-- ════════ THE OPERATOR — character profile ════════ -->
+    <section class="page operator" id="operator" data-page="9" data-name="OPERATOR" data-acc="cyan">
       <div class="page-bg-halftone"></div>
 
       <header class="page-head">
-        <div class="ph-num">PAGE / 09</div>
+        <div class="ph-num">PAGE / 10</div>
         <h2 class="ph-title chromatic">THE <em>OPERATOR</em></h2>
         <div class="ph-sub">— file: ~/sb.dossier —</div>
       </header>
@@ -727,7 +797,11 @@
             "I like <em>pressure tests</em>. In systems and in life."
           </blockquote>
           <p>
-            Builder across <strong>legal AI, quant, healthcare, LLM instrumentation, and physical simulation</strong>. Measurable performance, tight feedback loops, and knowing exactly when a system should refuse to answer. Competitive sport — skating, football, badminton, swimming. MUN, NGO work, 50+ hrs of community service.
+            Builder across <strong>legal AI, quant, healthcare, LLM instrumentation, agent ops, and physical simulation</strong>. Measurable performance, tight feedback loops, and knowing exactly when a system should refuse to answer.
+          </p>
+          <p class="op-verified">
+            <span class="op-stamp" aria-hidden="true">VERIFIED</span>
+            <span><strong>All-India CBSE 2nd</strong> — football, Goa Globe. Also competitive skating, badminton, swimming. Worked with multiple NGOs to get them online — sites and basic web presence.</span>
           </p>
         </div>
 
@@ -745,7 +819,7 @@
         <div class="panel op-stats panel-yel tilt-r">
           <div class="ev-head"><span>STATS</span><b id="statSource">DOSSIER · FILE</b></div>
           <div class="stat-grid" aria-live="polite">
-            <div><b id="statCases" class="stat-val">04</b><span>case files</span></div>
+            <div><b id="statCases" class="stat-val">05</b><span>case files</span></div>
             <div><b id="statRepos" class="stat-val">··</b><span>public repos</span></div>
             <div><b id="statIntern" class="stat-val">03</b><span>internships</span></div>
             <div><b id="statInflight" class="stat-val">··</b><span>other projects</span></div>
@@ -763,8 +837,8 @@
       </div>
     </section>
 
-    <!-- ════════ 10 · SIGNAL — final action panel ════════ -->
-    <section class="page signal" id="signal" data-page="9" data-name="SIGNAL">
+    <!-- ════════ SIGNAL — final action panel ════════ -->
+    <section class="page signal" id="signal" data-page="10" data-name="SIGNAL">
       <div class="page-bg-halftone"></div>
 
       <div class="signal-burst" aria-hidden="true">
@@ -790,7 +864,7 @@
         <div class="sg-issue">
           <span>END · ISSUE 001</span>
           <i>·</i>
-          <span>PAGE 10 / 10</span>
+          <span>PAGE 11 / 11</span>
         </div>
 
         <h2 class="sg-end chromatic">
@@ -915,6 +989,11 @@
           <path d="M78,41 q6,-4 12,0" stroke="#f4fbfd" stroke-width="2.8" fill="none" stroke-linecap="round"/>
           <path d="M64,51 q6,3 12,0" stroke="#38c4e0" stroke-width="2.4" fill="none" stroke-linecap="round"/>
         </g>
+        <g class="s-face s-face-focus">
+          <rect x="49" y="40" width="14" height="5" rx="2.5" fill="#f4fbfd"/>
+          <rect x="77" y="40" width="14" height="5" rx="2.5" fill="#f4fbfd"/>
+          <path d="M62,52 q8,4 16,0" stroke="#d4b464" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        </g>
         <!-- magnifier · inspect only (held by raised right hand) -->
         <g class="s-mag">
           <line x1="136" y1="57" x2="132" y2="50" stroke="#050510" stroke-width="4" stroke-linecap="round"/>
@@ -947,6 +1026,6 @@
     </div>
     </div>
   </div>
-  <script type="module" src="src/js/main.js?v=sb01-18"></script>
+  <script type="module" src="src/js/main.js?v=sb01-19"></script>
 </body>
 </html>

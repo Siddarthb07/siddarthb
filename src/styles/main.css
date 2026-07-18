@@ -357,6 +357,7 @@ main#comic{ position: relative; z-index: 1; }
 .sfx-mag    { color: var(--magenta); }
 .sfx-red    { color: var(--red); }
 .sfx-cyan   { color: var(--cyan); }
+.sfx-orqis  { right: auto; left: 8%; bottom: auto; top: 26%; transform: rotate(-10deg); font-size: clamp(2rem, 4.5vw, 3.4rem); opacity: .72; pointer-events: none; }
 .sfx-lab    { right: 6%; top: 14%; transform: rotate(10deg); color: var(--cyan); }
 .sfx-tl     { right: 2%; bottom: 4%; transform: rotate(-6deg); color: var(--yellow); }
 .sfx-signal { left: 50%; top: 18%; transform: translateX(-50%) rotate(-4deg); color: var(--yellow); font-size: clamp(3rem, 8vw, 7rem); }
@@ -972,6 +973,22 @@ main#comic{ position: relative; z-index: 1; }
 .op-quote{ font-family: var(--gro); font-weight: 800; font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); margin: 6px 0 14px; }
 .op-quote em{ font-style: italic; color: var(--magenta); }
 .op-bio p{ font-family: var(--inter); font-size: .96rem; color: var(--ink); line-height: 1.6; }
+.op-verified{
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 2px dashed rgba(5,5,16,.22);
+  font-family: var(--inter); font-size: .9rem; line-height: 1.5; color: var(--ink);
+}
+.op-stamp{
+  flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 6px 10px;
+  background: var(--magenta); color: var(--paper);
+  border: 2.5px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-family: var(--bang); font-size: .85rem; letter-spacing: .06em;
+  transform: rotate(-6deg);
+}
 .op-bio p strong{ color: var(--magenta); font-weight: 700; }
 
 .op-stack-list{ list-style: none; display: flex; flex-direction: column; gap: 4px; }
@@ -1075,6 +1092,7 @@ main#comic{ position: relative; z-index: 1; }
 .page.in .sfx-cover{ transform: rotate(-12deg) scale(1); }
 .page.in .sfx-origin{ transform: rotate(8deg) scale(1); }
 .page.in .sfx-case{ transform: rotate(-8deg) scale(1); }
+.page.in .sfx-orqis{ transform: rotate(-10deg) scale(1); }
 .page.in .sfx-lab{ transform: rotate(10deg) scale(1); }
 .page.in .sfx-tl{ transform: rotate(-6deg) scale(1); }
 .page.in .sfx-signal{ transform: translateX(-50%) rotate(-4deg) scale(1); }
@@ -1185,9 +1203,9 @@ main#comic{ position: relative; z-index: 1; }
   95.5%, 97.5% { transform: scaleY(.08); }
 }
 
-/* ---- 10 states, one per page — unique face + unique gesture ----
+/* ---- 11 states — unique face + unique gesture per page ----
    wave(cover) point(origin) inspect(anima) refuse(vidhisethu)
-   think(geoquant) care(health) excited(lab) scan(timeline)
+   think(geoquant) care(health) patch(orqis) excited(lab) scan(timeline)
    cheer(operator) bow(signal) */
 .s-face, .s-mag, .s-stamp{ display: none; }
 .sb01[data-state="wave"]    .s-face-wink,
@@ -1196,12 +1214,14 @@ main#comic{ position: relative; z-index: 1; }
 .sb01[data-state="refuse"]  .s-face-x,
 .sb01[data-state="think"]   .s-face-think,
 .sb01[data-state="care"]    .s-face-care,
+.sb01[data-state="patch"]   .s-face-focus,
 .sb01[data-state="excited"] .s-face-surprise,
 .sb01[data-state="scan"]    .s-face-look,
 .sb01[data-state="cheer"]   .s-face-happy,
 .sb01[data-state="bow"]     .s-face-closed{ display: block; }
 .sb01[data-state="inspect"] .s-mag{ display: block; }
-.sb01[data-state="bow"]     .s-stamp{ display: block; }
+.sb01[data-state="bow"]     .s-stamp,
+.sb01[data-state="patch"]   .s-stamp{ display: block; }
 
 /* scan — pupils sweep side to side */
 .s-pupil{ transform-box: fill-box; animation: sb01Scan 3.2s ease-in-out infinite; }
@@ -1240,6 +1260,19 @@ main#comic{ position: relative; z-index: 1; }
 /* care — both palms open outward */
 .sb01[data-state="care"] .s-arm-l{ transform: rotate(24deg); }
 .sb01[data-state="care"] .s-arm-r{ transform: rotate(-24deg); }
+
+/* patch — present the VERIFIED stamp (right arm forward / side-aware) */
+.sb01[data-state="patch"] .s-arm-r{ transform: rotate(-95deg) translateY(-6px); }
+.sb01[data-side="left"][data-state="patch"] .s-arm-r{ transform: none; }
+.sb01[data-side="left"][data-state="patch"] .s-arm-l{ transform: rotate(95deg) translateY(-6px); }
+.sb01[data-state="patch"] .s-tip{ fill: #d4b464; }
+.sb01[data-state="patch"] .s-stamp{
+  animation: sb01StampPulse 1.8s ease-in-out infinite;
+}
+@keyframes sb01StampPulse{
+  0%, 100%{ transform: rotate(-8deg) scale(1); }
+  50%     { transform: rotate(-8deg) scale(1.08); }
+}
 
 /* excited — both arms thrown straight up */
 .sb01[data-state="excited"] .s-arm-l{ transform: rotate(166deg); }

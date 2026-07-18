@@ -1,11 +1,11 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v5';
+export const GH_CACHE_KEY = 'sb_gh_repos_v6';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
-  caseFiles: 4,
+  caseFiles: 5,
   internships: 3,
   liveSims: 2,
   founderMonths: 6
@@ -25,7 +25,7 @@ export const REPO_HIDDEN = new Set([
 ]);
 
 export const REPO_TIERS = {
-  featured: ['VidhiSethu', 'GeoQuant', 'Health-AI', 'Anima'],
+  featured: ['Anima', 'VidhiSethu', 'GeoQuant', 'Health-AI'],
   lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
   inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'sign-language-cv'],
   founder: ['Athera'],
