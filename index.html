@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@300..800&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles/main.css?v=sb01-22" />
+  <link rel="stylesheet" href="src/styles/main.css?v=sb01-34" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
   <script type="application/ld+json">
@@ -256,6 +256,7 @@
             The logs said <em>what</em> happened, never <em>why</em>. For that I had to build the physics myself — vortex-ring dynamics, propeller BEMT — and walk the whole flight envelope on a screen, including the corners too dangerous to fly. Simulation is how I push a system to failure without breaking it.
           </p>
           <a class="narr-jump" href="#lab" data-jump="2" data-cur="open">▶ run them live — next page</a>
+          <div class="sfx sfx-origin">VERIFY!</div>
         </div>
 
         <div class="panel narr panel-ink tilt-r">
@@ -274,8 +275,6 @@
           </ol>
           <p class="pr-quote">"I build systems that operate under uncertainty — across interpretability, finance, healthcare, and physical simulation. My work combines machine learning, backend engineering, and physics-based modeling to produce systems that are measurable, explainable, and grounded in real-world constraints."</p>
         </div>
-
-        <div class="sfx sfx-origin">VERIFY!</div>
       </div>
     </section>
 
@@ -736,38 +735,128 @@
 
       <div class="tl-strip">
         <article class="panel tl-cell panel-cyan tilt-l">
-          <div class="tl-num">PANEL 1</div>
-          <div class="tl-date">2025 · Q2</div>
-          <div class="tl-org">IISc · BANGALORE</div>
-          <h3 class="tl-name">Summer Intern</h3>
-          <p>10-day IISc internship on vortex rings (May 2025). CFD simulators on GitHub — vortex rings, propeller BEMT, vortex tracking — are self-driven work.</p>
+          <div class="tl-head">
+            <div class="tl-num">PANEL 1</div>
+            <div class="tl-date">2025 · Q2</div>
+            <div class="tl-org">IISc · BANGALORE</div>
+            <h3 class="tl-name">Summer Intern</h3>
+          </div>
+          <p class="tl-lead">10-day summer internship on vortex rings (May 2025) — ring formation and VRS-style instability in the lab.</p>
+          <div class="tl-mid">
+            <div class="tl-mid-block">
+              <span class="tl-mid-label">WHAT I DID</span>
+              <ul class="tl-bullets">
+                <li>Lab exposure to vortex-ring formation and instability regimes</li>
+                <li>Built an OpenCV tracker for ring diameter + propagation speed</li>
+                <li>Kept shipping self-driven CFD outside the internship</li>
+              </ul>
+            </div>
+            <div class="tl-mid-block">
+              <span class="tl-mid-label">PUBLIC PROOF</span>
+              <ul class="tl-bullets">
+                <li><a href="https://github.com/Siddarthb07/vortex-tracker" target="_blank" rel="noopener noreferrer">vortex-tracker ↗</a></li>
+                <li><a href="https://github.com/Siddarthb07/Drone-Vortex-Ring-Simulation" target="_blank" rel="noopener noreferrer">Drone-Vortex-Ring-Simulation ↗</a></li>
+                <li><a href="https://github.com/Siddarthb07/Propeller-simulator" target="_blank" rel="noopener noreferrer">Propeller-simulator ↗</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-tags">
+            <span>10 DAYS · MAY 2025</span><span>FLUIDS</span><span>SELF-DRIVEN CFD</span>
+          </div>
         </article>
 
         <article class="panel tl-cell panel-yel tilt-r">
-          <div class="tl-num">PANEL 2</div>
-          <div class="tl-date">2025 · Q3</div>
-          <div class="tl-org">VEGAM CO</div>
-          <h3 class="tl-name">Engineering Intern</h3>
-          <p>Prototype water-based air filtration systems. Hardware-first iteration, weekly build / test / refine.</p>
+          <div class="tl-head">
+            <div class="tl-num">PANEL 2</div>
+            <div class="tl-date">2025 · Q3</div>
+            <div class="tl-org">VEGAM SOLUTIONS</div>
+            <h3 class="tl-name">Engineering Intern</h3>
+          </div>
+          <p class="tl-lead">Hardware-flavored stint on water-based air filtration — sensors, flow path, and iteration under physical constraints.</p>
+          <div class="tl-mid">
+            <div class="tl-mid-block">
+              <span class="tl-mid-label">WHAT I DID</span>
+              <ul class="tl-bullets">
+                <li>Prototype filtration hardware end-to-end</li>
+                <li>Weekly build / test / refine on real assemblies</li>
+                <li>Debugged flow + sensor behavior in the shop, not slides</li>
+              </ul>
+            </div>
+            <div class="tl-mid-block">
+              <span class="tl-mid-label">MODE</span>
+              <ul class="tl-bullets">
+                <li>Hardware-first engineering internship</li>
+                <li>Constraints from wet-lab / shop reality</li>
+                <li>No NDA on this stint — process is public to describe</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-tags">
+            <span>HARDWARE</span><span>PROTOTYPE</span><span>BUILD / TEST / REFINE</span>
+          </div>
         </article>
 
         <article class="panel tl-cell panel-mag tilt-l">
-          <div class="tl-num">PANEL 3</div>
-          <div class="tl-date">2026 · Q1</div>
-          <div class="tl-org">VEGAM CO</div>
-          <h3 class="tl-name">Engineering Intern</h3>
-          <p>Worked on a text-to-SQL RAG system. NDA-restricted — details not public. Public clean-room twin: <a href="https://github.com/Siddarthb07/text2sql-rag" target="_blank" rel="noopener noreferrer" data-cur="repo">text2sql-rag ↗</a></p>
+          <div class="tl-head">
+            <div class="tl-num">PANEL 3</div>
+            <div class="tl-date">2026 · Q1</div>
+            <div class="tl-org">VEGAM SOLUTIONS</div>
+            <h3 class="tl-name">Engineering Intern</h3>
+          </div>
+          <p class="tl-lead">Worked on a text-to-SQL RAG system — natural language over structured data. Internals stay NDA-restricted.</p>
+          <div class="tl-mid">
+            <div class="tl-mid-block">
+              <span class="tl-mid-label">WHAT I DID</span>
+              <ul class="tl-bullets">
+                <li>NL → SQL retrieval path with schema awareness</li>
+                <li>Validation / refusal when the query couldn't be grounded</li>
+                <li>Shipped portfolio proof as a clean-room rebuild</li>
+              </ul>
+            </div>
+            <div class="tl-mid-block">
+              <span class="tl-mid-label">PUBLIC PROOF</span>
+              <ul class="tl-bullets">
+                <li>NDA — Vegam internals not public</li>
+                <li>Clean-room on Spider: <a href="https://github.com/Siddarthb07/text2sql-rag" target="_blank" rel="noopener noreferrer">text2sql-rag ↗</a></li>
+                <li>Schema linking · few-shot · sqlglot validation</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-tags">
+            <span>RAG</span><span>TEXT-TO-SQL</span><span>NDA · CLEAN-ROOM</span>
+          </div>
         </article>
 
         <article class="panel tl-cell panel-red tilt-r live">
-          <div class="tl-num">PANEL 4 · ONGOING</div>
-          <div class="tl-date">NOW</div>
-          <div class="tl-org">ATHERA</div>
-          <h3 class="tl-name">Founder</h3>
-          <p>AI automation and workflow systems for small businesses — backend integrations, lead workflows, and sites. 6+ months building; client details not public.</p>
+          <div class="tl-head">
+            <div class="tl-num">PANEL 4 · ONGOING</div>
+            <div class="tl-date">NOW</div>
+            <div class="tl-org"><a href="https://athera.digital" target="_blank" rel="noopener noreferrer" data-cur="athera">ATHERA ↗</a></div>
+            <h3 class="tl-name">Founder</h3>
+          </div>
+          <p class="tl-lead">Running <a href="https://athera.digital" target="_blank" rel="noopener noreferrer" data-cur="athera">athera.digital</a> — AI automation and websites for small businesses. 6+ months shipping live systems; client names stay private.</p>
+          <div class="tl-mid">
+            <div class="tl-mid-block">
+              <span class="tl-mid-label">WHAT I SHIP</span>
+              <ul class="tl-bullets">
+                <li>SMB automation + lead / outreach workflows</li>
+                <li>Client websites and backend integrations</li>
+                <li>Ops glue — sheets, Gmail, webhooks, live deploys</li>
+              </ul>
+            </div>
+            <div class="tl-mid-block">
+              <span class="tl-mid-label">PUBLIC SURFACE</span>
+              <ul class="tl-bullets">
+                <li>Product site: <a href="https://athera.digital" target="_blank" rel="noopener noreferrer" data-cur="athera">athera.digital ↗</a></li>
+                <li>Founder (not “senior”) — one operator, real clients</li>
+                <li>Case metrics stay private until a public case-studies page ships</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-tags">
+            <span>FOUNDER</span><span>6+ MONTHS</span><span><a href="https://athera.digital" target="_blank" rel="noopener noreferrer" data-cur="athera">ATHERA.DIGITAL ↗</a></span>
+          </div>
         </article>
-
-        <div class="sfx sfx-tl">SHIP!</div>
       </div>
     </section>
 

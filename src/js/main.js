@@ -7,7 +7,7 @@ import {
   SITE, fetchAllRepos, categorizeRepos, inflightCount,
   padStat, renderRepoIndex
 } from './github.js';
-import { initMascot } from './mascot.js?v=sb01-18';
+import { initMascot } from './mascot.js?v=sb01-19';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = matchMedia('(hover: none)').matches;

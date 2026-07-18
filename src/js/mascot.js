@@ -80,7 +80,7 @@ const SCRIPT = [
   },
   { // 08 · TIMELINE — scanning pupils, hand shading brow
     state: 'scan',
-    pos: { x: '95vw', y: '5vh', side: 'right', scale: .8, range: [12, 6] },
+    pos: { x: '50vw', y: '4vh', side: 'right', scale: .72, range: [8, 4] },
     lines: [
       { t: 'The NDA panel has a public twin — a clean-room text-to-SQL rebuild on his GitHub.' }
     ]
