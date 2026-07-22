@@ -483,7 +483,7 @@ function startCorvex(){
     const drain = () => {
       if (!eventQueue.length){ eventTimer = null; return; }
       pushEvent(eventQueue.shift());
-      eventTimer = setTimeout(drain, reduceMotion ? 0 : 420);
+      eventTimer = setTimeout(drain, reduceMotion ? 0 : 900);
     };
     if (!eventTimer) drain();
   }
@@ -534,8 +534,11 @@ function startCorvex(){
     if (campEl){ campEl.textContent = ''; campEl.style.opacity = '0'; }
   }
 
+  // Hold long enough that the link draw (~1.65s) is readable before the next hop.
+  const STEP_MS = [2200, 3400, 3400, 3400, 3800, 5200, 2800];
+
   function stop(){
-    if (timer){ clearInterval(timer); timer = null; }
+    if (timer){ clearTimeout(timer); timer = null; }
     if (eventTimer){ clearTimeout(eventTimer); eventTimer = null; }
   }
 
@@ -543,6 +546,16 @@ function startCorvex(){
     const s = STEPS[i];
     renderGraph(s);
     queueEvents(s.events);
+  }
+
+  function scheduleNext(){
+    if (step >= STEPS.length - 1){ timer = null; return; }
+    const wait = STEP_MS[step] || 3400;
+    timer = setTimeout(() => {
+      step += 1;
+      applyStep(step);
+      scheduleNext();
+    }, wait);
   }
 
   function play(){
@@ -555,11 +568,7 @@ function startCorvex(){
       flushEvents();
       return;
     }
-    timer = setInterval(() => {
-      step += 1;
-      if (step >= STEPS.length){ stop(); return; }
-      applyStep(step);
-    }, 1750);
+    scheduleNext();
   }
 
   function armPlay(){
