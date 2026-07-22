@@ -427,7 +427,7 @@ function startCorvex(){
   function setHost(id, state){
     const el = document.getElementById('cxHost' + id);
     if (!el) return;
-    el.className = 'cx-host' + (state ? (' ' + state) : '');
+    el.setAttribute('class', 'cx-host' + (state ? (' ' + state) : ''));
   }
   function setLink(id, on){
     const el = document.getElementById('cxLink' + id);
@@ -642,17 +642,20 @@ function ready(fn){
 }
 
 ready(() => {
-  drawEquity();
-  setRisk(0.31);
-  startProbe();
-  startCorvex();
-  initRPM();
-  initVRS();
-  startMagnets();
-  startKeys();
-  startPages();
-  initMascot();
-  loadGitHubData();
-
+  try {
+    drawEquity();
+    setRisk(0.31);
+    startProbe();
+    startCorvex();
+    initRPM();
+    initVRS();
+    startMagnets();
+    startKeys();
+    startPages();
+    initMascot();
+    loadGitHubData();
+  } catch (err) {
+    console.error('widget init failed', err);
+  }
   boot();
 });
