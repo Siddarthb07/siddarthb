@@ -91,13 +91,24 @@ const PAGES = [
    2. BOOT LOADER
    ========================================================= */
 function loadAccentFonts(){
-  // Non-critical display/mono/typewriter faces — same CSS vars, not render-blocking.
+  // All Google fonts after first paint — CSS already has system fallbacks per family.
   if (document.getElementById('sbAccentFonts')) return;
-  const link = document.createElement('link');
-  link.id = 'sbAccentFonts';
-  link.rel = 'stylesheet';
-  link.href = 'https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;600;700&family=Special+Elite&display=swap';
-  document.head.appendChild(link);
+  const mk = (id, href) => {
+    if (document.getElementById(id)) return;
+    const link = document.createElement('link');
+    link.id = id;
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+  mk(
+    'sbBodyFonts',
+    'https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;700;800&family=Inter:wght@400;600;700&display=swap'
+  );
+  mk(
+    'sbAccentFonts',
+    'https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;600;700&family=Special+Elite&display=swap'
+  );
 }
 
 function boot(){

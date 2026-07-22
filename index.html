@@ -10,9 +10,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Cover/body fonts only in the critical path; accent fonts load from main.js (same look, less FCP wait). -->
-  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles/main.css?v=sb01-54" />
+  <!-- Preload webfont CSS without render-blocking; main.js attaches as stylesheets after first paint. -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;700;800&family=Inter:wght@400;600;700&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;600;700&family=Special+Elite&display=swap">
+  <link rel="stylesheet" href="src/styles/main.css?v=sb01-55" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
   <script type="application/ld+json">
@@ -1176,6 +1177,6 @@
     </div>
     </div>
   </div>
-  <script type="module" src="src/js/main.js?v=sb01-36"></script>
+  <script type="module" src="src/js/main.js?v=sb01-37"></script>
 </body>
 </html>
