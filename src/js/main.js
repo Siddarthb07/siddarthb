@@ -85,13 +85,7 @@ const PAGES = [
    2. BOOT LOADER
    ========================================================= */
 function loadAccentFonts(){
-  // Prefer boot-early.js; keep as fallback if that script is blocked.
-  if (document.getElementById('sbFont0')) return;
-  const link = document.createElement('link');
-  link.id = 'sbFont0';
-  link.rel = 'stylesheet';
-  link.href = 'src/fonts/fonts.css?v=sb01-1';
-  document.head.appendChild(link);
+  // Fonts ship via <link rel="stylesheet" href="src/fonts/fonts.css"> in index.html.
 }
 
 function boot(){
