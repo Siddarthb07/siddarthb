@@ -71,10 +71,12 @@ body{
   background: var(--night);
   color: var(--text);
   overflow-x: hidden;
-  cursor: none;
+  /* Fallback if custom-cursor JS never runs */
+  cursor: crosshair;
 }
-button, input, textarea, select{ font: inherit; color: inherit; background: transparent; border: none; outline: none; cursor: none; }
-a{ color: inherit; text-decoration: none; cursor: none; }
+button, input, textarea, select{ font: inherit; color: inherit; background: transparent; border: none; outline: none; cursor: pointer; }
+a{ color: inherit; text-decoration: none; cursor: pointer; }
+html.js-cursor body{ cursor: none; }
 img, svg{ display: block; max-width: 100%; }
 
 /* =========================================================
@@ -226,9 +228,11 @@ a, button, [data-cur], input, textarea, select, summary{
 .pt-tot{ color: rgba(5,5,16,.6); }
 .pt-name{ margin-left: 6px; }
 
-.hud-tools{ justify-self: end; display: inline-flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: .62rem; letter-spacing: .2em; color: var(--text); text-transform: uppercase; }
-.hud-btn{ display: inline-flex; align-items: center; gap: 6px; transition: color .2s var(--ease), border-color .2s var(--ease); padding: 6px 10px; border: 2px solid var(--paper); background: var(--ink); }
+.hud-tools{ justify-self: end; display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: .62rem; letter-spacing: .2em; color: var(--text); text-transform: uppercase; }
+.hud-btn{ display: inline-flex; align-items: center; gap: 6px; transition: color .2s var(--ease), border-color .2s var(--ease); padding: 6px 10px; border: 2px solid var(--paper); background: var(--ink); cursor: pointer !important; }
+.hud-btn-cv{ border-color: var(--yellow); color: var(--yellow); }
 .hud-btn:hover{ color: var(--yellow); border-color: var(--yellow); }
+.hud-btn-cv:hover{ color: var(--ink); background: var(--yellow); border-color: var(--yellow); }
 
 /* =========================================================
    RIGHT RAIL — page ticks
@@ -496,6 +500,26 @@ main#comic{ position: relative; z-index: 1; }
   text-align: center;
 }
 .cover-deck strong{ color: var(--cyan); font-weight: 600; }
+
+.cover-proof{
+  position: relative; z-index: 2;
+  margin: 12px auto 0;
+  max-width: 720px;
+  padding: 0 12px;
+  font-family: var(--mono);
+  font-size: clamp(.62rem, .85vw, .72rem);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  text-align: center;
+  line-height: 1.6;
+}
+.cover-proof a{
+  color: var(--yellow);
+  border-bottom: 1px solid rgba(212,180,100,.45);
+  padding-bottom: 1px;
+}
+.cover-proof a:hover{ color: var(--cyan); border-color: var(--cyan); }
 
 .cover-quote{
   position: relative; z-index: 2;

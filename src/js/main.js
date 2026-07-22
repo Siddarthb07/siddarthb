@@ -6,7 +6,7 @@
 import {
   SITE, fetchAllRepos, categorizeRepos, inflightCount,
   padStat, renderRepoIndex
-} from './github.js';
+} from './github.js?v=sb01-32';
 import { initMascot } from './mascot.js?v=sb01-20';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -35,6 +35,7 @@ const PAGES = [
    ========================================================= */
 (() => {
   if (isTouch) return;
+  document.documentElement.classList.add('js-cursor');
   const cur = $('#cursor');
   const lab = $('#curLabel');
   let x = innerWidth/2, y = innerHeight/2, tx = x, ty = y, seeded = false;
@@ -123,6 +124,10 @@ function startPages(){
     if (hudName) hudName.textContent = meta.name;
     document.documentElement.dataset.page = String(idx);
     lastIdx = idx;
+    const id = pages[idx]?.id;
+    if (id && location.hash.slice(1) !== id){
+      history.replaceState(null, '', '#' + id);
+    }
   };
 
   const revealIO = new IntersectionObserver(entries => {
@@ -164,7 +169,14 @@ function startPages(){
     });
   });
 
-  setActive(0);
+  const hash = location.hash.slice(1);
+  const hashPage = hash ? document.getElementById(hash) : null;
+  if (hashPage && pages.includes(hashPage)){
+    hashPage.scrollIntoView({ behavior: 'auto', block: 'start' });
+    setActive(pages.indexOf(hashPage));
+  } else {
+    setActive(0);
+  }
 }
 
 /* =========================================================
@@ -190,7 +202,7 @@ async function loadGitHubData(){
     if (sourceEl) sourceEl.textContent = 'GITHUB · LIVE';
     if (coverMeta){
       coverMeta.textContent =
-        `11 PAGES · ${padStat(SITE.caseFiles)} CASE FILES · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(visible.length)} REPOS`;
+        `${padStat(SITE.caseFiles)} CASE FILES · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(visible.length)} OPEN REPOS`;
     }
 
     renderRepoIndex(buckets, indexHost);

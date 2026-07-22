@@ -156,6 +156,26 @@ export function relAge(iso){
   return `${Math.floor(days / 365)}y ago`;
 }
 
+function escapeHtml(s){
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function safeGithubUrl(url){
+  try {
+    const u = new URL(String(url || ''));
+    if (u.protocol !== 'https:') return 'https://github.com/Siddarthb07';
+    if (u.hostname !== 'github.com' && u.hostname !== 'www.github.com') return 'https://github.com/Siddarthb07';
+    return u.href;
+  } catch {
+    return 'https://github.com/Siddarthb07';
+  }
+}
+
 export function renderRepoIndex(buckets, host){
   if (!host) return;
 
@@ -164,20 +184,23 @@ export function renderRepoIndex(buckets, host){
     const list = buckets[tier];
     if (!list.length) continue;
 
-    parts.push(`<div class="ri-tier"><span class="ri-label">${TIER_LABELS[tier]}</span><ul class="ri-list">`);
+    parts.push(`<div class="ri-tier"><span class="ri-label">${escapeHtml(TIER_LABELS[tier])}</span><ul class="ri-list">`);
     for (const repo of list){
       const proof = PROOF_LINES[repo.name] || (repo.language ? repo.language : 'open source');
       const label = REPO_DISPLAY[repo.name] || repo.name;
-      const desc = repo.description
+      const rawDesc = repo.description
         ? repo.description
             .replace(/archived[.,]?\s*/i, '')
             .replace(/—\s*,\s*/g, '— ')
             .trim()
         : proof;
+      const desc = escapeHtml(rawDesc);
+      const safeLabel = escapeHtml(label);
       const upd = relAge(repo.pushed_at);
+      const href = safeGithubUrl(repo.html_url);
       parts.push(
-        `<li><a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" data-cur="repo">` +
-        `<b>${label}${upd ? `<i class="ri-upd">upd ${upd}</i>` : ''}</b><span>${desc}</span></a></li>`
+        `<li><a href="${href}" target="_blank" rel="noopener noreferrer" data-cur="repo">` +
+        `<b>${safeLabel}${upd ? `<i class="ri-upd">upd ${escapeHtml(upd)}</i>` : ''}</b><span>${desc}</span></a></li>`
       );
     }
     parts.push('</ul></div>');
