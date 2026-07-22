@@ -238,15 +238,6 @@ a, button, [data-cur], input, textarea, select, summary{
 .pt-num{ font-family: var(--bang); font-size: 1rem; }
 .pt-tot{ color: rgba(5,5,16,.78); }
 .pt-sep{ color: rgba(5,5,16,.55); }
-
-/* Contrast bumps — same palette, darker/lighter where LH failed AA */
-.cover-quote em{ color: #c41f55; }
-.panel.narr em, .panel-paper em, .panel-yel em, .case-pull em{ color: #c41f55; }
-.panel-yel .case-pull em, .panel-mag .case-pull em, .panel-red .case-pull em{ color: #ffe08a; }
-.lp-tag{ color: rgba(5,5,16,.78); }
-.rig-row label b, .rig-row label i{ color: rgba(5,5,16,.88); }
-.ph-num, .ph-sub{ color: rgba(254,249,237,.78); }
-.ph-title em{ color: var(--yellow); }
 .pt-name{ margin-left: 6px; }
 
 .hud-tools{ justify-self: end; display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: .62rem; letter-spacing: .2em; color: var(--text); text-transform: uppercase; }
@@ -1200,18 +1191,17 @@ main#comic{ position: relative; z-index: 1; }
   background: var(--yel-soft);
   color: var(--ink);
   box-shadow: 4px 4px 0 var(--ink);
-  filter: saturate(.72) brightness(.92);
 }
 .tl-cell.panel-cyan{
-  background: color-mix(in srgb, var(--cyan) 72%, #0a1a22);
+  background: color-mix(in srgb, var(--cyan) 42%, #0a1a22);
   color: var(--paper);
 }
 .tl-cell.panel-yel{
-  background: color-mix(in srgb, var(--yellow) 68%, #1a1408);
+  background: color-mix(in srgb, var(--yellow) 48%, #1a1408);
   color: var(--paper);
 }
-.tl-cell.panel-mag { background: var(--mag-soft); color: var(--paper); }
-.tl-cell.panel-red { background: color-mix(in srgb, var(--magenta) 78%, #1a1020); color: var(--paper); }
+.tl-cell.panel-mag { background: #b8325a; color: var(--paper); }
+.tl-cell.panel-red { background: color-mix(in srgb, var(--magenta) 68%, #1a1020); color: var(--paper); }
 .tl-cell .tl-org a{
   color: inherit;
   text-decoration: none;
@@ -1376,7 +1366,13 @@ main#comic{ position: relative; z-index: 1; }
 .sf-dot{ color: var(--cyan); }
 
 .sg-fin{ margin-top: 14px; padding-top: 14px; border-top: 2px dashed var(--paper); display: flex; flex-direction: column; gap: 4px; align-items: center; }
-.fin-band{ font-family: var(--bang); font-size: 1.2rem; color: var(--yellow); -webkit-text-stroke: 1px var(--ink); letter-spacing: .12em; }
+.fin-band{
+  font-family: var(--bang); font-size: 1.2rem; color: var(--yellow); letter-spacing: .12em;
+  /* ink outline via shadow — webkit-text-stroke made LH read fg as ink-on-night */
+  text-shadow:
+    -1px -1px 0 var(--ink), 1px -1px 0 var(--ink),
+    -1px 1px 0 var(--ink), 1px 1px 0 var(--ink);
+}
 .fin-meta{ font-family: var(--mono); font-size: .56rem; letter-spacing: .26em; color: var(--faint); text-transform: uppercase; }
 
 /* =========================================================
@@ -1696,5 +1692,101 @@ main#comic{ position: relative; z-index: 1; }
     animation-duration: .45s !important;
   }
   .cx-link.draw{ transition-duration: 1s !important; }
+}
+
+/* =========================================================
+   A11Y CONTRAST — last so it wins cascade
+   Same comic palette; only text/fill darkness nudged for AA.
+   ========================================================= */
+.page-head{
+  background: var(--night); /* opaque night under accents (fixes LH sampling) */
+}
+
+.pt-tot{ color: #3d3420; }
+
+/* Magenta accents on light paper */
+.cover-quote em,
+.panel-paper em,
+.panel.narr.panel-paper em,
+.case-pull em,
+.lp-tag,
+.op-quote em,
+.op-bio p strong,
+.op-verified strong,
+.rig-row label b{
+  color: #c41f55;
+}
+
+/* Magenta on gold panels needs darker ink-magenta */
+.panel-yel em,
+.panel-yel.narr p em,
+.panel-yel .case-pull em,
+.panel-cyan em,
+.panel-cyan.narr p em{
+  color: #6e0c26;
+}
+
+/* Gold accents on magenta/red panels */
+.panel-mag .case-pull em,
+.panel-red .case-pull em,
+.panel-mag.narr p em,
+.panel-red.narr p em{
+  color: #ffe08a;
+}
+
+/* Slightly deeper magenta fills so paper body text clears 4.5:1 */
+.panel-mag,
+.panel-red{
+  background: #b8325a;
+  color: #fffef8;
+}
+
+.rig-row label i{ color: rgba(5,5,16,.88); }
+
+/* Timeline colored cells — light text + gold accents */
+.tl-cell.panel-cyan .tl-date,
+.tl-cell.panel-yel .tl-date,
+.tl-cell.panel-mag .tl-date,
+.tl-cell.panel-red .tl-date,
+.tl-cell.panel-cyan .tl-org,
+.tl-cell.panel-yel .tl-org,
+.tl-cell.panel-mag .tl-org,
+.tl-cell.panel-cyan .tl-mid-label,
+.tl-cell.panel-yel .tl-mid-label,
+.tl-cell.panel-mag .tl-mid-label,
+.tl-cell.panel-red .tl-mid-label,
+.tl-cell.panel-cyan .tl-tags span,
+.tl-cell.panel-yel .tl-tags span,
+.tl-cell.panel-mag .tl-tags span,
+.tl-cell.panel-red .tl-tags span,
+.tl-cell.panel-cyan .tl-bullets li::before,
+.tl-cell.panel-yel .tl-bullets li::before,
+.tl-cell.panel-mag .tl-bullets li::before,
+.tl-cell.panel-red .tl-bullets li::before,
+.tl-cell.panel-cyan a,
+.tl-cell.panel-yel a,
+.tl-cell.panel-mag a,
+.tl-cell.panel-red a{
+  color: #ffe08a;
+}
+.tl-cell.panel-cyan .tl-name,
+.tl-cell.panel-yel .tl-name,
+.tl-cell.panel-mag .tl-name,
+.tl-cell.panel-red .tl-name,
+.tl-cell.panel-cyan .tl-lead,
+.tl-cell.panel-yel .tl-lead,
+.tl-cell.panel-mag .tl-lead,
+.tl-cell.panel-red .tl-lead,
+.tl-cell.panel-cyan .tl-bullets li,
+.tl-cell.panel-yel .tl-bullets li,
+.tl-cell.panel-mag .tl-bullets li,
+.tl-cell.panel-red .tl-bullets li{
+  color: #fffef8;
+}
+
+/* Stats panel is gold — cyan/yellow header chips were near-invisible */
+.panel-yel .ev-head span,
+.panel-yel .ev-head b{
+  color: var(--ink);
 }
 

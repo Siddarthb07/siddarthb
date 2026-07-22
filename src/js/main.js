@@ -706,14 +706,14 @@ function initVRS(){
     $('#vdVal').textContent = v.toFixed(1);
     range.setAttribute('aria-valuenow', String(v));
     if (inst > 0.5){
-      regime.textContent = 'VORTEX RING'; regime.style.color = 'var(--red)';
-      rec.textContent = '↗ +6 m/s lat'; risk.textContent = 'HIGH'; risk.style.color = 'var(--red)';
+      regime.textContent = 'VORTEX RING'; regime.style.color = '#8a0f30';
+      rec.textContent = '↗ +6 m/s lat'; risk.textContent = 'HIGH'; risk.style.color = '#8a0f30';
     } else if (inst > 0.25){
-      regime.textContent = 'TRANSITION'; regime.style.color = 'var(--magenta)';
-      rec.textContent = '→ reduce descent'; risk.textContent = 'MOD'; risk.style.color = 'var(--magenta)';
+      regime.textContent = 'TRANSITION'; regime.style.color = '#8a0f30';
+      rec.textContent = '→ reduce descent'; risk.textContent = 'MOD'; risk.style.color = '#8a0f30';
     } else {
-      regime.textContent = 'STABLE'; regime.style.color = 'var(--cyan)';
-      rec.textContent = '✓ within envelope'; risk.textContent = 'LOW'; risk.style.color = 'var(--cyan)';
+      regime.textContent = 'STABLE'; regime.style.color = '#0a6675';
+      rec.textContent = '✓ within envelope'; risk.textContent = 'LOW'; risk.style.color = '#0a6675';
     }
   }
   range.addEventListener('input', () => set(+range.value));
