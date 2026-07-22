@@ -314,87 +314,195 @@ function startProbe(){
 }
 
 /* =========================================================
-   8b. CORVEX ATTACK THEATRE WIDGET (replaces GIF)
+   8b. CORVEX ATTACK THEATRE — exact GIF sequence as widget
    ========================================================= */
 function startCorvex(){
   const root = $('#corvexWidget');
   const stream = $('#cxStream');
   if (!root || !stream) return;
 
-  const SCRIPT = [
-    { t: '12:00:00', tag: 'HOST-A', cls: '', text: 'User alice logs into host-a from attacker 10.1.0.5', hosts: '1/3', state: 'OBSERVE', a: 1, b: 0, c: 0, fuse: 0, iso: 0 },
-    { t: '12:00:15', tag: 'HOST-B', cls: '', text: 'alice hops to host-b (fileserver) — lateral move, same src', hosts: '2/3', state: 'OBSERVE', a: 1, b: 1, c: 0, fuse: 0, iso: 0 },
-    { t: '12:00:30', tag: 'HOST-C', cls: '', text: 'alice reaches host-c (jump box) — 3 hosts owned', hosts: '3/3', state: 'CORRELATE', a: 1, b: 1, c: 1, fuse: 1, iso: 0 },
-    { t: '12:00:42', tag: 'DETECT', cls: 'detect', text: 'Corvex links 3 auths → campaign camp-lateral-alice', hosts: '3/3', state: 'DETECT', a: 1, b: 1, c: 1, fuse: 1, iso: 0 },
-    { t: '12:00:55', tag: 'DRY-RUN', cls: 'isolate', text: 'IsolateHost proposed on host-c — logged only, live quarantine locked', hosts: '3/3', state: 'ISOLATE', a: 1, b: 1, c: 1, fuse: 1, iso: 1 }
+  const phaseEl = $('#cxPhase');
+  const captionEl = $('#cxCaption');
+  const campEl = $('#cxCamp');
+  const playBtn = $('#cxPlay');
+  const replayBtn = $('#cxReplay');
+
+  const STEPS = [
+    {
+      phase: 'ATTACK IN PROGRESS',
+      caption: 'Compromised account <b>alice</b> is authenticating from <b>10.1.0.5</b> across the lab.',
+      captionCls: '',
+      hosts: { a: '', b: '', c: '' },
+      links: { a: 0, b: 0, c: 0 },
+      mesh: 0, shields: {}, camp: 0,
+      feed: []
+    },
+    {
+      phase: 'ATTACK IN PROGRESS',
+      caption: 'User <b>alice</b> logs into <b>host-a</b> from attacker <b>10.1.0.5</b>.',
+      captionCls: '',
+      hosts: { a: 'hit', b: '', c: '' },
+      links: { a: 1, b: 0, c: 0 },
+      mesh: 0, shields: {}, camp: 0,
+      feed: [
+        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
+      ]
+    },
+    {
+      phase: 'ATTACK IN PROGRESS',
+      caption: 'Same user <b>alice</b> hops to <b>host-b</b> (fileserver) 15s later.',
+      captionCls: '',
+      hosts: { a: 'hit', b: 'hit', c: '' },
+      links: { a: 1, b: 1, c: 0 },
+      mesh: 0, shields: {}, camp: 0,
+      feed: [
+        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' },
+        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
+      ]
+    },
+    {
+      phase: 'ATTACK IN PROGRESS',
+      caption: '<b>host-c</b> falls — attacker now spans workstation, fileserver, jump box.',
+      captionCls: '',
+      hosts: { a: 'hit', b: 'hit', c: 'hit' },
+      links: { a: 1, b: 1, c: 1 },
+      mesh: 0, shields: {}, camp: 0,
+      feed: [
+        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' },
+        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' },
+        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
+      ]
+    },
+    {
+      phase: 'DETECT',
+      caption: 'Corvex links the 3 auths -> campaign <b>camp-lateral-alice</b>.',
+      captionCls: 'detect',
+      hosts: { a: 'hit', b: 'hit', c: 'hit' },
+      links: { a: 1, b: 1, c: 1 },
+      mesh: 1, shields: {}, camp: 1,
+      feed: [
+        { ts: 'now', host: 'DETECT', type: 'detect', text: 'Corvex links the 3 auths -> campaign <em>camp-lateral-alice</em>', meta: 'lateral_auth · score 1.0 · hosts a/b/c' },
+        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' },
+        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' },
+        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
+      ]
+    },
+    {
+      phase: 'INTERRUPT (DRY-RUN)',
+      caption: 'Defense action proposed for <b>host-a</b> / <b>host-b</b> / <b>host-c</b>. Logged only — live quarantine still locked.',
+      captionCls: 'defend',
+      hosts: { a: 'isolated', b: 'isolated', c: 'isolated' },
+      links: { a: 1, b: 1, c: 1 },
+      mesh: 1, shields: { a: 1, b: 1, c: 1 }, camp: 1,
+      feed: [
+        { ts: 'dry-run', host: 'HOST-C', type: 'defend', text: 'Propose IsolateHost on <em>host-c</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
+        { ts: 'dry-run', host: 'HOST-B', type: 'defend', text: 'Propose IsolateHost on <em>host-b</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
+        { ts: 'dry-run', host: 'HOST-A', type: 'defend', text: 'Propose IsolateHost on <em>host-a</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
+        { ts: 'now', host: 'DETECT', type: 'detect', text: 'Corvex links the 3 auths -> campaign <em>camp-lateral-alice</em>', meta: 'lateral_auth · score 1.0 · hosts a/b/c' },
+        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' }
+      ]
+    },
+    {
+      phase: 'CONTAINED (SIM)',
+      caption: 'Attack path shown. Detection real. Interrupt simulated. Live isolate stays off until Stage D executor exists.',
+      captionCls: 'defend',
+      hosts: { a: 'isolated', b: 'isolated', c: 'isolated' },
+      links: { a: 1, b: 1, c: 1 },
+      mesh: 1, shields: { a: 1, b: 1, c: 1 }, camp: 1,
+      feed: [
+        { ts: 'dry-run', host: 'HOST-C', type: 'defend', text: 'Propose IsolateHost on <em>host-c</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
+        { ts: 'dry-run', host: 'HOST-B', type: 'defend', text: 'Propose IsolateHost on <em>host-b</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
+        { ts: 'dry-run', host: 'HOST-A', type: 'defend', text: 'Propose IsolateHost on <em>host-a</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
+        { ts: 'now', host: 'DETECT', type: 'detect', text: 'Corvex links the 3 auths -> campaign <em>camp-lateral-alice</em>', meta: 'lateral_auth · score 1.0 · hosts a/b/c' },
+        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' },
+        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' },
+        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
+      ]
+    }
   ];
 
-  const precBar = $('#cxPrecBar');
-  const recBar = $('#cxRecBar');
-  const benBar = $('#cxBenBar');
-  const precNum = $('#cxPrecNum');
-  const recNum = $('#cxRecNum');
-  const benNum = $('#cxBenNum');
-  const hostsEl = $('#cxHosts');
-  const eventsEl = $('#cxEvents');
-  const stateEl = $('#cxState');
-  const ring = $('#cxIsolateRing');
-  const linkA = $('#cxLinkA');
-  const linkB = $('#cxLinkB');
-  const linkC = $('#cxLinkC');
-  const fuseAB = $('#cxFuseAB');
-  const fuseBC = $('#cxFuseBC');
+  let step = 0;
+  let timer = null;
 
-  function setEdge(el, on){
+  function setHost(id, state){
+    const el = document.getElementById('cxHost' + id);
     if (!el) return;
-    el.style.opacity = on ? '1' : '0.18';
+    el.className = 'cx-host' + (state ? (' ' + state) : '');
+  }
+  function setLink(id, on){
+    const el = document.getElementById('cxLink' + id);
+    if (el) el.classList.toggle('on', !!on);
+  }
+  function setShield(id, on){
+    const el = document.getElementById('cxShield' + id);
+    if (el) el.classList.toggle('on', !!on);
   }
 
-  function renderStep(i){
-    const step = SCRIPT[i];
-    stream.innerHTML = '';
-    const visible = SCRIPT.slice(0, i + 1).reverse().slice(0, 4);
-    visible.forEach((ev, idx) => {
-      const row = document.createElement('div');
-      row.className = `cx-ev ${ev.cls}` + (idx === 0 ? ' hot' : '');
-      row.innerHTML = `<span class="t">${ev.t}</span><span>${ev.text}</span><span class="tag">${ev.tag}</span>`;
-      stream.appendChild(row);
-      requestAnimationFrame(() => row.classList.add('on'));
+  function render(i){
+    const s = STEPS[i];
+    if (phaseEl){
+      phaseEl.textContent = s.phase;
+      const cls = s.phase.includes('ATTACK') ? 'ATTACK'
+        : s.phase.includes('DETECT') ? 'DETECT'
+        : s.phase.includes('INTERRUPT') ? 'INTERRUPT'
+        : s.phase.includes('CONTAINED') ? 'CONTAINED'
+        : s.phase.includes('DONE') ? 'DONE' : '';
+      phaseEl.className = 'cx-phase' + (cls ? (' ' + cls) : '');
+    }
+    if (captionEl){
+      captionEl.innerHTML = s.caption;
+      captionEl.className = 'cx-caption' + (s.captionCls ? (' ' + s.captionCls) : '');
+    }
+    setHost('A', s.hosts.a); setHost('B', s.hosts.b); setHost('C', s.hosts.c);
+    setLink('A', s.links.a); setLink('B', s.links.b); setLink('C', s.links.c);
+    ['AB','BC','AC'].forEach(k => {
+      const el = document.getElementById('cxMesh' + k);
+      if (el) el.classList.toggle('on', !!s.mesh);
     });
+    setShield('A', s.shields.a); setShield('B', s.shields.b); setShield('C', s.shields.c);
+    if (campEl) campEl.style.opacity = s.camp ? '1' : '0';
 
-    setEdge(linkA, step.a);
-    setEdge(linkB, step.b);
-    setEdge(linkC, step.c);
-    setEdge(fuseAB, step.fuse);
-    setEdge(fuseBC, step.fuse);
-    if (ring) ring.style.opacity = step.iso ? '1' : '0';
-
-    if (hostsEl) hostsEl.textContent = step.hosts;
-    if (eventsEl) eventsEl.textContent = String(i + 1).padStart(2, '0');
-    if (stateEl) stateEl.textContent = step.state;
-
-    // sealed scores: F1 high, benign ~0, vs B1 ~0 (B1 fails)
-    const f1 = step.fuse ? 1 : clamp(0.2 + i * 0.2, 0, 0.85);
-    const benign = 0;
-    const vsB1 = step.fuse ? 0 : clamp(0.55 - i * 0.1, 0, 0.7);
-    if (precBar) precBar.style.setProperty('--w', (f1 * 100).toFixed(0) + '%');
-    if (benBar) benBar.style.setProperty('--w', (benign * 100).toFixed(0) + '%');
-    if (recBar) recBar.style.setProperty('--w', (vsB1 * 100).toFixed(0) + '%');
-    if (precNum) precNum.textContent = f1.toFixed(2);
-    if (benNum) benNum.textContent = benign.toFixed(2);
-    if (recNum) recNum.textContent = vsB1.toFixed(2);
+    stream.innerHTML = '';
+    s.feed.forEach((ev, idx) => {
+      const div = document.createElement('div');
+      div.className = 'cx-evt ' + (ev.type || '');
+      div.innerHTML = '<div class="t"><span>' + ev.ts + '</span><span>' + ev.host + '</span></div>'
+        + '<div class="body">' + ev.text + '</div>'
+        + '<div class="meta">' + (ev.meta || '') + '</div>';
+      stream.appendChild(div);
+      requestAnimationFrame(() => {
+        setTimeout(() => div.classList.add('on'), idx * 40);
+      });
+    });
   }
 
-  let i = 0;
-  renderStep(0);
-  if (reduceMotion){
-    renderStep(SCRIPT.length - 1);
-    return;
+  function stop(){
+    if (timer){ clearInterval(timer); timer = null; }
   }
-  setInterval(() => {
-    i = (i + 1) % SCRIPT.length;
-    renderStep(i);
-  }, 1800);
+  function play(){
+    stop();
+    step = 0;
+    render(0);
+    if (reduceMotion){ render(STEPS.length - 1); return; }
+    timer = setInterval(() => {
+      step += 1;
+      if (step >= STEPS.length){ stop(); return; }
+      render(step);
+    }, 1600);
+  }
+
+  playBtn?.addEventListener('click', () => {
+    playBtn.classList.add('on');
+    replayBtn?.classList.remove('on');
+    play();
+  });
+  replayBtn?.addEventListener('click', () => {
+    replayBtn.classList.add('on');
+    playBtn?.classList.add('on');
+    play();
+  });
+
+  play();
 }
 
 /* =========================================================

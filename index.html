@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@300..800&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles/main.css?v=sb01-43" />
+  <link rel="stylesheet" href="src/styles/main.css?v=sb01-44" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
   <script type="application/ld+json">
@@ -496,62 +496,68 @@
           <div class="ev-head">
             <span>DEMO</span><a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer" data-cur="demo"><b>ATTACK THEATRE ↗</b></a>
           </div>
-          <div class="corvex" id="corvexWidget" aria-live="polite">
-            <div class="cx-theatre">
-              <div class="cx-canvas">
-                <svg viewBox="0 0 220 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                  <defs>
-                    <marker id="cxArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                      <path d="M0,1.2 L9,5 L0,8.8 Z" fill="var(--magenta)"/>
-                    </marker>
-                  </defs>
-                  <line id="cxLinkA" class="cx-edge" x1="48" y1="75" x2="148" y2="28" stroke="var(--magenta)" stroke-width="1.5" marker-end="url(#cxArrow)"/>
-                  <line id="cxLinkB" class="cx-edge" x1="48" y1="75" x2="148" y2="75" stroke="var(--magenta)" stroke-width="1.5" marker-end="url(#cxArrow)"/>
-                  <line id="cxLinkC" class="cx-edge" x1="48" y1="75" x2="148" y2="122" stroke="var(--cyan)" stroke-width="1.4" stroke-dasharray="3 3"/>
-                  <line id="cxFuseAB" class="cx-fuse" x1="168" y1="28" x2="168" y2="75" stroke="var(--cyan)" stroke-width="1.1" stroke-dasharray="2 3"/>
-                  <line id="cxFuseBC" class="cx-fuse" x1="168" y1="75" x2="168" y2="122" stroke="var(--cyan)" stroke-width="1.1" stroke-dasharray="2 3"/>
 
-                  <g>
-                    <circle cx="36" cy="75" r="18" fill="rgba(214,74,114,.2)" stroke="var(--magenta)" stroke-width="2"/>
-                    <text x="36" y="73" text-anchor="middle" fill="var(--paper)" font-size="7.5" font-family="JetBrains Mono, monospace" font-weight="700">Attacker</text>
-                    <text x="36" y="84" text-anchor="middle" fill="rgba(254,249,237,.55)" font-size="5.5" font-family="JetBrains Mono, monospace">10.1.0.5</text>
-                  </g>
-                  <g id="cxHostA">
-                    <circle cx="168" cy="28" r="15" fill="rgba(56,196,224,.12)" stroke="var(--cyan)" stroke-width="2"/>
-                    <text x="168" y="27" text-anchor="middle" fill="var(--paper)" font-size="7" font-family="JetBrains Mono, monospace" font-weight="700">host-a</text>
-                    <text x="168" y="37" text-anchor="middle" fill="rgba(254,249,237,.55)" font-size="5" font-family="JetBrains Mono, monospace">workstation</text>
-                  </g>
-                  <g id="cxHostB">
-                    <circle cx="168" cy="75" r="15" fill="rgba(56,196,224,.12)" stroke="var(--cyan)" stroke-width="2"/>
-                    <text x="168" y="74" text-anchor="middle" fill="var(--paper)" font-size="7" font-family="JetBrains Mono, monospace" font-weight="700">host-b</text>
-                    <text x="168" y="84" text-anchor="middle" fill="rgba(254,249,237,.55)" font-size="5" font-family="JetBrains Mono, monospace">fileserver</text>
-                  </g>
-                  <g id="cxHostC">
-                    <circle id="cxIsolateRing" cx="168" cy="122" r="21" fill="none" stroke="var(--magenta)" stroke-width="1.5" stroke-dasharray="3 3" opacity="0"/>
-                    <circle cx="168" cy="122" r="15" fill="rgba(56,196,224,.12)" stroke="var(--cyan)" stroke-width="2"/>
-                    <text x="168" y="121" text-anchor="middle" fill="var(--paper)" font-size="7" font-family="JetBrains Mono, monospace" font-weight="700">host-c</text>
-                    <text x="168" y="131" text-anchor="middle" fill="rgba(254,249,237,.55)" font-size="5" font-family="JetBrains Mono, monospace">jump box</text>
-                  </g>
+          <div class="cx-app" id="corvexWidget" aria-live="polite">
+            <header class="cx-top">
+              <div class="cx-brand">Corvex <span>attack theatre</span></div>
+              <div class="cx-phase" id="cxPhase">IDLE</div>
+            </header>
+
+            <div class="cx-stage">
+              <section class="cx-map">
+                <svg viewBox="0 0 900 560" aria-hidden="true">
+                  <circle class="cx-attacker" cx="120" cy="280" r="34"/>
+                  <text class="cx-label" x="120" y="286" text-anchor="middle">Attacker</text>
+                  <text class="cx-sub" x="120" y="330" text-anchor="middle">10.1.0.5</text>
+
+                  <path id="cxLinkA" class="cx-link" d="M154 260 C260 180 320 150 378 145"/>
+                  <path id="cxLinkB" class="cx-link" d="M154 280 C300 280 480 280 578 280"/>
+                  <path id="cxLinkC" class="cx-link" d="M154 300 C260 380 320 410 378 415"/>
+                  <path id="cxMeshAB" class="cx-mesh" d="M462 155 L578 255"/>
+                  <path id="cxMeshBC" class="cx-mesh" d="M578 305 L462 405"/>
+                  <path id="cxMeshAC" class="cx-mesh" d="M420 182 L420 378"/>
+
+                  <circle id="cxHostA" class="cx-host" cx="420" cy="140" r="42"/>
+                  <circle id="cxShieldA" class="cx-shield" cx="420" cy="140" r="54"/>
+                  <text class="cx-label" x="420" y="146" text-anchor="middle">host-a</text>
+                  <text class="cx-sub" x="420" y="198" text-anchor="middle">workstation</text>
+
+                  <circle id="cxHostB" class="cx-host" cx="620" cy="280" r="42"/>
+                  <circle id="cxShieldB" class="cx-shield" cx="620" cy="280" r="54"/>
+                  <text class="cx-label" x="620" y="286" text-anchor="middle">host-b</text>
+                  <text class="cx-sub" x="620" y="338" text-anchor="middle">fileserver</text>
+
+                  <circle id="cxHostC" class="cx-host" cx="420" cy="420" r="42"/>
+                  <circle id="cxShieldC" class="cx-shield" cx="420" cy="420" r="54"/>
+                  <text class="cx-label" x="420" y="426" text-anchor="middle">host-c</text>
+                  <text class="cx-sub" x="420" y="478" text-anchor="middle">jump box</text>
+
+                  <text id="cxCamp" class="cx-camp" x="700" y="60" opacity="0">camp-lateral-alice</text>
                 </svg>
-              </div>
+                <div class="cx-caption" id="cxCaption">Waiting for attack…</div>
+              </section>
 
-              <div class="cx-stream" id="cxStream"></div>
-
-              <div class="cx-readout">
-                <div class="probe-dims">
-                  <div class="probe-row"><span>F1</span><div class="probar"><i id="cxPrecBar"></i></div><b id="cxPrecNum">1.00</b></div>
-                  <div class="probe-row"><span>BENIGN</span><div class="probar"><i id="cxBenBar"></i></div><b id="cxBenNum">0.00</b></div>
-                  <div class="probe-row"><span>vs B1</span><div class="probar"><i id="cxRecBar"></i></div><b id="cxRecNum">0.00</b></div>
-                </div>
-                <div class="probe-meta">
-                  <div><span>HOSTS</span><b id="cxHosts">0/3</b></div>
-                  <div><span>EVENTS</span><b id="cxEvents">00</b></div>
-                  <div><span>STATE</span><b id="cxState">IDLE</b></div>
-                </div>
-              </div>
+              <aside class="cx-feed">
+                <h3>LIVE EVENT STREAM</h3>
+                <div class="cx-stream" id="cxStream"></div>
+              </aside>
             </div>
+
+            <footer class="cx-foot">
+              <div class="cx-controls">
+                <button type="button" class="cx-btn on" id="cxPlay" data-cur="play">Play attack</button>
+                <button type="button" class="cx-btn" id="cxReplay" data-cur="replay">Replay</button>
+              </div>
+              <span class="cx-hint">Real sandbox events · interrupt = dry-run IsolateHost</span>
+              <div class="cx-legend">
+                <span><i class="atk"></i>attack</span>
+                <span><i class="det"></i>detect</span>
+                <span><i class="def"></i>defend</span>
+              </div>
+            </footer>
           </div>
-          <p class="ev-note">Widget is a demo · sealed synthetic packs — <em>not</em> commercial SOC parity. Live contain stays gated — <a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer">repo + demos ↗</a></p>
+
+          <p class="ev-note">Widget is a demo of the attack-theatre lab · sealed synthetic packs — <em>not</em> commercial SOC parity — <a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer">repo + demos ↗</a></p>
         </div>
 
         <div class="sfx sfx-case">CORRELATE!</div>
@@ -1158,6 +1164,6 @@
     </div>
     </div>
   </div>
-  <script type="module" src="src/js/main.js?v=sb01-25"></script>
+  <script type="module" src="src/js/main.js?v=sb01-26"></script>
 </body>
 </html>
