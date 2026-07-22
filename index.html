@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@300..800&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles/main.css?v=sb01-40" />
+  <link rel="stylesheet" href="src/styles/main.css?v=sb01-41" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
   <script type="application/ld+json">
@@ -492,19 +492,23 @@
           </ul>
         </div>
 
-        <div class="panel evidence panel-ink">
+        <div class="panel evidence panel-ink panel-demo">
           <div class="ev-head">
             <span>DEMO</span><a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer" data-cur="demo"><b>ATTACK THEATRE ↗</b></a>
           </div>
-          <figure class="ev-demo">
-            <img src="src/images/corvex-demo.gif?v=1" alt="Corvex attack theatre demo — lateral campaign across host-a host-b host-c with gated isolate dry-run" loading="lazy" decoding="async" />
-          </figure>
-          <div class="ev-tally">
-            <span>F1 <b class="ok">1.00</b></span>
-            <span>BENIGN FCR <b class="ok">0.00</b></span>
-            <span>vs B1 <b class="bad">0.00</b></span>
+          <div class="demo-row">
+            <figure class="ev-demo">
+              <img src="src/images/corvex-demo.gif?v=2" alt="Corvex attack theatre demo — lateral campaign across hosts with gated isolate" loading="lazy" decoding="async" />
+            </figure>
+            <div class="demo-side">
+              <div class="ev-tally ev-tally-stack">
+                <span>F1 <b class="ok">1.00</b></span>
+                <span>BENIGN FCR <b class="ok">0.00</b></span>
+                <span>vs B1 <b class="bad">0.00</b></span>
+              </div>
+              <p class="ev-note">Sealed synthetic packs — not commercial SOC parity. Live contain stays gated — <a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer">repo + demos ↗</a></p>
+            </div>
           </div>
-          <p class="ev-note">Sealed synthetic packs — <em>not</em> commercial SOC parity. Multi-host fusion beats naive per-host baseline on this grammar; live contain stays gated — <a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer">repo + demos ↗</a></p>
         </div>
 
         <div class="sfx sfx-case">CORRELATE!</div>

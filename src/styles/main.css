@@ -765,22 +765,49 @@ main#comic{ position: relative; z-index: 1; }
 .ev-tally b.ok{ color: var(--cyan); }
 .ev-tally b.bad{ color: var(--magenta); }
 
-/* Corvex DEMO — full attack-theatre GIF, not cropped to chrome */
+/* Corvex DEMO — GIF fills strip; metrics sit beside it */
+.panel-demo{ gap: 10px; }
+.demo-row{
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(160px, .55fr);
+  gap: 14px;
+  align-items: stretch;
+  min-height: 0;
+}
 .ev-demo{
   margin: 0;
   border: 2px solid rgba(254,249,237,.28);
   background: #050510;
   overflow: hidden;
+  height: clamp(180px, 28vh, 260px);
+  min-height: 180px;
 }
 .ev-demo img{
   width: 100%;
-  height: auto;
-  max-height: min(340px, 42vh);
-  object-fit: contain;
-  object-position: center;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
   display: block;
   filter: none;
-  margin: 0 auto;
+}
+.demo-side{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+.ev-tally-stack{
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 0;
+  border-top: 0;
+}
+.ev-tally-stack span{ letter-spacing: .12em; }
+@media (max-width: 900px){
+  .demo-row{ grid-template-columns: 1fr; }
+  .ev-demo{ height: 200px; }
+  .ev-tally-stack{ flex-direction: row; flex-wrap: wrap; gap: 14px; }
 }
 
 /* EQUITY widget */
