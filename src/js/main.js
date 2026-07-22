@@ -90,7 +90,17 @@ const PAGES = [
 /* =========================================================
    2. BOOT LOADER
    ========================================================= */
-async function boot(){
+function loadAccentFonts(){
+  // Non-critical display/mono/typewriter faces — same CSS vars, not render-blocking.
+  if (document.getElementById('sbAccentFonts')) return;
+  const link = document.createElement('link');
+  link.id = 'sbAccentFonts';
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;600;700&family=Special+Elite&display=swap';
+  document.head.appendChild(link);
+}
+
+function boot(){
   const log = $('#bootLog');
   const bar = $('.boot-bar i');
   const rdy = $('#bootRdy');
@@ -107,11 +117,13 @@ async function boot(){
   if (log) log.innerHTML = lines.join('\n');
   if (bar) bar.style.right = '0%';
   if (rdy) rdy.textContent = 'PRINTED';
-  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-  if (!reduceMotion) await new Promise(r => setTimeout(r, 120));
-  $('#loader').classList.add('gone');
-  setTimeout(() => $('#loader')?.remove(), reduceMotion ? 0 : 420);
+  const loader = $('#loader');
+  if (loader){
+    loader.classList.add('gone');
+    setTimeout(() => loader.remove(), reduceMotion ? 0 : 280);
+  }
   $('#cover')?.classList.add('in');
+  loadAccentFonts();
 }
 
 /* =========================================================
@@ -776,16 +788,24 @@ ready(() => {
     try { fn(); }
     catch (err) { console.error(label + ' failed', err); }
   };
-  run('equity', drawEquity);
-  run('risk', () => setRisk(0.31));
-  run('probe', startProbe);
-  run('corvex', startCorvex);
-  run('rpm', initRPM);
-  run('vrs', initVRS);
-  run('magnets', startMagnets);
-  run('keys', startKeys);
+  // Paint path first — cover + nav — then mount below-the-fold widgets.
   run('pages', startPages);
-  run('mascot', initMascot);
-  run('github', loadGitHubData);
+  run('keys', startKeys);
   boot();
+  const mountWidgets = () => {
+    run('equity', drawEquity);
+    run('risk', () => setRisk(0.31));
+    run('probe', startProbe);
+    run('corvex', startCorvex);
+    run('rpm', initRPM);
+    run('vrs', initVRS);
+    run('magnets', startMagnets);
+    run('mascot', initMascot);
+    run('github', loadGitHubData);
+  };
+  if ('requestIdleCallback' in window){
+    requestIdleCallback(mountWidgets, { timeout: 1200 });
+  } else {
+    setTimeout(mountWidgets, 0);
+  }
 });
