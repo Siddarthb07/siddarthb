@@ -3,12 +3,6 @@
    Comic book pages with snap-scroll, reveals, interactive widgets.
    ========================================================= */
 
-import {
-  SITE, fetchAllRepos, categorizeRepos, inflightCount,
-  padStat, renderRepoIndex
-} from './github.js?v=sb01-33';
-import { initMascot } from './mascot.js?v=sb01-20';
-
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = matchMedia('(hover: none)').matches;
 const $  = (q, r=document) => r.querySelector(q);
@@ -91,8 +85,8 @@ const PAGES = [
    2. BOOT LOADER
    ========================================================= */
 function loadAccentFonts(){
-  // All Google fonts after first paint — CSS already has system fallbacks per family.
-  if (document.getElementById('sbAccentFonts')) return;
+  // Prefer boot-early.js; keep as fallback if that script is blocked.
+  if (document.getElementById('sbFont0') || document.getElementById('sbBodyFonts')) return;
   const mk = (id, href) => {
     if (document.getElementById(id)) return;
     const link = document.createElement('link');
@@ -112,6 +106,11 @@ function loadAccentFonts(){
 }
 
 function boot(){
+  // boot-early.js usually already dismissed the loader; this is a safe fallback.
+  loadAccentFonts();
+  $('#cover')?.classList.add('in');
+  const loader = $('#loader');
+  if (!loader || loader.classList.contains('gone')) return;
   const log = $('#bootLog');
   const bar = $('.boot-bar i');
   const rdy = $('#bootRdy');
@@ -124,17 +123,11 @@ function boot(){
     '> mounting widgets........<span class="ok">04</span>',
     '<span class="ok">[ ready ]</span> Issue 001 — scroll to read'
   ];
-  // Same dossier card; paint all lines immediately so LCP isn't held by staged delays.
   if (log) log.innerHTML = lines.join('\n');
   if (bar) bar.style.right = '0%';
   if (rdy) rdy.textContent = 'PRINTED';
-  const loader = $('#loader');
-  if (loader){
-    loader.classList.add('gone');
-    setTimeout(() => loader.remove(), reduceMotion ? 0 : 280);
-  }
-  $('#cover')?.classList.add('in');
-  loadAccentFonts();
+  loader.classList.add('gone');
+  setTimeout(() => loader.remove(), reduceMotion ? 0 : 280);
 }
 
 /* =========================================================
@@ -224,6 +217,10 @@ async function loadGitHubData(){
   if (inflightEl) inflightEl.classList.add('loading');
 
   try {
+    const {
+      SITE, fetchAllRepos, categorizeRepos, inflightCount,
+      padStat, renderRepoIndex
+    } = await import('./github.js?v=sb01-33');
     const all = await fetchAllRepos();
     const { visible, buckets } = categorizeRepos(all);
     const inflight = inflightCount(buckets);
@@ -811,7 +808,11 @@ ready(() => {
     run('rpm', initRPM);
     run('vrs', initVRS);
     run('magnets', startMagnets);
-    run('mascot', initMascot);
+    run('mascot', () => {
+      import('./mascot.js?v=sb01-20')
+        .then(m => m.initMascot())
+        .catch(err => console.error('mascot failed', err));
+    });
     run('github', loadGitHubData);
   };
   if ('requestIdleCallback' in window){

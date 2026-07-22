@@ -10,9 +10,15 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Preload webfont CSS without render-blocking; main.js attaches as stylesheets after first paint. -->
+  <!-- Preload webfont CSS without render-blocking; boot-early.js attaches as stylesheets. -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;700;800&family=Inter:wght@400;600;700&display=swap">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;600;700&family=Special+Elite&display=swap">
+  <!-- Tiny critical paint so FCP isn't gated solely on the full comic stylesheet -->
+  <style>
+    html,body{margin:0;background:#0b0b30;color:#f3ede0}
+    .loader{position:fixed;inset:0;z-index:1000;background:#0b0b30;display:grid;place-items:center}
+    .loader.gone{opacity:0;pointer-events:none}
+  </style>
   <link rel="stylesheet" href="src/styles/main.css?v=sb01-55" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
@@ -1177,6 +1183,7 @@
     </div>
     </div>
   </div>
-  <script type="module" src="src/js/main.js?v=sb01-37"></script>
+  <script src="src/js/boot-early.js?v=sb01-1"></script>
+  <script type="module" src="src/js/main.js?v=sb01-38"></script>
 </body>
 </html>
