@@ -1731,13 +1731,17 @@ main#comic{ position: relative; z-index: 1; }
 .panel-red .case-pull em,
 .panel-mag.narr p em,
 .panel-red.narr p em{
-  color: #ffe08a;
+  color: #fff0b0;
 }
 
 /* Slightly deeper magenta fills so paper body text clears 4.5:1 */
 .panel-mag,
 .panel-red{
   background: #b8325a;
+  color: #fffef8;
+}
+.panel-mag .pt-pre,
+.panel-red .pt-pre{
   color: #fffef8;
 }
 
