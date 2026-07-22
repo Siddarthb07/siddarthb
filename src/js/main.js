@@ -314,73 +314,87 @@ function startProbe(){
 }
 
 /* =========================================================
-   8b. CORVEX CAMPAIGN READOUT (Anima-style evidence widget)
+   8b. CORVEX ATTACK THEATRE WIDGET (replaces GIF)
    ========================================================= */
 function startCorvex(){
   const root = $('#corvexWidget');
-  if (!root) return;
+  const stream = $('#cxStream');
+  if (!root || !stream) return;
+
+  const SCRIPT = [
+    { t: '12:00:00', tag: 'HOST-A', cls: '', text: 'User alice logs into host-a from attacker 10.1.0.5', hosts: '1/3', state: 'OBSERVE', a: 1, b: 0, c: 0, fuse: 0, iso: 0 },
+    { t: '12:00:15', tag: 'HOST-B', cls: '', text: 'alice hops to host-b (fileserver) — lateral move, same src', hosts: '2/3', state: 'OBSERVE', a: 1, b: 1, c: 0, fuse: 0, iso: 0 },
+    { t: '12:00:30', tag: 'HOST-C', cls: '', text: 'alice reaches host-c (jump box) — 3 hosts owned', hosts: '3/3', state: 'CORRELATE', a: 1, b: 1, c: 1, fuse: 1, iso: 0 },
+    { t: '12:00:42', tag: 'DETECT', cls: 'detect', text: 'Corvex links 3 auths → campaign camp-lateral-alice', hosts: '3/3', state: 'DETECT', a: 1, b: 1, c: 1, fuse: 1, iso: 0 },
+    { t: '12:00:55', tag: 'DRY-RUN', cls: 'isolate', text: 'IsolateHost proposed on host-c — logged only, live quarantine locked', hosts: '3/3', state: 'ISOLATE', a: 1, b: 1, c: 1, fuse: 1, iso: 1 }
+  ];
+
   const precBar = $('#cxPrecBar');
   const recBar = $('#cxRecBar');
   const benBar = $('#cxBenBar');
   const precNum = $('#cxPrecNum');
   const recNum = $('#cxRecNum');
   const benNum = $('#cxBenNum');
-  const hosts = $('#cxHosts');
-  const events = $('#cxEvents');
-  const state = $('#cxState');
-  const camp = $('#cxCampName');
+  const hostsEl = $('#cxHosts');
+  const eventsEl = $('#cxEvents');
+  const stateEl = $('#cxState');
   const ring = $('#cxIsolateRing');
   const linkA = $('#cxLinkA');
   const linkB = $('#cxLinkB');
   const linkC = $('#cxLinkC');
-  const states = ['OBSERVE', 'CORRELATE', 'DETECT', 'ISOLATE'];
-  const camps = ['camp-lateral', 'camp-exfil', 'camp-lateral'];
-  let si = 0, ev = 2, t0 = performance.now();
+  const fuseAB = $('#cxFuseAB');
+  const fuseBC = $('#cxFuseBC');
 
-  function setLink(el, on, dashed){
+  function setEdge(el, on){
     if (!el) return;
-    el.style.opacity = on ? '1' : '0.22';
-    if (dashed != null) el.setAttribute('stroke-dasharray', dashed ? '3 3' : '0');
+    el.style.opacity = on ? '1' : '0.18';
   }
 
-  function tick(now){
-    const t = (now - t0) / 1000;
-    const phase = Math.floor(t / 2.4) % states.length;
-    si = phase;
+  function renderStep(i){
+    const step = SCRIPT[i];
+    stream.innerHTML = '';
+    const visible = SCRIPT.slice(0, i + 1).reverse().slice(0, 4);
+    visible.forEach((ev, idx) => {
+      const row = document.createElement('div');
+      row.className = `cx-ev ${ev.cls}` + (idx === 0 ? ' hot' : '');
+      row.innerHTML = `<span class="t">${ev.t}</span><span>${ev.text}</span><span class="tag">${ev.tag}</span>`;
+      stream.appendChild(row);
+      requestAnimationFrame(() => row.classList.add('on'));
+    });
 
-    // sealed scores — hover near truth with tiny demo jitter
-    const prec = clamp(0.97 + Math.sin(t * 0.8) * 0.03, 0.92, 1);
-    const rec = clamp(0.96 + Math.sin(t * 1.1 + 1) * 0.04, 0.90, 1);
-    const ben = clamp(0.01 + Math.abs(Math.sin(t * 0.55)) * 0.02, 0, 0.06);
+    setEdge(linkA, step.a);
+    setEdge(linkB, step.b);
+    setEdge(linkC, step.c);
+    setEdge(fuseAB, step.fuse);
+    setEdge(fuseBC, step.fuse);
+    if (ring) ring.style.opacity = step.iso ? '1' : '0';
 
-    if (precBar) precBar.style.setProperty('--w', (prec * 100).toFixed(1) + '%');
-    if (recBar) recBar.style.setProperty('--w', (rec * 100).toFixed(1) + '%');
-    if (benBar) benBar.style.setProperty('--w', (ben * 100).toFixed(1) + '%');
-    if (precNum) precNum.textContent = prec.toFixed(2);
-    if (recNum) recNum.textContent = rec.toFixed(2);
-    if (benNum) benNum.textContent = ben.toFixed(2);
+    if (hostsEl) hostsEl.textContent = step.hosts;
+    if (eventsEl) eventsEl.textContent = String(i + 1).padStart(2, '0');
+    if (stateEl) stateEl.textContent = step.state;
 
-    // graph choreography per state
-    const observe = si === 0;
-    const corr = si === 1;
-    const detect = si === 2;
-    const isolate = si === 3;
-    setLink(linkA, !observe || t % 2.4 > 0.4, false);
-    setLink(linkB, corr || detect || isolate || (observe && t % 2.4 > 1.1), false);
-    setLink(linkC, detect || isolate || (corr && t % 2.4 > 1.6), true);
-    if (ring) ring.style.opacity = isolate ? '1' : '0';
-
-    if (Math.floor(t * 5) % 12 === 0){
-      ev = Math.min(12, 2 + Math.floor(t / 2.4) % 7);
-      if (events) events.textContent = String(ev).padStart(2, '0');
-      if (hosts) hosts.textContent = isolate ? '3·1' : '3';
-      if (state) state.textContent = states[si];
-      if (camp) camp.textContent = camps[Math.floor(t / 7.2) % camps.length];
-    }
-
-    requestAnimationFrame(tick);
+    // sealed scores: F1 high, benign ~0, vs B1 ~0 (B1 fails)
+    const f1 = step.fuse ? 1 : clamp(0.2 + i * 0.2, 0, 0.85);
+    const benign = 0;
+    const vsB1 = step.fuse ? 0 : clamp(0.55 - i * 0.1, 0, 0.7);
+    if (precBar) precBar.style.setProperty('--w', (f1 * 100).toFixed(0) + '%');
+    if (benBar) benBar.style.setProperty('--w', (benign * 100).toFixed(0) + '%');
+    if (recBar) recBar.style.setProperty('--w', (vsB1 * 100).toFixed(0) + '%');
+    if (precNum) precNum.textContent = f1.toFixed(2);
+    if (benNum) benNum.textContent = benign.toFixed(2);
+    if (recNum) recNum.textContent = vsB1.toFixed(2);
   }
-  requestAnimationFrame(tick);
+
+  let i = 0;
+  renderStep(0);
+  if (reduceMotion){
+    renderStep(SCRIPT.length - 1);
+    return;
+  }
+  setInterval(() => {
+    i = (i + 1) % SCRIPT.length;
+    renderStep(i);
+  }, 1800);
 }
 
 /* =========================================================
