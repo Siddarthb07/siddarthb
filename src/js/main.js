@@ -6,7 +6,7 @@
 import {
   SITE, fetchAllRepos, categorizeRepos, inflightCount,
   padStat, renderRepoIndex
-} from './github.js?v=sb01-32';
+} from './github.js?v=sb01-33';
 import { initMascot } from './mascot.js?v=sb01-20';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -15,6 +15,15 @@ const $  = (q, r=document) => r.querySelector(q);
 const $$ = (q, r=document) => Array.from(r.querySelectorAll(q));
 const lerp = (a, b, t) => a + (b - a) * t;
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const escapeHtml = (s) => String(s)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#39;');
+/** Allow only a tiny author-controlled tag set in theatre captions/events. */
+const safeRich = (s) => escapeHtml(s)
+  .replace(/&lt;(\/?)(b|em|strong)&gt;/gi, '<$1$2>');
 
 const PAGES = [
   { num: '01', name: 'COVER' },
@@ -94,15 +103,17 @@ async function boot(){
     '> mounting widgets........<span class="ok">04</span>',
     '<span class="ok">[ ready ]</span> Issue 001 — scroll to read'
   ];
+  // Keep the same dossier UI; cut artificial delay so LCP isn't blocked ~2s.
+  const stepMs = reduceMotion ? 0 : 45;
   for (let i = 0; i < lines.length; i++){
     log.innerHTML += (i ? '\n' : '') + lines[i];
     bar.style.right = (100 - (i + 1) / lines.length * 100).toFixed(0) + '%';
-    await new Promise(r => setTimeout(r, 120 + Math.random() * 60));
+    if (stepMs) await new Promise(r => setTimeout(r, stepMs));
   }
   if (rdy) rdy.textContent = 'PRINTED';
-  await new Promise(r => setTimeout(r, 320));
+  if (!reduceMotion) await new Promise(r => setTimeout(r, 80));
   $('#loader').classList.add('gone');
-  setTimeout(() => $('#loader')?.remove(), 1100);
+  setTimeout(() => $('#loader')?.remove(), reduceMotion ? 0 : 500);
   $('#cover')?.classList.add('in');
 }
 
@@ -491,9 +502,9 @@ function startCorvex(){
   function pushEvent(ev){
     const div = document.createElement('div');
     div.className = 'cx-evt ' + (ev.type || '');
-    div.innerHTML = '<div class="t"><span>' + ev.ts + '</span><span>' + ev.host + '</span></div>'
-      + '<div class="body">' + ev.text + '</div>'
-      + '<div class="meta">' + (ev.meta || '') + '</div>';
+    div.innerHTML = '<div class="t"><span>' + escapeHtml(ev.ts) + '</span><span>' + escapeHtml(ev.host) + '</span></div>'
+      + '<div class="body">' + safeRich(ev.text) + '</div>'
+      + '<div class="meta">' + escapeHtml(ev.meta || '') + '</div>';
     stream.prepend(div);
     stream.scrollTop = 0;
     requestAnimationFrame(() => div.classList.add('on'));
@@ -522,7 +533,7 @@ function startCorvex(){
       phaseEl.className = 'cx-phase' + (cls ? (' ' + cls) : '');
     }
     if (captionEl){
-      captionEl.innerHTML = s.caption;
+      captionEl.innerHTML = safeRich(s.caption);
       captionEl.className = 'cx-caption' + (s.captionCls ? (' ' + s.captionCls) : '');
     }
     setHost('A', s.hosts.a); setHost('B', s.hosts.b); setHost('C', s.hosts.c);
@@ -658,8 +669,12 @@ function initRPM(){
     $('#thrustVal').textContent = T.toFixed(1);
     $('#effVal').textContent = eta.toFixed(2);
     $('#pwrVal').textContent = String(Math.round(P));
+    range.setAttribute('aria-valuenow', String(Math.round(rpm)));
   }
-  range.addEventListener('input', () => set(+range.value));
+  range.addEventListener('input', () => {
+    set(+range.value);
+    range.setAttribute('aria-valuenow', String(range.value));
+  });
   set(+range.value);
 }
 
@@ -692,6 +707,7 @@ function initVRS(){
     point.setAttribute('cx', x); point.setAttribute('cy', y);
     point.setAttribute('fill', inst > 0.5 ? 'var(--red)' : inst > 0.25 ? 'var(--yellow)' : 'var(--cyan)');
     $('#vdVal').textContent = v.toFixed(1);
+    range.setAttribute('aria-valuenow', String(v));
     if (inst > 0.5){
       regime.textContent = 'VORTEX RING'; regime.style.color = 'var(--red)';
       rec.textContent = '↗ +6 m/s lat'; risk.textContent = 'HIGH'; risk.style.color = 'var(--red)';
