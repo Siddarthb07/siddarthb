@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v6';
+export const GH_CACHE_KEY = 'sb_gh_repos_v7';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -21,19 +21,26 @@ export const REPO_HIDDEN = new Set([
   'AI-Risk-Prediction-',
   'cv2-volume-control',
   'webcam-sketcher',
-  'project_thrive'
+  'project_thrive',
+  'VidhiSethu'
 ]);
 
 export const REPO_TIERS = {
-  featured: ['Anima', 'VidhiSethu', 'GeoQuant', 'Health-AI'],
+  featured: ['Anima', 'corvex', 'GeoQuant', 'Health-AI'],
   lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
   inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'sign-language-cv'],
   founder: ['Athera'],
   elevyx: ['Elevyx']
 };
 
+/** Display aliases when the GitHub repo name differs from the brand. */
+export const REPO_DISPLAY = {
+  'Health-AI': 'Drift',
+  corvex: 'Corvex'
+};
+
 export const PROOF_LINES = {
-  VidhiSethu: 'FastAPI · Postgres · Qdrant · citation audit',
+  corvex: 'multi-host correlator · sealed eval · gated contain',
   GeoQuant: 'walk-forward · Alpaca paper · cost in optimizer',
   'Health-AI': 'ACC/AHA · FINDRISC · safety gates',
   Anima: 'HF hooks · valence / arousal / unc · MIT',
@@ -86,7 +93,16 @@ export function categorizeRepos(repos){
   }
 
   for (const tier of TIER_ORDER){
-    buckets[tier].sort((a, b) => a.name.localeCompare(b.name));
+    if (tier === 'featured'){
+      const order = REPO_TIERS.featured;
+      buckets[tier].sort((a, b) => {
+        const ia = order.indexOf(a.name);
+        const ib = order.indexOf(b.name);
+        return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+      });
+    } else {
+      buckets[tier].sort((a, b) => a.name.localeCompare(b.name));
+    }
   }
 
   return { visible, buckets };
@@ -151,16 +167,19 @@ export function renderRepoIndex(buckets, host){
     parts.push(`<div class="ri-tier"><span class="ri-label">${TIER_LABELS[tier]}</span><ul class="ri-list">`);
     for (const repo of list){
       const proof = PROOF_LINES[repo.name] || (repo.language ? repo.language : 'open source');
+      const label = REPO_DISPLAY[repo.name] || repo.name;
       const desc = repo.description
         ? repo.description
             .replace(/archived[.,]?\s*/i, '')
             .replace(/—\s*,\s*/g, '— ')
+            .replace(/\bHealth-AI\b/g, 'Drift')
+            .replace(/\bHealth AI\b/gi, 'Drift')
             .trim()
         : proof;
       const upd = relAge(repo.pushed_at);
       parts.push(
         `<li><a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" data-cur="repo">` +
-        `<b>${repo.name}${upd ? `<i class="ri-upd">upd ${upd}</i>` : ''}</b><span>${desc}</span></a></li>`
+        `<b>${label}${upd ? `<i class="ri-upd">upd ${upd}</i>` : ''}</b><span>${desc}</span></a></li>`
       );
     }
     parts.push('</ul></div>');

@@ -14,10 +14,11 @@ A Spider-Verse–styled comic book dossier portfolio. Ten snap-scroll pages, mul
 |---|------|--------------|
 | 01 | **COVER** | Issue title, chromatic name, starburst, paper-quote panel |
 | 02 | **ORIGIN** | Method / stakes / craft narration panels + 3 principles |
-| 03 | **CASE FILE #01 — LEXPROBE** | Indian legal RAG · live citation audit (5 verified, 1 hallucination removed) |
-| 04 | **CASE FILE #02 — GEOQUANT** | Walk-forward quant signals · animated equity curve · Sharpe / MDD / Hit / YR |
-| 05 | **CASE FILE #03 — HEALTH AI** | Calibrated risk · animated CVD dial · 4 biomarker bars |
-| 06 | **CASE FILE #04 — AI BRAIN** | Voice → action · live waveform · cycling state machine |
+| 03 | **CASE FILE #01 — ANIMA** | LLM internals · probe readout · valence / arousal / unc |
+| 04 | **CASE FILE #02 — CORVEX** | Multi-host campaign correlator · sealed eval · gated contain |
+| 05 | **CASE FILE #03 — GEOQUANT** | Walk-forward quant signals · animated equity curve · Sharpe / MDD / Hit / YR |
+| 06 | **CASE FILE #04 — DRIFT** | Calibrated risk · animated CVD dial · 4 biomarker bars |
+| 07 | **CASE FILE #05 — ORQIS** | Agent ops · incident explain · reviewable patch / PR |
 | 07 | **THE LAB** | Two physics solvers — propeller (RPM → thrust) and drone VRS (descent → vortex regime) |
 | 08 | **TIMELINE** | Career as a 4-cell comic strip with ONGOING pulse |
 | 09 | **THE OPERATOR** | Quote · bio · daily stack · stats |

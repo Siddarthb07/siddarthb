@@ -1333,7 +1333,7 @@ main#comic{ position: relative; z-index: 1; }
 }
 
 /* ---- 11 states — unique face + unique gesture per page ----
-   wave(cover) point(origin) inspect(anima) refuse(vidhisethu)
+   wave(cover) point(origin) inspect(anima) refuse(corvex)
    think(geoquant) care(health) patch(orqis) excited(lab) scan(timeline)
    cheer(operator) bow(signal) */
 .s-face, .s-mag, .s-stamp{ display: none; }

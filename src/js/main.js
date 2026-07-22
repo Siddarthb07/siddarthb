@@ -7,7 +7,7 @@ import {
   SITE, fetchAllRepos, categorizeRepos, inflightCount,
   padStat, renderRepoIndex
 } from './github.js';
-import { initMascot } from './mascot.js?v=sb01-19';
+import { initMascot } from './mascot.js?v=sb01-20';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = matchMedia('(hover: none)').matches;
@@ -21,9 +21,9 @@ const PAGES = [
   { num: '02', name: 'ORIGIN' },
   { num: '03', name: 'THE LAB' },
   { num: '04', name: 'ANIMA' },
-  { num: '05', name: 'VIDHISETHU' },
+  { num: '05', name: 'CORVEX' },
   { num: '06', name: 'GEOQUANT' },
-  { num: '07', name: 'HEALTH AI' },
+  { num: '07', name: 'DRIFT' },
   { num: '08', name: 'ORQIS' },
   { num: '09', name: 'TIMELINE' },
   { num: '10', name: 'OPERATOR' },

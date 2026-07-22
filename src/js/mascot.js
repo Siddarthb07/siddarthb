@@ -47,12 +47,12 @@ const SCRIPT = [
       { t: 'The widget is a demo. The real numbers — council 94.0 — are in the benchmark report, linked on the EVIDENCE header.' }
     ]
   },
-  { // 04 · VIDHISETHU — X eyes, arms crossed
+  { // 04 · CORVEX — X eyes, arms crossed (gated contain)
     state: 'refuse',
     pos: { x: '95vw', y: '58vh', side: 'right', scale: .95, range: [16, 22] },
     lines: [
-      { t: 'Public architecture lives at github.com/Siddarthb07/VidhiSethu — the application itself stays closed source.' },
-      { t: 'The app is closed beta, but the full architecture is public in the system-design doc below.' }
+      { t: 'Correlate first. Live containment stays locked — dry-run isolate only until you arm it on purpose.' },
+      { t: 'The sealed held-out numbers are in the README. Synthetic packs; honest about what they do not prove.' }
     ]
   },
   { // 05 · GEOQUANT — thinking dots, hand on chin
@@ -62,7 +62,7 @@ const SCRIPT = [
       { t: 'It paper-trades live through Alpaca — the feedback loop retrains on its own fills.' }
     ]
   },
-  { // 06 · HEALTH AI — calm face, open palms
+  { // 06 · DRIFT — calm face, open palms
     state: 'care',
     pos: { x: '95vw', y: '55vh', side: 'right', scale: .95, range: [16, 20] },
     lines: [
