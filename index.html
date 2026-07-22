@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@300..800&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles/main.css?v=sb01-38" />
+  <link rel="stylesheet" href="src/styles/main.css?v=sb01-39" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
   <script type="application/ld+json">
@@ -494,21 +494,17 @@
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><a href="https://github.com/Siddarthb07/corvex/blob/main/README.md" target="_blank" rel="noopener noreferrer" data-cur="report"><b>SEALED · HELD-OUT ↗</b></a>
+            <span>EVIDENCE</span><a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer" data-cur="demo"><b>ATTACK THEATRE ↗</b></a>
           </div>
-          <div class="audit" data-audit>
-            <div class="aud-row"><span>Campaign F1</span><b class="ok">1.00</b></div>
-            <div class="aud-row"><span>Precision / Recall</span><b class="ok">1.00 / 1.00</b></div>
-            <div class="aud-row"><span>Benign false-campaign</span><b class="ok">0.00</b></div>
-            <div class="aud-row"><span>vs B1 (per-host naive)</span><b class="bad">F1 0.00</b></div>
-            <div class="aud-row"><span>Contain dry-run false isolates</span><b class="ok">0</b></div>
-          </div>
+          <figure class="ev-demo">
+            <img src="src/images/corvex-evidence.gif?v=1" alt="Corvex attack theatre — lateral campaign correlating across host-a host-b host-c with gated isolate dry-run" loading="lazy" decoding="async" />
+          </figure>
           <div class="ev-tally">
-            <span>TP <b class="ok">2</b></span>
-            <span>FP <b class="ok">0</b></span>
-            <span>TTU <b class="ok">~12ms</b></span>
+            <span>F1 <b class="ok">1.00</b></span>
+            <span>BENIGN FCR <b class="ok">0.00</b></span>
+            <span>vs B1 <b class="bad">0.00</b></span>
           </div>
-          <p class="ev-note">Sealed synthetic packs — <em>not</em> a claim of commercial SOC parity. Proves multi-host fusion beats a naive per-host baseline on this grammar; live contain stays gated — <a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer">repo + demos ↗</a></p>
+          <p class="ev-note">Sealed synthetic packs — <em>not</em> commercial SOC parity. Multi-host fusion beats naive per-host baseline on this grammar; live contain stays gated — <a href="https://github.com/Siddarthb07/corvex" target="_blank" rel="noopener noreferrer">repo + demos ↗</a></p>
         </div>
 
         <div class="sfx sfx-case">CORRELATE!</div>

@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v8';
+export const GH_CACHE_KEY = 'sb_gh_repos_v9';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -22,20 +22,24 @@ export const REPO_HIDDEN = new Set([
   'cv2-volume-control',
   'webcam-sketcher',
   'project_thrive',
-  'VidhiSethu'
+  'VidhiSethu',
+  'first-contributions',
+  'sign-language-cv',
+  'orqis-e2e-test'
 ]);
 
 export const REPO_TIERS = {
   featured: ['Anima', 'corvex', 'GeoQuant', 'Drift'],
   lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
-  inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'sign-language-cv'],
+  inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'cursor-llm-council', 'trade_bot'],
   founder: ['Athera'],
   elevyx: ['Elevyx']
 };
 
 /** Display aliases when the GitHub repo name differs from the brand. */
 export const REPO_DISPLAY = {
-  corvex: 'Corvex'
+  corvex: 'Corvex',
+  Drift: 'Drift'
 };
 
 export const PROOF_LINES = {
@@ -50,7 +54,8 @@ export const PROOF_LINES = {
   'vortex-tracker': 'OpenCV · diameter + speed · IISc May 2025',
   Athera: 'AI automation · SMB workflows · no public client list',
   Elevyx: 'founding dev · lead recovery · ended May 2026',
-  'sign-language-cv': 'MediaPipe · gesture pipeline · training scaffold'
+  'cursor-llm-council': 'multi-model council · Cursor · no yes-men',
+  trade_bot: 'NSE bulk deals · WhatsApp alerts · research dash'
 };
 
 const TIER_ORDER = ['featured', 'lab', 'inflight', 'founder', 'elevyx', 'archived', 'other'];
@@ -92,8 +97,8 @@ export function categorizeRepos(repos){
   }
 
   for (const tier of TIER_ORDER){
-    if (tier === 'featured'){
-      const order = REPO_TIERS.featured;
+    const order = REPO_TIERS[tier];
+    if (Array.isArray(order) && order.length){
       buckets[tier].sort((a, b) => {
         const ia = order.indexOf(a.name);
         const ib = order.indexOf(b.name);
