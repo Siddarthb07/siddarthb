@@ -142,6 +142,9 @@ img, svg{ display: block; max-width: 100%; }
 }
 #cursor.show-label .cur-label{ opacity: 1; transform: none; }
 @media (hover: none){ body, a, button, input{ cursor: auto; } #cursor{ display: none; } }
+a, button, [data-cur], input, textarea, select, summary{
+  cursor: pointer !important;
+}
 
 /* =========================================================
    LOADER
@@ -875,11 +878,15 @@ main#comic{ position: relative; z-index: 1; }
 }
 .cx-controls{ display:flex; gap:6px; }
 .cx-btn{
-  font-family: var(--mono); font-size:.58rem; letter-spacing:.06em;
-  padding:5px 10px; border-radius:6px; border:1px solid var(--cx-line);
-  background: transparent; color: var(--cx-muted); cursor:pointer;
+  font-family: var(--mono); font-size:.68rem; letter-spacing:.06em;
+  padding:10px 14px; border-radius:6px; border:1px solid rgba(77,184,255,.45);
+  background: rgba(77,184,255,.1); color: var(--cx-text); cursor: pointer !important;
+  min-height: 40px; min-width: 96px; position: relative; z-index: 5;
+  -webkit-tap-highlight-color: rgba(77,184,255,.35);
+  touch-action: manipulation;
 }
-.cx-btn.on, .cx-btn:hover{ border-color:rgba(77,184,255,.45); color:var(--cx-text); }
+.cx-btn.on, .cx-btn:hover{ border-color:var(--cx-detect); color:#fff; background:rgba(77,184,255,.22); }
+.cx-btn:active{ transform: translateY(1px); background:rgba(255,92,106,.2); border-color:rgba(255,92,106,.55); }
 .cx-hint{ font-family: var(--mono); font-size:.52rem; color:var(--cx-dim); }
 .cx-legend{ display:flex; gap:10px; font-family: var(--mono); font-size:.52rem; color:var(--cx-muted); }
 .cx-legend i{ display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:4px; vertical-align:middle; }
@@ -1633,5 +1640,11 @@ main#comic{ position: relative; z-index: 1; }
   *, *::before, *::after{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   html{ scroll-snap-type: none; }
   .page .panel, .page .sfx{ opacity: 1; transform: none !important; }
+  /* Keep Corvex theatre transitions readable — JS still steps the demo either way */
+  .cx-link, .cx-evt, .cx-host, .cx-mesh, .cx-shield, .cx-camp, .cx-caption, .cx-phase{
+    transition-duration: .45s !important;
+    animation-duration: .45s !important;
+  }
+  .cx-link.draw{ transition-duration: 1s !important; }
 }
 

@@ -56,15 +56,21 @@ const PAGES = [
   tick();
 
   const wire = () => {
-    $$('a, button, [data-cur]').forEach(el => {
+    $$('a, button, [data-cur], input, textarea, select, summary, label[for]').forEach(el => {
       if (el.dataset.curBound) return;
       el.dataset.curBound = '1';
       el.addEventListener('mouseenter', () => {
+        // Snap + hide custom cursor on controls so clicks hit what you aim at.
+        x = tx; y = ty;
+        cur.style.opacity = '0';
         cur.classList.add('hover');
         const t = el.getAttribute('data-cur');
         if (t){ lab.textContent = t; cur.classList.add('show-label'); }
       });
-      el.addEventListener('mouseleave', () => cur.classList.remove('hover','show-label'));
+      el.addEventListener('mouseleave', () => {
+        cur.style.opacity = '1';
+        cur.classList.remove('hover','show-label');
+      });
     });
   };
   wire();
@@ -410,7 +416,6 @@ function startCorvex(){
   let timer = null;
   let eventQueue = [];
   let eventTimer = null;
-  let started = false;
   const linkOn = { A: false, B: false, C: false };
   const hostState = { A: '', B: '', C: '' };
 
@@ -493,7 +498,7 @@ function startCorvex(){
     const drain = () => {
       if (!eventQueue.length){ eventTimer = null; return; }
       pushEvent(eventQueue.shift());
-      eventTimer = setTimeout(drain, reduceMotion ? 0 : 900);
+      eventTimer = setTimeout(drain, reduceMotion ? 280 : 900);
     };
     if (!eventTimer) drain();
   }
@@ -539,8 +544,11 @@ function startCorvex(){
     if (campEl){ campEl.textContent = ''; campEl.style.opacity = '0'; }
   }
 
-  // Hold long enough that the link draw (~1.65s) is readable before the next hop.
-  const STEP_MS = [2200, 3400, 3400, 3400, 3800, 5200, 2800];
+  // Hold long enough that the link draw is readable before the next hop.
+  // Reduced-motion still steps (so Play/Replay never look dead) — just faster.
+  const STEP_MS = reduceMotion
+    ? [700, 900, 900, 900, 1000, 1200, 700]
+    : [2200, 3400, 3400, 3400, 3800, 5200, 2800];
 
   function stop(){
     if (timer){ clearTimeout(timer); timer = null; }
@@ -568,11 +576,6 @@ function startCorvex(){
     resetVisual();
     step = 0;
     applyStep(0);
-    if (reduceMotion){
-      for (let i = 1; i < STEPS.length; i++) applyStep(i);
-      flushEvents();
-      return;
-    }
     scheduleNext();
   }
 
@@ -582,30 +585,29 @@ function startCorvex(){
     play();
   }
 
-  playBtn?.addEventListener('click', armPlay);
-  replayBtn?.addEventListener('click', () => {
-    replayBtn.classList.add('on');
-    playBtn?.classList.add('on');
-    play();
+  // pointerdown beats click when a lagged custom cursor / touch hybrid is in play
+  root.addEventListener('pointerdown', (e) => {
+    const btn = e.target.closest('#cxPlay, #cxReplay');
+    if (!btn || !root.contains(btn)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (btn.id === 'cxPlay') armPlay();
+    else {
+      replayBtn?.classList.add('on');
+      playBtn?.classList.add('on');
+      play();
+    }
   });
 
-  // Idle until the DEMO is mostly on-screen — buttons used to sit below the fold.
+  // Idle until the user presses Play — autoplay made Replay look dead once the sequence finished.
   ['A','B','C'].forEach(id => hideLink(document.getElementById('cxLink' + id)));
   renderGraph(STEPS[0]);
   if (phaseEl){ phaseEl.textContent = 'IDLE'; phaseEl.className = 'cx-phase'; }
   if (captionEl){
-    captionEl.innerHTML = 'Press <b>Play attack</b> — or wait, demo starts when this panel is in view.';
+    captionEl.innerHTML = 'Press <b>Play attack</b> to run the theatre.';
     captionEl.className = 'cx-caption';
   }
-
-  const io = new IntersectionObserver(entries => {
-    const hit = entries.some(e => e.isIntersecting && e.intersectionRatio >= 0.55);
-    if (!hit || started) return;
-    started = true;
-    io.disconnect();
-    armPlay();
-  }, { threshold: [0.55, 0.7, 0.85] });
-  io.observe(root);
+  playBtn?.classList.remove('on');
 }
 
 /* =========================================================
@@ -745,20 +747,20 @@ function ready(fn){
 }
 
 ready(() => {
-  try {
-    drawEquity();
-    setRisk(0.31);
-    startProbe();
-    startCorvex();
-    initRPM();
-    initVRS();
-    startMagnets();
-    startKeys();
-    startPages();
-    initMascot();
-    loadGitHubData();
-  } catch (err) {
-    console.error('widget init failed', err);
-  }
+  const run = (label, fn) => {
+    try { fn(); }
+    catch (err) { console.error(label + ' failed', err); }
+  };
+  run('equity', drawEquity);
+  run('risk', () => setRisk(0.31));
+  run('probe', startProbe);
+  run('corvex', startCorvex);
+  run('rpm', initRPM);
+  run('vrs', initVRS);
+  run('magnets', startMagnets);
+  run('keys', startKeys);
+  run('pages', startPages);
+  run('mascot', initMascot);
+  run('github', loadGitHubData);
   boot();
 });
