@@ -327,6 +327,7 @@ function startCorvex(){
   const playBtn = $('#cxPlay');
   const replayBtn = $('#cxReplay');
 
+  // Each step only carries NEW events — stream appends them one-by-one as the demo advances.
   const STEPS = [
     {
       phase: 'ATTACK IN PROGRESS',
@@ -335,7 +336,7 @@ function startCorvex(){
       hosts: { a: '', b: '', c: '' },
       links: { a: 0, b: 0, c: 0 },
       mesh: 0, shields: {}, camp: 0,
-      feed: []
+      events: []
     },
     {
       phase: 'ATTACK IN PROGRESS',
@@ -344,7 +345,7 @@ function startCorvex(){
       hosts: { a: 'hit', b: '', c: '' },
       links: { a: 1, b: 0, c: 0 },
       mesh: 0, shields: {}, camp: 0,
-      feed: [
+      events: [
         { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
       ]
     },
@@ -355,9 +356,8 @@ function startCorvex(){
       hosts: { a: 'hit', b: 'hit', c: '' },
       links: { a: 1, b: 1, c: 0 },
       mesh: 0, shields: {}, camp: 0,
-      feed: [
-        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' },
-        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
+      events: [
+        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' }
       ]
     },
     {
@@ -367,10 +367,8 @@ function startCorvex(){
       hosts: { a: 'hit', b: 'hit', c: 'hit' },
       links: { a: 1, b: 1, c: 1 },
       mesh: 0, shields: {}, camp: 0,
-      feed: [
-        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' },
-        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' },
-        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
+      events: [
+        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' }
       ]
     },
     {
@@ -380,11 +378,8 @@ function startCorvex(){
       hosts: { a: 'hit', b: 'hit', c: 'hit' },
       links: { a: 1, b: 1, c: 1 },
       mesh: 1, shields: {}, camp: 1,
-      feed: [
-        { ts: 'now', host: 'DETECT', type: 'detect', text: 'Corvex links the 3 auths -> campaign <em>camp-lateral-alice</em>', meta: 'lateral_auth · score 1.0 · hosts a/b/c' },
-        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' },
-        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' },
-        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
+      events: [
+        { ts: 'now', host: 'DETECT', type: 'detect', text: 'Corvex links the 3 auths -> campaign <em>camp-lateral-alice</em>', meta: 'lateral_auth · score 1.0 · hosts a/b/c' }
       ]
     },
     {
@@ -394,12 +389,10 @@ function startCorvex(){
       hosts: { a: 'isolated', b: 'isolated', c: 'isolated' },
       links: { a: 1, b: 1, c: 1 },
       mesh: 1, shields: { a: 1, b: 1, c: 1 }, camp: 1,
-      feed: [
-        { ts: 'dry-run', host: 'HOST-C', type: 'defend', text: 'Propose IsolateHost on <em>host-c</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
-        { ts: 'dry-run', host: 'HOST-B', type: 'defend', text: 'Propose IsolateHost on <em>host-b</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
+      events: [
         { ts: 'dry-run', host: 'HOST-A', type: 'defend', text: 'Propose IsolateHost on <em>host-a</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
-        { ts: 'now', host: 'DETECT', type: 'detect', text: 'Corvex links the 3 auths -> campaign <em>camp-lateral-alice</em>', meta: 'lateral_auth · score 1.0 · hosts a/b/c' },
-        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' }
+        { ts: 'dry-run', host: 'HOST-B', type: 'defend', text: 'Propose IsolateHost on <em>host-b</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
+        { ts: 'dry-run', host: 'HOST-C', type: 'defend', text: 'Propose IsolateHost on <em>host-c</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' }
       ]
     },
     {
@@ -409,44 +402,96 @@ function startCorvex(){
       hosts: { a: 'isolated', b: 'isolated', c: 'isolated' },
       links: { a: 1, b: 1, c: 1 },
       mesh: 1, shields: { a: 1, b: 1, c: 1 }, camp: 1,
-      feed: [
-        { ts: 'dry-run', host: 'HOST-C', type: 'defend', text: 'Propose IsolateHost on <em>host-c</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
-        { ts: 'dry-run', host: 'HOST-B', type: 'defend', text: 'Propose IsolateHost on <em>host-b</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
-        { ts: 'dry-run', host: 'HOST-A', type: 'defend', text: 'Propose IsolateHost on <em>host-a</em> (dry-run logged)', meta: 'IsolateHost · no live mutation' },
-        { ts: 'now', host: 'DETECT', type: 'detect', text: 'Corvex links the 3 auths -> campaign <em>camp-lateral-alice</em>', meta: 'lateral_auth · score 1.0 · hosts a/b/c' },
-        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' },
-        { ts: '12:00:15', host: 'HOST-B', type: 'auth', text: 'Same user <em>alice</em> hops to <em>host-b</em> (fileserver) 15s later', meta: 'lateral movement · same src 10.1.0.5' },
-        { ts: '12:00:00', host: 'HOST-A', type: 'auth', text: 'User <em>alice</em> logs into <em>host-a</em> from attacker <em>10.1.0.5</em>', meta: 'auth success · stolen/abused account' }
-      ]
+      events: []
     }
   ];
 
   let step = 0;
   let timer = null;
+  let eventQueue = [];
+  let eventTimer = null;
+  let started = false;
+  const linkOn = { A: false, B: false, C: false };
+  const hostState = { A: '', B: '', C: '' };
 
   function setHost(id, state){
     const el = document.getElementById('cxHost' + id);
     if (!el) return;
+    const prev = hostState[id];
+    hostState[id] = state || '';
     el.setAttribute('class', 'cx-host' + (state ? (' ' + state) : ''));
+    if (state && state !== prev){
+      el.classList.remove('cx-pulse');
+      void el.getBoundingClientRect();
+      el.classList.add('cx-pulse');
+    }
   }
+
   function setLink(id, on){
     const el = document.getElementById('cxLink' + id);
-    if (el) el.classList.toggle('on', !!on);
+    if (!el) return;
+    const was = linkOn[id];
+    linkOn[id] = !!on;
+    if (on && !was){
+      const len = el.getTotalLength ? el.getTotalLength() : 420;
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String(len);
+      el.classList.add('on', 'draw');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { el.style.strokeDashoffset = '0'; });
+      });
+    } else if (!on){
+      el.classList.remove('on', 'draw');
+      el.style.strokeDasharray = '';
+      el.style.strokeDashoffset = '';
+    }
   }
+
   function setShield(id, on){
     const el = document.getElementById('cxShield' + id);
     if (el) el.classList.toggle('on', !!on);
   }
 
-  function render(i){
-    const s = STEPS[i];
+  function phaseClass(phase){
+    if (phase.includes('ATTACK')) return 'ATTACK';
+    if (phase.includes('DETECT')) return 'DETECT';
+    if (phase.includes('INTERRUPT')) return 'INTERRUPT';
+    if (phase.includes('CONTAINED')) return 'CONTAINED';
+    if (phase.includes('DONE')) return 'DONE';
+    return '';
+  }
+
+  function pushEvent(ev){
+    const div = document.createElement('div');
+    div.className = 'cx-evt ' + (ev.type || '');
+    div.innerHTML = '<div class="t"><span>' + ev.ts + '</span><span>' + ev.host + '</span></div>'
+      + '<div class="body">' + ev.text + '</div>'
+      + '<div class="meta">' + (ev.meta || '') + '</div>';
+    stream.prepend(div);
+    stream.scrollTop = 0;
+    requestAnimationFrame(() => div.classList.add('on'));
+  }
+
+  function flushEvents(){
+    if (eventTimer){ clearTimeout(eventTimer); eventTimer = null; }
+    while (eventQueue.length) pushEvent(eventQueue.shift());
+  }
+
+  function queueEvents(list){
+    if (!list || !list.length) return;
+    eventQueue.push(...list);
+    const drain = () => {
+      if (!eventQueue.length){ eventTimer = null; return; }
+      pushEvent(eventQueue.shift());
+      eventTimer = setTimeout(drain, reduceMotion ? 0 : 420);
+    };
+    if (!eventTimer) drain();
+  }
+
+  function renderGraph(s){
     if (phaseEl){
       phaseEl.textContent = s.phase;
-      const cls = s.phase.includes('ATTACK') ? 'ATTACK'
-        : s.phase.includes('DETECT') ? 'DETECT'
-        : s.phase.includes('INTERRUPT') ? 'INTERRUPT'
-        : s.phase.includes('CONTAINED') ? 'CONTAINED'
-        : s.phase.includes('DONE') ? 'DONE' : '';
+      const cls = phaseClass(s.phase);
       phaseEl.className = 'cx-phase' + (cls ? (' ' + cls) : '');
     }
     if (captionEl){
@@ -460,49 +505,92 @@ function startCorvex(){
       if (el) el.classList.toggle('on', !!s.mesh);
     });
     setShield('A', s.shields.a); setShield('B', s.shields.b); setShield('C', s.shields.c);
-    if (campEl) campEl.style.opacity = s.camp ? '1' : '0';
+    if (campEl){
+      campEl.textContent = s.camp ? 'camp-lateral-alice' : '';
+      campEl.style.opacity = s.camp ? '1' : '0';
+    }
+  }
 
+  function resetVisual(){
+    if (eventTimer){ clearTimeout(eventTimer); eventTimer = null; }
+    eventQueue = [];
     stream.innerHTML = '';
-    s.feed.forEach((ev, idx) => {
-      const div = document.createElement('div');
-      div.className = 'cx-evt ' + (ev.type || '');
-      div.innerHTML = '<div class="t"><span>' + ev.ts + '</span><span>' + ev.host + '</span></div>'
-        + '<div class="body">' + ev.text + '</div>'
-        + '<div class="meta">' + (ev.meta || '') + '</div>';
-      stream.appendChild(div);
-      requestAnimationFrame(() => {
-        setTimeout(() => div.classList.add('on'), idx * 40);
-      });
+    linkOn.A = linkOn.B = linkOn.C = false;
+    hostState.A = hostState.B = hostState.C = '';
+    ['A','B','C'].forEach(id => {
+      const link = document.getElementById('cxLink' + id);
+      if (link){
+        link.classList.remove('on', 'draw');
+        link.style.strokeDasharray = '';
+        link.style.strokeDashoffset = '';
+      }
+      const host = document.getElementById('cxHost' + id);
+      if (host) host.setAttribute('class', 'cx-host');
+      setShield(id, false);
     });
+    ['AB','BC','AC'].forEach(k => {
+      document.getElementById('cxMesh' + k)?.classList.remove('on');
+    });
+    if (campEl){ campEl.textContent = ''; campEl.style.opacity = '0'; }
   }
 
   function stop(){
     if (timer){ clearInterval(timer); timer = null; }
+    if (eventTimer){ clearTimeout(eventTimer); eventTimer = null; }
   }
+
+  function applyStep(i){
+    const s = STEPS[i];
+    renderGraph(s);
+    queueEvents(s.events);
+  }
+
   function play(){
     stop();
+    resetVisual();
     step = 0;
-    render(0);
-    if (reduceMotion){ render(STEPS.length - 1); return; }
+    applyStep(0);
+    if (reduceMotion){
+      for (let i = 1; i < STEPS.length; i++) applyStep(i);
+      flushEvents();
+      return;
+    }
     timer = setInterval(() => {
       step += 1;
       if (step >= STEPS.length){ stop(); return; }
-      render(step);
-    }, 1600);
+      applyStep(step);
+    }, 1750);
   }
 
-  playBtn?.addEventListener('click', () => {
-    playBtn.classList.add('on');
+  function armPlay(){
+    playBtn?.classList.add('on');
     replayBtn?.classList.remove('on');
     play();
-  });
+  }
+
+  playBtn?.addEventListener('click', armPlay);
   replayBtn?.addEventListener('click', () => {
     replayBtn.classList.add('on');
     playBtn?.classList.add('on');
     play();
   });
 
-  play();
+  // Idle until the DEMO scrolls into view — autoplay on boot finishes before anyone sees it.
+  renderGraph(STEPS[0]);
+  if (phaseEl){ phaseEl.textContent = 'IDLE'; phaseEl.className = 'cx-phase'; }
+  if (captionEl){
+    captionEl.innerHTML = 'Waiting for attack…';
+    captionEl.className = 'cx-caption';
+  }
+
+  const io = new IntersectionObserver(entries => {
+    const hit = entries.some(e => e.isIntersecting && e.intersectionRatio >= 0.35);
+    if (!hit || started) return;
+    started = true;
+    io.disconnect();
+    armPlay();
+  }, { threshold: [0.35, 0.5] });
+  io.observe(root);
 }
 
 /* =========================================================
