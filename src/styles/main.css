@@ -236,8 +236,17 @@ a, button, [data-cur], input, textarea, select, summary{
   color: var(--ink); font-weight: 700;
 }
 .pt-num{ font-family: var(--bang); font-size: 1rem; }
-.pt-sep{ color: rgba(5,5,16,.5); }
-.pt-tot{ color: rgba(5,5,16,.6); }
+.pt-tot{ color: rgba(5,5,16,.78); }
+.pt-sep{ color: rgba(5,5,16,.55); }
+
+/* Contrast bumps — same palette, darker/lighter where LH failed AA */
+.cover-quote em{ color: #c41f55; }
+.panel.narr em, .panel-paper em, .panel-yel em, .case-pull em{ color: #c41f55; }
+.panel-yel .case-pull em, .panel-mag .case-pull em, .panel-red .case-pull em{ color: #ffe08a; }
+.lp-tag{ color: rgba(5,5,16,.78); }
+.rig-row label b, .rig-row label i{ color: rgba(5,5,16,.88); }
+.ph-num, .ph-sub{ color: rgba(254,249,237,.78); }
+.ph-title em{ color: var(--yellow); }
 .pt-name{ margin-left: 6px; }
 
 .hud-tools{ justify-self: end; display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: .62rem; letter-spacing: .2em; color: var(--text); text-transform: uppercase; }

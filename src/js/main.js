@@ -103,17 +103,14 @@ async function boot(){
     '> mounting widgets........<span class="ok">04</span>',
     '<span class="ok">[ ready ]</span> Issue 001 — scroll to read'
   ];
-  // Keep the same dossier UI; cut artificial delay so LCP isn't blocked ~2s.
-  const stepMs = reduceMotion ? 0 : 45;
-  for (let i = 0; i < lines.length; i++){
-    log.innerHTML += (i ? '\n' : '') + lines[i];
-    bar.style.right = (100 - (i + 1) / lines.length * 100).toFixed(0) + '%';
-    if (stepMs) await new Promise(r => setTimeout(r, stepMs));
-  }
+  // Same dossier card; paint all lines immediately so LCP isn't held by staged delays.
+  if (log) log.innerHTML = lines.join('\n');
+  if (bar) bar.style.right = '0%';
   if (rdy) rdy.textContent = 'PRINTED';
-  if (!reduceMotion) await new Promise(r => setTimeout(r, 80));
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  if (!reduceMotion) await new Promise(r => setTimeout(r, 120));
   $('#loader').classList.add('gone');
-  setTimeout(() => $('#loader')?.remove(), reduceMotion ? 0 : 500);
+  setTimeout(() => $('#loader')?.remove(), reduceMotion ? 0 : 420);
   $('#cover')?.classList.add('in');
 }
 
