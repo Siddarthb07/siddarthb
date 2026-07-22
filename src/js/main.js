@@ -314,6 +314,76 @@ function startProbe(){
 }
 
 /* =========================================================
+   8b. CORVEX CAMPAIGN READOUT (Anima-style evidence widget)
+   ========================================================= */
+function startCorvex(){
+  const root = $('#corvexWidget');
+  if (!root) return;
+  const precBar = $('#cxPrecBar');
+  const recBar = $('#cxRecBar');
+  const benBar = $('#cxBenBar');
+  const precNum = $('#cxPrecNum');
+  const recNum = $('#cxRecNum');
+  const benNum = $('#cxBenNum');
+  const hosts = $('#cxHosts');
+  const events = $('#cxEvents');
+  const state = $('#cxState');
+  const camp = $('#cxCampName');
+  const ring = $('#cxIsolateRing');
+  const linkA = $('#cxLinkA');
+  const linkB = $('#cxLinkB');
+  const linkC = $('#cxLinkC');
+  const states = ['OBSERVE', 'CORRELATE', 'DETECT', 'ISOLATE'];
+  const camps = ['camp-lateral', 'camp-exfil', 'camp-lateral'];
+  let si = 0, ev = 2, t0 = performance.now();
+
+  function setLink(el, on, dashed){
+    if (!el) return;
+    el.style.opacity = on ? '1' : '0.22';
+    if (dashed != null) el.setAttribute('stroke-dasharray', dashed ? '3 3' : '0');
+  }
+
+  function tick(now){
+    const t = (now - t0) / 1000;
+    const phase = Math.floor(t / 2.4) % states.length;
+    si = phase;
+
+    // sealed scores — hover near truth with tiny demo jitter
+    const prec = clamp(0.97 + Math.sin(t * 0.8) * 0.03, 0.92, 1);
+    const rec = clamp(0.96 + Math.sin(t * 1.1 + 1) * 0.04, 0.90, 1);
+    const ben = clamp(0.01 + Math.abs(Math.sin(t * 0.55)) * 0.02, 0, 0.06);
+
+    if (precBar) precBar.style.setProperty('--w', (prec * 100).toFixed(1) + '%');
+    if (recBar) recBar.style.setProperty('--w', (rec * 100).toFixed(1) + '%');
+    if (benBar) benBar.style.setProperty('--w', (ben * 100).toFixed(1) + '%');
+    if (precNum) precNum.textContent = prec.toFixed(2);
+    if (recNum) recNum.textContent = rec.toFixed(2);
+    if (benNum) benNum.textContent = ben.toFixed(2);
+
+    // graph choreography per state
+    const observe = si === 0;
+    const corr = si === 1;
+    const detect = si === 2;
+    const isolate = si === 3;
+    setLink(linkA, !observe || t % 2.4 > 0.4, false);
+    setLink(linkB, corr || detect || isolate || (observe && t % 2.4 > 1.1), false);
+    setLink(linkC, detect || isolate || (corr && t % 2.4 > 1.6), true);
+    if (ring) ring.style.opacity = isolate ? '1' : '0';
+
+    if (Math.floor(t * 5) % 12 === 0){
+      ev = Math.min(12, 2 + Math.floor(t / 2.4) % 7);
+      if (events) events.textContent = String(ev).padStart(2, '0');
+      if (hosts) hosts.textContent = isolate ? '3·1' : '3';
+      if (state) state.textContent = states[si];
+      if (camp) camp.textContent = camps[Math.floor(t / 7.2) % camps.length];
+    }
+
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* =========================================================
    9. SIM — RPM + VRS
    ========================================================= */
 function initRPM(){
@@ -453,6 +523,7 @@ ready(() => {
   drawEquity();
   setRisk(0.31);
   startProbe();
+  startCorvex();
   initRPM();
   initVRS();
   startMagnets();
