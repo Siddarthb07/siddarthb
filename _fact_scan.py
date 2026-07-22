@@ -49,7 +49,7 @@ print("GEOQUANT_ARTIFACT_PATHS", [p for p in paths if "artifact" in p.lower() or
 
 # Health AUDIT expected metrics label
 raw = subprocess.check_output(
-    ["gh", "api", "repos/Siddarthb07/Health-AI/contents/ml/AUDIT_AND_DESIGN.md", "--jq", ".content"],
+    ["gh", "api", "repos/Siddarthb07/Drift/contents/ml/AUDIT_AND_DESIGN.md", "--jq", ".content"],
     text=True,
 )
 t = base64.b64decode(raw).decode()

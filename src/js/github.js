@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v7';
+export const GH_CACHE_KEY = 'sb_gh_repos_v8';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -26,7 +26,7 @@ export const REPO_HIDDEN = new Set([
 ]);
 
 export const REPO_TIERS = {
-  featured: ['Anima', 'corvex', 'GeoQuant', 'Health-AI'],
+  featured: ['Anima', 'corvex', 'GeoQuant', 'Drift'],
   lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
   inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'sign-language-cv'],
   founder: ['Athera'],
@@ -35,14 +35,13 @@ export const REPO_TIERS = {
 
 /** Display aliases when the GitHub repo name differs from the brand. */
 export const REPO_DISPLAY = {
-  'Health-AI': 'Drift',
   corvex: 'Corvex'
 };
 
 export const PROOF_LINES = {
   corvex: 'multi-host correlator · sealed eval · gated contain',
   GeoQuant: 'walk-forward · Alpaca paper · cost in optimizer',
-  'Health-AI': 'ACC/AHA · FINDRISC · safety gates',
+  Drift: 'ACC/AHA · FINDRISC · safety gates',
   Anima: 'HF hooks · valence / arousal / unc · MIT',
   'Propeller-simulator': 'BEMT · GUI + CLI · CSV sweeps',
   'Drone-Vortex-Ring-Simulation': 'Helmholtz · Kelvin Γ · viscous decay',
@@ -172,8 +171,6 @@ export function renderRepoIndex(buckets, host){
         ? repo.description
             .replace(/archived[.,]?\s*/i, '')
             .replace(/—\s*,\s*/g, '— ')
-            .replace(/\bHealth-AI\b/g, 'Drift')
-            .replace(/\bHealth AI\b/gi, 'Drift')
             .trim()
         : proof;
       const upd = relAge(repo.pushed_at);
