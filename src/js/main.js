@@ -427,23 +427,33 @@ function startCorvex(){
     }
   }
 
+  function hideLink(el){
+    if (!el) return;
+    const len = el.getTotalLength ? el.getTotalLength() : 300;
+    el.classList.remove('on', 'draw');
+    el.style.transition = 'none';
+    el.style.strokeDasharray = String(len);
+    el.style.strokeDashoffset = String(len);
+    void el.getBoundingClientRect();
+    el.style.transition = '';
+  }
+
   function setLink(id, on){
     const el = document.getElementById('cxLink' + id);
     if (!el) return;
     const was = linkOn[id];
     linkOn[id] = !!on;
     if (on && !was){
-      const len = el.getTotalLength ? el.getTotalLength() : 420;
+      const len = el.getTotalLength ? el.getTotalLength() : 300;
+      el.classList.add('on', 'draw');
+      el.style.transition = 'none';
       el.style.strokeDasharray = String(len);
       el.style.strokeDashoffset = String(len);
-      el.classList.add('on', 'draw');
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => { el.style.strokeDashoffset = '0'; });
-      });
+      void el.getBoundingClientRect();
+      el.style.transition = '';
+      requestAnimationFrame(() => { el.style.strokeDashoffset = '0'; });
     } else if (!on){
-      el.classList.remove('on', 'draw');
-      el.style.strokeDasharray = '';
-      el.style.strokeDashoffset = '';
+      hideLink(el);
     }
   }
 
@@ -518,12 +528,7 @@ function startCorvex(){
     linkOn.A = linkOn.B = linkOn.C = false;
     hostState.A = hostState.B = hostState.C = '';
     ['A','B','C'].forEach(id => {
-      const link = document.getElementById('cxLink' + id);
-      if (link){
-        link.classList.remove('on', 'draw');
-        link.style.strokeDasharray = '';
-        link.style.strokeDashoffset = '';
-      }
+      hideLink(document.getElementById('cxLink' + id));
       const host = document.getElementById('cxHost' + id);
       if (host) host.setAttribute('class', 'cx-host');
       setShield(id, false);
@@ -584,21 +589,22 @@ function startCorvex(){
     play();
   });
 
-  // Idle until the DEMO scrolls into view — autoplay on boot finishes before anyone sees it.
+  // Idle until the DEMO is mostly on-screen — buttons used to sit below the fold.
+  ['A','B','C'].forEach(id => hideLink(document.getElementById('cxLink' + id)));
   renderGraph(STEPS[0]);
   if (phaseEl){ phaseEl.textContent = 'IDLE'; phaseEl.className = 'cx-phase'; }
   if (captionEl){
-    captionEl.innerHTML = 'Waiting for attack…';
+    captionEl.innerHTML = 'Press <b>Play attack</b> — or wait, demo starts when this panel is in view.';
     captionEl.className = 'cx-caption';
   }
 
   const io = new IntersectionObserver(entries => {
-    const hit = entries.some(e => e.isIntersecting && e.intersectionRatio >= 0.35);
+    const hit = entries.some(e => e.isIntersecting && e.intersectionRatio >= 0.55);
     if (!hit || started) return;
     started = true;
     io.disconnect();
     armPlay();
-  }, { threshold: [0.35, 0.5] });
+  }, { threshold: [0.55, 0.7, 0.85] });
   io.observe(root);
 }
 

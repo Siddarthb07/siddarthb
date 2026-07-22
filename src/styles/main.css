@@ -786,7 +786,8 @@ main#comic{ position: relative; z-index: 1; }
   gap: 8px;
   min-height: 0;
 }
-.cx-top{ display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.cx-top{ display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; }
+.cx-top-actions{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
 .cx-brand{ font-family: var(--gro); font-weight:700; font-size:.92rem; }
 .cx-brand span{ color: var(--cx-dim); font-weight:500; margin-left:6px; font-size:.78rem; }
 .cx-phase{
@@ -821,11 +822,10 @@ main#comic{ position: relative; z-index: 1; }
 .cx-label{ font-family: var(--gro); font-size:14px; fill:var(--cx-text); font-weight:600; }
 .cx-sub{ font-family: var(--mono); font-size:11px; fill:var(--cx-muted); }
 .cx-link{
-  fill:none; stroke:var(--cx-attack); stroke-width:2.5; opacity:.18;
-  transition: opacity .35s ease, stroke-dashoffset 1.65s cubic-bezier(.22,.61,.36,1);
+  fill:none; stroke:var(--cx-attack); stroke-width:2.5; opacity:0;
+  transition: opacity .2s ease, stroke-dashoffset 1.8s cubic-bezier(.22,.61,.36,1);
 }
-.cx-link.on{ opacity:1; }
-.cx-link.draw{ opacity:1; }
+.cx-link.on, .cx-link.draw{ opacity:1; }
 .cx-mesh{ fill:none; stroke:var(--cx-detect); stroke-width:2.5; stroke-dasharray:6 6; opacity:0; transition:opacity .5s ease; }
 .cx-mesh.on{ opacity:1; animation: cxMeshPulse 1.8s ease-in-out infinite; }
 .cx-shield{ fill:none; stroke:var(--cx-defend); stroke-width:3; opacity:0; transition:opacity .5s ease; }
