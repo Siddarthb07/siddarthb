@@ -86,23 +86,12 @@ const PAGES = [
    ========================================================= */
 function loadAccentFonts(){
   // Prefer boot-early.js; keep as fallback if that script is blocked.
-  if (document.getElementById('sbFont0') || document.getElementById('sbBodyFonts')) return;
-  const mk = (id, href) => {
-    if (document.getElementById(id)) return;
-    const link = document.createElement('link');
-    link.id = id;
-    link.rel = 'stylesheet';
-    link.href = href;
-    document.head.appendChild(link);
-  };
-  mk(
-    'sbBodyFonts',
-    'https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;700;800&family=Inter:wght@400;600;700&display=swap'
-  );
-  mk(
-    'sbAccentFonts',
-    'https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;600;700&family=Special+Elite&display=swap'
-  );
+  if (document.getElementById('sbFont0')) return;
+  const link = document.createElement('link');
+  link.id = 'sbFont0';
+  link.rel = 'stylesheet';
+  link.href = 'src/fonts/fonts.css?v=sb01-1';
+  document.head.appendChild(link);
 }
 
 function boot(){

@@ -5,21 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Siddarth Boggarapu — Issue #001 / Operator-Verse</title>
   <meta name="description" content="Siddarth Boggarapu — applied ML and production systems across security, quant, healthcare, LLM instrumentation, and physical simulation. Operator-Verse portfolio dossier." />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self' https://api.github.com" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://api.github.com" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a2e'/><text x='50' y='66' font-size='48' text-anchor='middle' fill='%23ffd60a' font-family='monospace' font-weight='800'>SB</text></svg>" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Preload webfont CSS without render-blocking; boot-early.js attaches as stylesheets. -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;700;800&family=Inter:wght@400;600;700&display=swap">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;600;700&family=Special+Elite&display=swap">
+  <!-- Self-hosted webfonts (same faces as before) — no Google CDN round-trips -->
+  <link rel="preload" as="style" href="src/fonts/fonts.css?v=sb01-1">
   <!-- Tiny critical paint so FCP isn't gated solely on the full comic stylesheet -->
   <style>
     html,body{margin:0;background:#0b0b30;color:#f3ede0}
     .loader{position:fixed;inset:0;z-index:1000;background:#0b0b30;display:grid;place-items:center}
     .loader.gone{opacity:0;pointer-events:none}
   </style>
-  <link rel="stylesheet" href="src/styles/main.css?v=sb01-55" />
+  <link rel="stylesheet" href="src/styles/main.css?v=sb01-56" />
   <link rel="stylesheet" href="src/styles/print.css" media="print" />
 
   <script type="application/ld+json">
@@ -1183,7 +1180,7 @@
     </div>
     </div>
   </div>
-  <script src="src/js/boot-early.js?v=sb01-1"></script>
-  <script type="module" src="src/js/main.js?v=sb01-38"></script>
+  <script src="src/js/boot-early.js?v=sb01-2"></script>
+  <script type="module" src="src/js/main.js?v=sb01-39"></script>
 </body>
 </html>
