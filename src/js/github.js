@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v9';
+export const GH_CACHE_KEY = 'sb_gh_repos_v10';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -32,14 +32,12 @@ export const REPO_TIERS = {
   featured: ['Anima', 'corvex', 'GeoQuant', 'Drift'],
   lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
   inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'cursor-llm-council', 'trade_bot'],
-  founder: ['Athera'],
-  elevyx: ['Elevyx']
+  founder: ['Athera', 'Elevyx']
 };
 
 /** Display aliases when the GitHub repo name differs from the brand. */
 export const REPO_DISPLAY = {
-  corvex: 'Corvex',
-  Drift: 'Drift'
+  corvex: 'Corvex'
 };
 
 export const PROOF_LINES = {
@@ -58,13 +56,12 @@ export const PROOF_LINES = {
   trade_bot: 'NSE bulk deals · WhatsApp alerts · research dash'
 };
 
-const TIER_ORDER = ['featured', 'lab', 'inflight', 'founder', 'elevyx', 'archived', 'other'];
+const TIER_ORDER = ['featured', 'lab', 'inflight', 'founder', 'archived', 'other'];
 const TIER_LABELS = {
   featured: 'CASE FILES',
   lab: 'LAB',
   inflight: 'OTHER PROJECTS',
-  founder: 'FOUNDER · ATHERA',
-  elevyx: 'FOUNDING DEV · ELEVYX',
+  founder: 'FOUNDER',
   archived: 'ARCHIVED',
   other: 'OTHER'
 };
@@ -78,7 +75,6 @@ export function tierForRepo(name, description = ''){
   if (REPO_TIERS.lab.includes(name)) return 'lab';
   if (REPO_TIERS.inflight.includes(name)) return 'inflight';
   if (REPO_TIERS.founder.includes(name)) return 'founder';
-  if (REPO_TIERS.elevyx.includes(name)) return 'elevyx';
   if (/archived/i.test(description || '')) return 'archived';
   return 'other';
 }
