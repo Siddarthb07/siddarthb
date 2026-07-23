@@ -1237,12 +1237,13 @@ main#comic{ position: relative; z-index: 1; }
   align-self: start;
   overflow: hidden;
   position: relative;
+  background: #e8dcc8;
   /* plate is already comic-treated — don't stack site duotone/halftone */
 }
 .op-portrait img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
   filter: none;
 }
