@@ -1213,7 +1213,7 @@ main#comic{ position: relative; z-index: 1; }
 .tl-cell a:hover{ color: var(--paper); }
 
 /* =========================================================
-   09 · OPERATOR — same image panel metrics as case-grid
+   09 · OPERATOR — same panel metrics as case-grid; plate uncropped
    ========================================================= */
 .op-grid{
   flex: 1;
@@ -1228,20 +1228,23 @@ main#comic{ position: relative; z-index: 1; }
   gap: clamp(14px, 2vw, 24px);
   position: relative;
 }
-.op-portrait{
+.op-portrait,
+.op-portrait.panel-mag{
   grid-area: portrait;
   min-height: 0;
   height: 100%;
   align-self: stretch;
   overflow: hidden;
   position: relative;
+  /* match plate paper so contain letterbox isn't magenta */
+  background: #e8dcc8 !important;
 }
 .op-grid > .op-portrait img{
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   filter: none;
 }
