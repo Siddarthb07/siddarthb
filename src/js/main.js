@@ -202,18 +202,19 @@ async function loadGitHubData(){
   try {
     const {
       SITE, fetchAllRepos, categorizeRepos, inflightCount,
-      padStat, renderRepoIndex
-    } = await import('./github.js?v=sb01-33');
+      publicRepoCount, padStat, renderRepoIndex
+    } = await import('./github.js?v=sb01-34');
     const all = await fetchAllRepos();
-    const { visible, buckets } = categorizeRepos(all);
+    const { buckets } = categorizeRepos(all);
     const inflight = inflightCount(buckets);
+    const publicCount = publicRepoCount(all);
 
-    if (reposEl) reposEl.textContent = padStat(visible.length);
+    if (reposEl) reposEl.textContent = padStat(publicCount);
     if (inflightEl) inflightEl.textContent = padStat(inflight);
     if (sourceEl) sourceEl.textContent = 'GITHUB · LIVE';
     if (coverMeta){
       coverMeta.textContent =
-        `${padStat(SITE.caseFiles)} CASE FILES · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(visible.length)} OPEN REPOS`;
+        `${padStat(SITE.caseFiles)} CASE FILES · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(publicCount)} OPEN REPOS`;
     }
 
     renderRepoIndex(buckets, indexHost);

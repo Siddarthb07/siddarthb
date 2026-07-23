@@ -1,7 +1,7 @@
 /* GitHub project registry — source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v10';
+export const GH_CACHE_KEY = 'sb_gh_repos_v11';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -81,6 +81,11 @@ export function tierForRepo(name, description = ''){
 
 export function visibleRepos(repos){
   return repos.filter(r => !r.fork && !REPO_HIDDEN.has(r.name));
+}
+
+/** GitHub profile "public repos" — all owned public repos, including forks. */
+export function publicRepoCount(repos){
+  return repos.length;
 }
 
 export function categorizeRepos(repos){

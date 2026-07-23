@@ -1231,15 +1231,23 @@ main#comic{ position: relative; z-index: 1; }
 .op-portrait{
   grid-area: portrait;
   min-height: 0;
-  max-height: 240px;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1;
   align-self: start;
+  /* plate is already comic-treated — don't stack site duotone/halftone */
 }
 .op-portrait img{
   width: 100%;
-  height: 240px;
-  max-height: 240px;
-  object-fit: cover;
-  object-position: center 18%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center center;
+  filter: none;
+}
+.op-portrait .img-halftone,
+.op-portrait::after{
+  display: none;
 }
 .op-bio{ grid-area: bio; padding: 22px 26px; }
 .op-stack{ grid-area: stack; padding: 18px 22px; }
@@ -1433,10 +1441,8 @@ main#comic{ position: relative; z-index: 1; }
   }
   .op-portrait{
     max-width: 200px;
-    max-height: 200px;
     justify-self: start;
   }
-  .op-portrait img{ height: 200px; max-height: 200px; }
   .origin-grid{ grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
 }
 @media (max-width: 720px){
@@ -1463,8 +1469,7 @@ main#comic{ position: relative; z-index: 1; }
   .tilt-l, .tilt-r{ transform: none; }
 
   /* operator — smaller quote, single-column repo index, compact panels */
-  .op-portrait{ min-height: 0; max-width: 160px; max-height: 160px; }
-  .op-portrait img{ height: 160px; max-height: 160px; }
+  .op-portrait{ min-height: 0; max-width: 160px; }
   .op-bio, .op-stack, .op-stats, .op-repos{ padding: 14px 16px; }
   .op-quote{ font-size: 1.25rem; }
   .repo-index{ grid-template-columns: 1fr; }
