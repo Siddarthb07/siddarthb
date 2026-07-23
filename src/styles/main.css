@@ -1219,23 +1219,25 @@ main#comic{ position: relative; z-index: 1; }
   flex: 1;
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     "portrait bio"
-    "portrait stack"
-    "stats    stats"
+    "stack    stats"
     "repos    repos";
   gap: clamp(14px, 2vw, 24px);
   position: relative;
-  align-items: stretch;
+  align-items: start;
 }
-.op-portrait{
+/* Square plate = case-file column width, no letterbox gaps */
+.op-portrait,
+.op-portrait.panel-mag{
   grid-area: portrait;
   min-height: 0;
-  height: 100%;
   width: 100%;
+  height: auto;
   max-width: none;
-  align-self: stretch;
+  aspect-ratio: 1;
+  align-self: start;
   overflow: hidden;
   position: relative;
   background: #e8dcc8;
@@ -1444,10 +1446,10 @@ main#comic{ position: relative; z-index: 1; }
     grid-template-rows: auto;
     grid-template-areas: "portrait" "bio" "stack" "stats" "repos";
   }
-  .op-portrait{
-    min-height: 320px;
-    max-width: none;
-    justify-self: stretch;
+  .op-portrait,
+  .op-portrait.panel-mag{
+    max-width: min(420px, 100%);
+    justify-self: start;
   }
   .origin-grid{ grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
 }
@@ -1475,7 +1477,8 @@ main#comic{ position: relative; z-index: 1; }
   .tilt-l, .tilt-r{ transform: none; }
 
   /* operator — smaller quote, single-column repo index, compact panels */
-  .op-portrait{ min-height: 280px; max-width: none; }
+  .op-portrait,
+  .op-portrait.panel-mag{ max-width: min(320px, 100%); }
   .op-bio, .op-stack, .op-stats, .op-repos{ padding: 14px 16px; }
   .op-quote{ font-size: 1.25rem; }
   .repo-index{ grid-template-columns: 1fr; }
