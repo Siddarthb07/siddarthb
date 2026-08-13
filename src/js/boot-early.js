@@ -1,4 +1,4 @@
-/* Early paint path — non-module so it runs before deferred ES modules. */
+/* Early paint path. non-module so it runs before deferred ES modules. */
 (function () {
   function dismissLoader() {
     var loader = document.getElementById('loader');

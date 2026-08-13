@@ -1,4 +1,4 @@
-/* Brief dossier export — one-page readable summary for interviewers / VCs */
+/* Brief dossier export - one-page readable summary for interviewers / VCs */
 
 @media print {
   @page { margin: 14mm; size: A4; }

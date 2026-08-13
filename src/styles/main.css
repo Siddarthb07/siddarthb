@@ -1,11 +1,11 @@
 /* =========================================================
-   SB / v7 — INTO THE OPERATOR-VERSE
+   SB / v7 - INTO THE OPERATOR-VERSE
    Spider-Verse comic book. 10 snap-scroll pages.
    Halftone · chromatic aberration · bold ink panels · SFX type.
    ========================================================= */
 
 :root{
-  /* Spider-Verse palette — softened ~12% vs stock for less eye strain */
+  /* Spider-Verse palette - softened ~12% vs stock for less eye strain */
   --night:    #0b0b30;     /* midnight indigo */
   --night2:   #151545;
   --ink:      #050510;     /* ink black */
@@ -15,10 +15,10 @@
 
   --magenta:  #e83668;
   --cyan:     #38c4e0;
-  --yellow:   #d4b464;   /* muted gold — softened from #e8c44a */
-  --red:      #e83668;   /* red retired — maps to magenta */
+  --yellow:   #d4b464;   /* muted gold - softened from #e8c44a */
+  --red:      #e83668;   /* red retired - maps to magenta */
 
-  /* panel fills — midway between the stock neon and the dusty pass:
+  /* panel fills - midway between the stock neon and the dusty pass:
      enough punch to read comic-book, not enough to shout */
   --yel-soft:  #cfae5e;
   --cyan-soft: #4db4cb;
@@ -92,7 +92,7 @@ html.js-cursor body{ cursor: none; }
 img, svg{ display: block; max-width: 100%; }
 
 /* =========================================================
-   CHROMATIC ABERRATION — text class
+   CHROMATIC ABERRATION - text class
    ========================================================= */
 .chromatic{
   text-shadow:
@@ -102,7 +102,7 @@ img, svg{ display: block; max-width: 100%; }
 .chromatic em, .chromatic .em{ font-style: italic; }
 
 /* =========================================================
-   CUSTOM CURSOR — comic crosshair (SVG)
+   CUSTOM CURSOR - comic crosshair (SVG)
    Positioned via transform on outer #cursor so it never
    fights with .cur-inner's hover scale/rotate.
    ========================================================= */
@@ -198,7 +198,7 @@ a, button, [data-cur], input, textarea, select, summary{
 .boot-foot{ display: flex; justify-content: space-between; font-family: var(--mono); font-size: .58rem; letter-spacing: .26em; color: var(--cyan); text-transform: uppercase; }
 
 /* =========================================================
-   PAGE BACKGROUND HALFTONE — universal
+   PAGE BACKGROUND HALFTONE - universal
    ========================================================= */
 .page-bg-halftone{
   position: absolute; inset: 0; z-index: 0;
@@ -247,7 +247,7 @@ a, button, [data-cur], input, textarea, select, summary{
 .hud-btn-cv:hover{ color: var(--ink); background: var(--yellow); border-color: var(--yellow); }
 
 /* =========================================================
-   RIGHT RAIL — page ticks
+   RIGHT RAIL - page ticks
    ========================================================= */
 .rail{
   position: fixed; right: clamp(14px, 2vw, 26px); top: 50%;
@@ -277,7 +277,7 @@ a, button, [data-cur], input, textarea, select, summary{
 .r-tick:hover::after, .r-tick.on::after{ opacity: 1; }
 
 /* =========================================================
-   PAGE — base
+   PAGE - base
    ========================================================= */
 main#comic{ position: relative; z-index: 1; }
 .page{
@@ -285,7 +285,7 @@ main#comic{ position: relative; z-index: 1; }
   min-height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
-  overflow-x: hidden; /* vertical overflow stays reachable — snap must not clip content */
+  overflow-x: hidden; /* vertical overflow stays reachable - snap must not clip content */
   padding: var(--pad-y) var(--pad-x) clamp(50px, 6vh, 80px);
   display: flex; flex-direction: column;
   background: var(--night);
@@ -316,7 +316,7 @@ main#comic{ position: relative; z-index: 1; }
 .ph-sub{ font-family: var(--mono); font-size: .7rem; letter-spacing: .22em; color: var(--cyan); text-transform: uppercase; }
 
 /* =========================================================
-   COMIC PANEL — base
+   COMIC PANEL - base
    ========================================================= */
 .panel{
   position: relative;
@@ -354,7 +354,7 @@ main#comic{ position: relative; z-index: 1; }
 .panel-mag .narr-tag, .panel-red .narr-tag, .panel-ink .narr-tag{ background: var(--ink); color: var(--paper); border-color: var(--paper); }
 
 /* =========================================================
-   SOUND EFFECTS — comic SFX type
+   SOUND EFFECTS - comic SFX type
    ========================================================= */
 .sfx{
   position: absolute;
@@ -404,7 +404,7 @@ main#comic{ position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   IMAGE PANEL — comic-treated images
+   IMAGE PANEL - comic-treated images
    ========================================================= */
 .panel-img{
   padding: 0;
@@ -418,7 +418,7 @@ main#comic{ position: relative; z-index: 1; }
   display: block;
   filter: contrast(1.04) saturate(0.78) brightness(0.94);
 }
-/* halftone overlay — light print grain, not neon wash */
+/* halftone overlay - light print grain, not neon wash */
 .img-halftone{
   position: absolute; inset: 0;
   background-image: radial-gradient(circle, var(--ink) 1.2px, transparent 1.5px);
@@ -447,7 +447,7 @@ main#comic{ position: relative; z-index: 1; }
 .ic-num{ color: var(--yellow); font-weight: 700; }
 .ic-name{ color: var(--paper); }
 
-/* case / lab images — natural tones; no SVG neon duotone */
+/* case / lab images - natural tones; no SVG neon duotone */
 [data-img-fx] img{
   filter: contrast(1.04) saturate(0.78) brightness(0.94);
 }
@@ -654,7 +654,7 @@ main#comic{ position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   CASE FILES — shared grid
+   CASE FILES - shared grid
    ========================================================= */
 .case-grid{
   flex: 1;
@@ -809,7 +809,7 @@ main#comic{ position: relative; z-index: 1; }
 .ev-tally b.ok{ color: var(--cyan); }
 .ev-tally b.bad{ color: var(--magenta); }
 
-/* Corvex DEMO — exact attack-theatre widget (from lab GIF, no image) */
+/* Corvex DEMO - exact attack-theatre widget (from lab GIF, no image) */
 .cx-app{
   --cx-bg:#05070a;
   --cx-panel:#0d1219;
@@ -1030,7 +1030,7 @@ main#comic{ position: relative; z-index: 1; }
 .panel-ink .case-proof code, .panel-mag .case-proof code, .panel-red .case-proof code{ background: rgba(254,249,237,.1); border-color: rgba(254,249,237,.3); }
 
 /* =========================================================
-   08 · TIMELINE — 4-across strip (same rhythm as Origin narr)
+   08 · TIMELINE - 4-across strip (same rhythm as Origin narr)
    ========================================================= */
 .tl-strip{
   flex: 1;
@@ -1213,7 +1213,7 @@ main#comic{ position: relative; z-index: 1; }
 .tl-cell a:hover{ color: var(--paper); }
 
 /* =========================================================
-   09 · OPERATOR — same panel metrics as case-grid; plate uncropped
+   09 · OPERATOR - same panel metrics as case-grid; plate uncropped
    ========================================================= */
 .op-grid{
   flex: 1;
@@ -1391,7 +1391,7 @@ main#comic{ position: relative; z-index: 1; }
 .sg-fin{ margin-top: 14px; padding-top: 14px; border-top: 2px dashed var(--paper); display: flex; flex-direction: column; gap: 4px; align-items: center; }
 .fin-band{
   font-family: var(--bang); font-size: 1.2rem; color: var(--yellow); letter-spacing: .12em;
-  /* ink outline via shadow — webkit-text-stroke made LH read fg as ink-on-night */
+  /* ink outline via shadow - webkit-text-stroke made LH read fg as ink-on-night */
   text-shadow:
     -1px -1px 0 var(--ink), 1px -1px 0 var(--ink),
     -1px 1px 0 var(--ink), 1px 1px 0 var(--ink);
@@ -1469,20 +1469,20 @@ main#comic{ position: relative; z-index: 1; }
   .tl-mid{ grid-template-columns: 1fr; }
   .panel{ padding: 16px; box-shadow: 4px 4px 0 var(--ink); }
 
-  /* origin — single column, tighter type, no cramped 3-col principles */
+  /* origin - single column, tighter type, no cramped 3-col principles */
   .origin-grid{ grid-template-columns: 1fr; gap: 14px; }
   .narr{ padding: 14px 16px; font-size: .92rem; line-height: 1.5; }
   .principles{ padding: 16px 18px; }
   .principles ol{ grid-template-columns: 1fr; gap: 12px; }
   .tilt-l, .tilt-r{ transform: none; }
 
-  /* operator — smaller quote, single-column repo index, compact panels */
+  /* operator - smaller quote, single-column repo index, compact panels */
   .op-portrait{ min-height: 240px; }
   .op-bio, .op-stack, .op-stats, .op-repos{ padding: 14px 16px; }
   .op-quote{ font-size: 1.25rem; }
   .repo-index{ grid-template-columns: 1fr; }
 
-  /* mascot — pin small to the bottom-right, readable bubble */
+  /* mascot - pin small to the bottom-right, readable bubble */
   .sb01{ left: auto !important; right: 10px; top: auto !important; bottom: 14px; --sb-tx: 0%; }
   .sb01[data-side="left"] .sb01-drift{ flex-direction: row; } /* bubble must open leftward when pinned right */
   .sb01-bot{ width: 72px; }
@@ -1490,7 +1490,7 @@ main#comic{ position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   SB-01 — DOSSIER GUIDE MASCOT
+   SB-01 - DOSSIER GUIDE MASCOT
    Travels around the viewport per page via --sb-x / --sb-y /
    --sb-scale (set from mascot.js) with long eased transitions.
    ========================================================= */
@@ -1511,7 +1511,7 @@ main#comic{ position: relative; z-index: 1; }
 .sb01[data-side="left"] .sb01-drift{ flex-direction: row-reverse; }
 .sb01.hidden{ opacity: 0; pointer-events: none !important; }
 
-/* inner wrapper — JS drives a slow organic drift on this */
+/* inner wrapper - JS drives a slow organic drift on this */
 .sb01-drift{
   display: flex; align-items: flex-end; gap: 10px;
   will-change: transform;
@@ -1543,7 +1543,7 @@ main#comic{ position: relative; z-index: 1; }
   95.5%, 97.5% { transform: scaleY(.08); }
 }
 
-/* ---- 11 states — unique face + unique gesture per page ----
+/* ---- 11 states - unique face + unique gesture per page ----
    wave(cover) point(origin) inspect(anima) refuse(corvex)
    think(geoquant) care(health) patch(orqis) excited(lab) scan(timeline)
    cheer(operator) bow(signal) */
@@ -1563,45 +1563,45 @@ main#comic{ position: relative; z-index: 1; }
 .sb01[data-state="bow"]     .s-stamp,
 .sb01[data-state="patch"]   .s-stamp{ display: block; }
 
-/* scan — pupils sweep side to side */
+/* scan - pupils sweep side to side */
 .s-pupil{ transform-box: fill-box; animation: sb01Scan 3.2s ease-in-out infinite; }
 @keyframes sb01Scan{ 0%,100%{ transform: translateX(0); } 45%,60%{ transform: translateX(4.5px); } }
-/* think — typing dots */
+/* think - typing dots */
 .s-dot{ animation: sb01Dots 1.2s ease-in-out infinite; }
 .s-dot2{ animation-delay: .2s; }
 .s-dot3{ animation-delay: .4s; }
 @keyframes sb01Dots{ 0%,100%{ opacity: .25; } 40%{ opacity: 1; } }
 
-/* arm gestures — all distinct per state */
+/* arm gestures - all distinct per state */
 .s-arm{ transform-box: fill-box; transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
 .s-arm-l{ transform-origin: 90% 10%; }
 .s-arm-r{ transform-origin: 10% 10%; }
 
-/* wave — one arm up, waving continuously */
+/* wave - one arm up, waving continuously */
 .sb01[data-state="wave"] .s-arm-r{ animation: sb01Wave 1.6s ease-in-out infinite; }
 @keyframes sb01Wave{ 0%,100%{ transform: rotate(-118deg); } 50%{ transform: rotate(-152deg); } }
 
-/* point — arm nearest the content points at it (side-aware) */
+/* point - arm nearest the content points at it (side-aware) */
 .sb01[data-state="point"]                    .s-arm-l{ transform: rotate(118deg); }
 .sb01[data-side="left"][data-state="point"]  .s-arm-l{ transform: none; }
 .sb01[data-side="left"][data-state="point"]  .s-arm-r{ transform: rotate(-118deg); }
 
-/* inspect — magnifier raised to the eye */
+/* inspect - magnifier raised to the eye */
 .sb01[data-state="inspect"] .s-arm-r{ transform: rotate(-135deg); }
 
-/* refuse — arms crossed inward over the body */
+/* refuse - arms crossed inward over the body */
 .sb01[data-state="refuse"] .s-arm-l{ transform: rotate(-52deg); }
 .sb01[data-state="refuse"] .s-arm-r{ transform: rotate(52deg); }
 .sb01[data-state="refuse"] .s-tip{ fill: #e0698a; }
 
-/* think — hand up to the chin */
+/* think - hand up to the chin */
 .sb01[data-state="think"] .s-arm-r{ transform: rotate(-108deg) translateY(-4px); }
 
-/* care — both palms open outward */
+/* care - both palms open outward */
 .sb01[data-state="care"] .s-arm-l{ transform: rotate(24deg); }
 .sb01[data-state="care"] .s-arm-r{ transform: rotate(-24deg); }
 
-/* patch — present the VERIFIED stamp (right arm forward / side-aware) */
+/* patch - present the VERIFIED stamp (right arm forward / side-aware) */
 .sb01[data-state="patch"] .s-arm-r{ transform: rotate(-95deg) translateY(-6px); }
 .sb01[data-side="left"][data-state="patch"] .s-arm-r{ transform: none; }
 .sb01[data-side="left"][data-state="patch"] .s-arm-l{ transform: rotate(95deg) translateY(-6px); }
@@ -1614,20 +1614,20 @@ main#comic{ position: relative; z-index: 1; }
   50%     { transform: rotate(-8deg) scale(1.08); }
 }
 
-/* excited — both arms thrown straight up */
+/* excited - both arms thrown straight up */
 .sb01[data-state="excited"] .s-arm-l{ transform: rotate(166deg); }
 .sb01[data-state="excited"] .s-arm-r{ transform: rotate(-166deg); }
 
-/* scan — one hand shading the brow */
+/* scan - one hand shading the brow */
 .sb01[data-state="scan"] .s-arm-r{ transform: rotate(-172deg); }
 
-/* cheer — arms diagonal up, wiggling */
+/* cheer - arms diagonal up, wiggling */
 .sb01[data-state="cheer"] .s-arm-l{ animation: sb01CheerL 1.1s ease-in-out infinite; }
 .sb01[data-state="cheer"] .s-arm-r{ animation: sb01CheerR 1.1s ease-in-out infinite; }
 @keyframes sb01CheerL{ 0%,100%{ transform: rotate(132deg); } 50%{ transform: rotate(148deg); } }
 @keyframes sb01CheerR{ 0%,100%{ transform: rotate(-132deg); } 50%{ transform: rotate(-148deg); } }
 
-/* bow — arms tucked, whole bot tips forward, stamp out */
+/* bow - arms tucked, whole bot tips forward, stamp out */
 .sb01[data-state="bow"] .s-arm-l{ transform: rotate(-14deg); }
 .sb01[data-state="bow"] .s-arm-r{ transform: rotate(14deg); }
 .sb01[data-state="bow"] .sb01-bot{ animation: sb01Bow 3.6s ease-in-out infinite; }
@@ -1691,7 +1691,7 @@ main#comic{ position: relative; z-index: 1; }
 }
 .sb01-close:hover{ color: var(--red); }
 
-/* quiet mode — bot stays put, small "click me" pill instead of the bubble */
+/* quiet mode - bot stays put, small "click me" pill instead of the bubble */
 .sb01-bot{ pointer-events: auto; cursor: pointer; }
 .sb01-hint{
   pointer-events: auto;
@@ -1718,7 +1718,7 @@ main#comic{ position: relative; z-index: 1; }
   *, *::before, *::after{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   html{ scroll-snap-type: none; }
   .page .panel, .page .sfx{ opacity: 1; transform: none !important; }
-  /* Keep Corvex theatre transitions readable — JS still steps the demo either way */
+  /* Keep Corvex theatre transitions readable - JS still steps the demo either way */
   .cx-link, .cx-evt, .cx-host, .cx-mesh, .cx-shield, .cx-camp, .cx-caption, .cx-phase{
     transition-duration: .45s !important;
     animation-duration: .45s !important;
@@ -1727,7 +1727,7 @@ main#comic{ position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   A11Y CONTRAST — last so it wins cascade
+   A11Y CONTRAST - last so it wins cascade
    Same comic palette; only text/fill darkness nudged for AA.
    ========================================================= */
 .page-head{
@@ -1779,7 +1779,7 @@ main#comic{ position: relative; z-index: 1; }
 
 .rig-row label i{ color: rgba(5,5,16,.88); }
 
-/* Timeline colored cells — light text + gold accents */
+/* Timeline colored cells - light text + gold accents */
 .tl-cell.panel-cyan .tl-date,
 .tl-cell.panel-yel .tl-date,
 .tl-cell.panel-mag .tl-date,
@@ -1820,7 +1820,7 @@ main#comic{ position: relative; z-index: 1; }
   color: #fffef8;
 }
 
-/* Stats panel is gold — cyan/yellow header chips were near-invisible */
+/* Stats panel is gold - cyan/yellow header chips were near-invisible */
 .panel-yel .ev-head span,
 .panel-yel .ev-head b{
   color: var(--ink);

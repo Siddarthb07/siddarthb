@@ -1,4 +1,4 @@
-/* GitHub project registry — source of truth for public repo index + live stats */
+/* GitHub project registry. source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
 export const GH_CACHE_KEY = 'sb_gh_repos_v11';
@@ -83,7 +83,7 @@ export function visibleRepos(repos){
   return repos.filter(r => !r.fork && !REPO_HIDDEN.has(r.name));
 }
 
-/** GitHub profile "public repos" — all owned public repos, including forks. */
+/** GitHub profile "public repos". all owned public repos, including forks. */
 export function publicRepoCount(repos){
   return repos.length;
 }
@@ -196,7 +196,9 @@ export function renderRepoIndex(buckets, host){
       const rawDesc = repo.description
         ? repo.description
             .replace(/archived[.,]?\s*/i, '')
-            .replace(/—\s*,\s*/g, '— ')
+            .replace(/\u2014/g, '\u00b7')
+            .replace(/\u2013/g, '-')
+            .replace(/\u00b7\s*,\s*/g, '\u00b7 ')
             .trim()
         : proof;
       const desc = escapeHtml(rawDesc);

@@ -1,5 +1,5 @@
 /* =========================================================
-   SB / v7 — INTO THE OPERATOR-VERSE
+   SB / v7 · INTO THE OPERATOR-VERSE
    Comic book pages with snap-scroll, reveals, interactive widgets.
    ========================================================= */
 
@@ -104,7 +104,7 @@ function boot(){
     '> binding 11 pages........<span class="ok">ok</span>',
     '> syncing GitHub index....<span class="ok">live</span>',
     '> mounting widgets........<span class="ok">04</span>',
-    '<span class="ok">[ ready ]</span> Issue 001 — scroll to read'
+    '<span class="ok">[ ready ]</span> Issue 001 · scroll to read'
   ];
   if (log) log.innerHTML = lines.join('\n');
   if (bar) bar.style.right = '0%';
@@ -162,8 +162,7 @@ function startPages(){
       if (idx >= 0) setActive(idx);
     }
   }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-  /* a page is "active" when it crosses the middle band of the viewport —
-     ratio thresholds fail on mobile where a page spans several screens */
+  /* a page is "active" when it crosses the middle band of the viewport - ratio thresholds fail on mobile where a page spans several screens */
   pages.forEach(p => activeIO.observe(p));
 
   $$('a[data-jump]').forEach(a => {
@@ -187,7 +186,7 @@ function startPages(){
 }
 
 /* =========================================================
-   5. GITHUB — stats + project index
+   5. GITHUB. stats + project index
    ========================================================= */
 async function loadGitHubData(){
   const reposEl = $('#statRepos');
@@ -219,10 +218,10 @@ async function loadGitHubData(){
 
     renderRepoIndex(buckets, indexHost);
   } catch {
-    if (reposEl) reposEl.textContent = '—';
-    if (inflightEl) inflightEl.textContent = '—';
+    if (reposEl) reposEl.textContent = '-';
+    if (inflightEl) inflightEl.textContent = '-';
     if (sourceEl) sourceEl.textContent = 'GITHUB · OFFLINE';
-    if (indexHost) indexHost.innerHTML = '<p class="ri-fallback">Index offline — <a href="https://github.com/Siddarthb07" target="_blank" rel="noopener noreferrer">view on GitHub ↗</a></p>';
+    if (indexHost) indexHost.innerHTML = '<p class="ri-fallback">Index offline. <a href="https://github.com/Siddarthb07" target="_blank" rel="noopener noreferrer">view on GitHub ↗</a></p>';
   } finally {
     reposEl?.classList.remove('loading');
     inflightEl?.classList.remove('loading');
@@ -344,7 +343,7 @@ function startProbe(){
 }
 
 /* =========================================================
-   8b. CORVEX ATTACK THEATRE — exact GIF sequence as widget
+   8b. CORVEX ATTACK THEATRE. exact GIF sequence as widget
    ========================================================= */
 function startCorvex(){
   const root = $('#corvexWidget');
@@ -357,7 +356,7 @@ function startCorvex(){
   const playBtn = $('#cxPlay');
   const replayBtn = $('#cxReplay');
 
-  // Each step only carries NEW events — stream appends them one-by-one as the demo advances.
+  // Each step only carries NEW events. stream appends them one-by-one as the demo advances.
   const STEPS = [
     {
       phase: 'ATTACK IN PROGRESS',
@@ -392,13 +391,13 @@ function startCorvex(){
     },
     {
       phase: 'ATTACK IN PROGRESS',
-      caption: '<b>host-c</b> falls — attacker now spans workstation, fileserver, jump box.',
+      caption: '<b>host-c</b> falls. Attacker now spans workstation, fileserver, jump box.',
       captionCls: '',
       hosts: { a: 'hit', b: 'hit', c: 'hit' },
       links: { a: 1, b: 1, c: 1 },
       mesh: 0, shields: {}, camp: 0,
       events: [
-        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box) — 3 hosts owned', meta: 'campaign complete across lab' }
+        { ts: '12:00:30', host: 'HOST-C', type: 'auth', text: '<em>alice</em> reaches <em>host-c</em> (jump box). 3 hosts owned', meta: 'campaign complete across lab' }
       ]
     },
     {
@@ -414,7 +413,7 @@ function startCorvex(){
     },
     {
       phase: 'INTERRUPT (DRY-RUN)',
-      caption: 'Defense action proposed for <b>host-a</b> / <b>host-b</b> / <b>host-c</b>. Logged only — live quarantine still locked.',
+      caption: 'Defense action proposed for <b>host-a</b> / <b>host-b</b> / <b>host-c</b>. Logged only. Live quarantine still locked.',
       captionCls: 'defend',
       hosts: { a: 'isolated', b: 'isolated', c: 'isolated' },
       links: { a: 1, b: 1, c: 1 },
@@ -569,7 +568,7 @@ function startCorvex(){
   }
 
   // Hold long enough that the link draw is readable before the next hop.
-  // Reduced-motion still steps (so Play/Replay never look dead) — just faster.
+  // Reduced-motion still steps (so Play/Replay never look dead). just faster.
   const STEP_MS = reduceMotion
     ? [700, 900, 900, 900, 1000, 1200, 700]
     : [2200, 3400, 3400, 3400, 3800, 5200, 2800];
@@ -623,7 +622,7 @@ function startCorvex(){
     }
   });
 
-  // Idle until the user presses Play — autoplay made Replay look dead once the sequence finished.
+  // Idle until the user presses Play. autoplay made Replay look dead once the sequence finished.
   ['A','B','C'].forEach(id => hideLink(document.getElementById('cxLink' + id)));
   renderGraph(STEPS[0]);
   if (phaseEl){ phaseEl.textContent = 'IDLE'; phaseEl.className = 'cx-phase'; }
@@ -635,7 +634,7 @@ function startCorvex(){
 }
 
 /* =========================================================
-   9. SIM — RPM + VRS
+   9. SIM. RPM + VRS
    ========================================================= */
 function initRPM(){
   const range = $('#rpmRange');
@@ -780,7 +779,7 @@ ready(() => {
     try { fn(); }
     catch (err) { console.error(label + ' failed', err); }
   };
-  // Paint path first — cover + nav — then mount below-the-fold widgets.
+  // Paint path first. cover + nav. then mount below-the-fold widgets.
   run('pages', startPages);
   run('keys', startKeys);
   boot();
