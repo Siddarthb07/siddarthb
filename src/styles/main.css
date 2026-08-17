@@ -945,6 +945,7 @@ main#comic{ position: relative; z-index: 1; }
 .eq-meta div{ display: flex; flex-direction: column; gap: 2px; }
 .eq-meta span{ font-family: var(--mono); font-size: .54rem; letter-spacing: .2em; color: var(--paper); text-transform: uppercase; }
 .eq-meta b{ font-family: var(--bang); font-size: 1.2rem; color: var(--yellow); }
+.eq-meta b em{ font-style: normal; color: var(--cyan); text-shadow: 0 0 12px rgba(0,229,255,.35); }
 
 /* RISK widget */
 .risk{ display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: center; }

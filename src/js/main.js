@@ -238,7 +238,7 @@ async function drawEquity(){
   const W = 320, H = 90;
   let pts = null;
   try {
-    const res = await fetch(`src/data/geoquant-equity.json?v=1`);
+    const res = await fetch(`src/data/geoquant-equity.json?v=2`);
     if (res.ok) {
       const data = await res.json();
       const vals = Array.isArray(data?.points) ? data.points.map(Number).filter(Number.isFinite) : [];

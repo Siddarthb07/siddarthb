@@ -618,26 +618,26 @@
           <a class="case-repo" href="https://github.com/Siddarthb07/GeoQuant" target="_blank" rel="noopener noreferrer" data-cur="open repo">
             github.com/GeoQuant ↗
           </a>
-          <p class="case-proof">FastAPI · MLP · news sentiment · Alpaca paper</p>
-          <p class="case-proof">MIT · Sharpe -0.47 walk-forward (honest baseline)</p>
+          <p class="case-proof">FastAPI · dual-MA trend · vol target · Alpaca paper</p>
+          <p class="case-proof">MIT · <b>v1 → v2</b> · Sharpe <em>-0.47 → 1.36</em></p>
         </div>
 
         <div class="panel narr panel-paper tilt-l">
           <span class="narr-tag">DOSSIER · BRIEF</span>
           <p>
-            Quant stack for US and India equities in one FastAPI app: MLP direction signals, news sentiment, <strong>walk-forward</strong> backtests with fees and slippage <em>inside</em> the optimizer, and an Alpaca paper ticket on the dashboard. First public daily run (2022 to 2025, 10 symbols, 10+5 bps costs in) printed Sharpe <strong>-0.47</strong> vs buy-and-hold. Weak, and that's the point of publishing it. Not a marketing curve.
+            Quant stack for US equities: walk-forward research with fees and slippage <em>inside</em> the optimizer, then an Alpaca paper ticket on the dashboard. <strong>v1</strong> was an MLP long/short baseline that printed Sharpe <strong>-0.47</strong> (2022 to 2025). <strong>v2</strong> replaces that with a long-only dual-MA sleeve plus an 18% portfolio vol target: Sharpe <strong>1.36</strong>, MDD <strong>17%</strong>, total return <strong>+167%</strong>. Same cost model. Same honesty rule. Better sleeve.
           </p>
           <ul class="case-bullets">
-            <li><b>Signals:</b> MLP classifiers + news sentiment</li>
-            <li><b>Walk-forward:</b> fees and slippage stay in the optimizer</li>
-            <li><b>Execute:</b> Alpaca paper / live dashboard</li>
-            <li><b>Metrics:</b> published under <code>results/2026-07-18_daily_v1</code></li>
+            <li><b>v1:</b> MLP long/short · Sharpe -0.47 · MDD 37% · return -33%</li>
+            <li><b>v2:</b> dual-MA + vol target · Sharpe 1.36 · MDD 17% · return +167%</li>
+            <li><b>Walk-forward:</b> 2022 to 2025 · 10+5 bps costs in</li>
+            <li><b>Metrics:</b> published under <code>results/2026-08-17_daily_v3</code> (public v2)</li>
           </ul>
         </div>
 
         <div class="panel evidence panel-ink">
           <div class="ev-head">
-            <span>EVIDENCE</span><b>MEASURED · WALK-FORWARD</b>
+            <span>EVIDENCE</span><b>V1 → V2 · MEASURED</b>
           </div>
           <div class="equity">
             <svg viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
@@ -645,13 +645,13 @@
               <path id="eqLine" d="" stroke="var(--yellow)" stroke-width="2" fill="none"/>
             </svg>
             <div class="eq-meta">
-              <div><span>SHARPE</span><b>-0.47</b></div>
-              <div><span>MDD</span><b>37%</b></div>
-              <div><span>HIT</span><b>51%</b></div>
-              <div><span>YR</span><b>4</b></div>
+              <div><span>SHARPE</span><b>-0.47 → <em>1.36</em></b></div>
+              <div><span>MDD</span><b>37% → <em>17%</em></b></div>
+              <div><span>RET</span><b>-33% → <em>+167%</em></b></div>
+              <div><span>YR</span><b>2022–25</b></div>
             </div>
           </div>
-          <p class="ev-note">Measured daily walk-forward (2022 to 2025, 10 symbols, 10+5 bps costs in). Sharpe -0.47 · underperforms buy-and-hold. <em>Weak but expected for a first cost-aware baseline, not a marketing curve</em>. Curve from this run: <a href="https://github.com/Siddarthb07/GeoQuant/blob/main/results/2026-07-18_daily_v1/SUMMARY.md" target="_blank" rel="noopener noreferrer">SUMMARY ↗</a> · <a href="https://github.com/Siddarthb07/GeoQuant/blob/main/results/2026-07-18_daily_v1/report.json" target="_blank" rel="noopener noreferrer">report.json ↗</a></p>
+          <p class="ev-note">v1 MLP long/short baseline vs public <strong>v2</strong> dual-MA + 18% vol target (same 2022 to 2025 window, 10+5 bps costs). Curve from the v2 run: <a href="https://github.com/Siddarthb07/GeoQuant/blob/main/results/2026-08-17_daily_v3/SUMMARY.md" target="_blank" rel="noopener noreferrer">SUMMARY ↗</a> · <a href="https://github.com/Siddarthb07/GeoQuant/blob/main/results/2026-08-17_daily_v3/report.json" target="_blank" rel="noopener noreferrer">report.json ↗</a> · tag <a href="https://github.com/Siddarthb07/GeoQuant/releases/tag/v2.0.0" target="_blank" rel="noopener noreferrer">v2.0.0 ↗</a></p>
         </div>
 
         <div class="sfx sfx-case sfx-yel">SHIP!</div>

@@ -16,7 +16,7 @@ A Spider-Verse-styled comic book dossier portfolio. Ten snap-scroll pages, multi
 | 02 | **ORIGIN** | Method / stakes / craft narration panels + 3 principles |
 | 03 | **CASE FILE #01 - ANIMA** | LLM internals · probe readout · valence / arousal / unc |
 | 04 | **CASE FILE #02 - CORVEX** | Multi-host campaign correlator · sealed eval · gated contain |
-| 05 | **CASE FILE #03 - GEOQUANT** | Walk-forward quant signals · animated equity curve · Sharpe / MDD / Hit / YR |
+| 05 | **CASE FILE #03 - GEOQUANT** | v1→v2 measured walk-forward · Sharpe -0.47→1.36 · MDD 37%→17% |
 | 06 | **CASE FILE #04 - DRIFT** | Calibrated risk · animated CVD dial · 4 biomarker bars |
 | 07 | **CASE FILE #05 - ORQIS** | Agent ops · incident explain · reviewable patch / PR |
 | 07 | **THE LAB** | Two physics solvers - propeller (RPM → thrust) and drone VRS (descent → vortex regime) |
