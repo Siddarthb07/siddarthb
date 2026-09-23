@@ -82,7 +82,7 @@ def build():
     story += [
         Paragraph("SIDDARTH BOGGARAPU", s["name"]),
         Paragraph(
-            "Bangalore, India · Aspiring B.S. Computer Science / AI-ML<br/>"
+            "Bangalore, India<br/>"
             "GitHub: Siddarthb07 · Portfolio: siddarthb07.github.io/siddarthb · "
             "Email: siddarthb078@gmail.com · Athera: athera.digital",
             s["contact"],
@@ -90,21 +90,11 @@ def build():
         Paragraph(
             "Builder portfolio centered on systems that <b>verify, cite, and refuse</b> under uncertainty — "
             "LLM instrumentation, grounded QA, multi-host security correlation, paper trading research, "
-            "agent ops, legal-tech RAG, and physical simulation. Soft early CBSE marks with a health-related "
-            "Grade 11 interruption; Class 12 and SAT not yet defined. CSET / SaTML submissions are "
+            "agent ops, legal-tech RAG, and physical simulation. CSET / SaTML submissions are "
             "<b>under review</b> (not accepted, not published).",
             s["summary"],
         ),
     ]
-
-    story += section("Education", s)
-    story.append(Paragraph("Central Board of Secondary Education (CBSE), India", s["role"]))
-    story.append(Paragraph("Secondary / Senior Secondary · Languages: English, Hindi, Telugu, Kannada", s["meta"]))
-    story += bullets([
-        "Class 10 board: 75%. Class 11: 70% after a health-related Grade 11 repeat (first attempt: no classes/exams).",
-        "Class 12 board result / predicted marks: not yet defined. SAT: not yet defined.",
-        "Intended major: Computer Science / Artificial Intelligence–Machine Learning.",
-    ], s)
 
     story += section("Research / workshop submissions (pending)", s)
     story.append(Paragraph("CSET · SaTML — under review", s["role"]))
