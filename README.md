@@ -14,15 +14,15 @@ A Spider-Verse-styled comic book dossier portfolio. Ten snap-scroll pages, multi
 |---|------|--------------|
 | 01 | **COVER** | Issue title, chromatic name, starburst, paper-quote panel |
 | 02 | **ORIGIN** | Method / stakes / craft narration panels + 3 principles |
-| 03 | **CASE FILE #01 - ANIMA** | LLM internals · probe readout · valence / arousal / unc |
-| 04 | **CASE FILE #02 - CORVEX** | Multi-host campaign correlator · sealed eval · gated contain |
-| 05 | **CASE FILE #03 - GEOQUANT** | v1→v2 measured walk-forward · Sharpe -0.47→1.36 · MDD 37%→17% |
-| 06 | **CASE FILE #04 - DRIFT** | Calibrated risk · animated CVD dial · 4 biomarker bars |
-| 07 | **CASE FILE #05 - ORQIS** | Agent ops · incident explain · reviewable patch / PR |
-| 07 | **THE LAB** | Two physics solvers - propeller (RPM → thrust) and drone VRS (descent → vortex regime) |
-| 08 | **TIMELINE** | Career as a 4-cell comic strip with ONGOING pulse |
-| 09 | **THE OPERATOR** | Quote · bio · daily stack · stats |
-| 10 | **SIGNAL** | End-of-issue card with magnetic CTA + links |
+| 03 | **THE LAB** | Two physics solvers - propeller (RPM → thrust) and drone VRS |
+| 04 | **CASE FILE #01 - ANIMA** | LLM internals · probe readout · valence / arousal / unc |
+| 05 | **CASE FILE #02 - BUMBLEBEE** | Transformer-free CEC · cite / refuse · opensourcing soon |
+| 06 | **CASE FILE #03 - CORVEX** | Multi-host campaign correlator · sealed eval · gated contain |
+| 07 | **CASE FILE #04 - GODFATHER** | NSE paper desk · multi-agent · opensourcing soon |
+| 08 | **CASE FILE #05 - ORQIS** | Agent ops · incident explain · reviewable patch / PR |
+| 09 | **TIMELINE** | Career as a 4-cell comic strip with ONGOING pulse |
+| 10 | **THE OPERATOR** | Quote · bio · stamps · stack · stats |
+| 11 | **SIGNAL** | End-of-issue card with magnetic CTA + links |
 
 Every project image is treated three ways so it BLENDS as comic panel art: high-contrast color filter, SVG duotone, and halftone dot overlay with multiply blend.
 

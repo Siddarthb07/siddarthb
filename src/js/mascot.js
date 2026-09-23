@@ -47,7 +47,15 @@ const SCRIPT = [
       { t: 'The widget is a demo. The real numbers (council 94.0) are in the benchmark report, linked on the EVIDENCE header.' }
     ]
   },
-  { // 04 · CORVEX · X eyes, arms crossed (gated contain)
+  { // 04 · BUMBLEBEE · architecture + honest scoreboard
+    state: 'think',
+    pos: { x: '95vw', y: '55vh', side: 'right', scale: .95, range: [16, 20] },
+    lines: [
+      { t: 'Transformer-free stack: encoder, correlator, coverage gate. Cite or refuse.' },
+      { t: 'Read the scoreboard. BM25 still slightly leads F1. OOD refuse is where CEC wins.' }
+    ]
+  },
+  { // 05 · CORVEX · X eyes, arms crossed (gated contain)
     state: 'refuse',
     pos: { x: '95vw', y: '58vh', side: 'right', scale: .95, range: [16, 22] },
     lines: [
@@ -55,19 +63,12 @@ const SCRIPT = [
       { t: 'The sealed held-out numbers are in the README. Synthetic packs; honest about what they do not prove.' }
     ]
   },
-  { // 05 · GEOQUANT · thinking dots, hand on chin
-    state: 'think',
+  { // 06 · GODFATHER · multi-agent desk
+    state: 'care',
     pos: { x: '2vw', y: '55vh', side: 'left', scale: .95, range: [16, 20] },
     lines: [
-      { t: 'It paper-trades live through Alpaca. The feedback loop retrains on its own fills.' }
-    ]
-  },
-  { // 06 · DRIFT · calm face, open palms
-    state: 'care',
-    pos: { x: '95vw', y: '55vh', side: 'right', scale: .95, range: [16, 20] },
-    lines: [
-      { t: 'Third health tracker he built. The only one that survived. The other two are archived.' },
-      { t: 'The failure modes are documented too. There\u2019s a whole ethics-and-failures file in the repo.' }
+      { t: 'Scout, Risk, and Session work the same desk. They fuse into one paper ticket.' },
+      { t: 'Risk can only cut size or force cash. The swarm is not allowed to raise risk.' }
     ]
   },
   { // 07 · ORQIS · focus face, presenting the VERIFIED stamp (patch)
@@ -89,7 +90,7 @@ const SCRIPT = [
     state: 'cheer',
     pos: { x: '97vw', y: '76vh', side: 'right', scale: .8, range: [10, 8] },
     lines: [
-      { t: 'The All-India CBSE football 2nd is the one credential on this page with zero asterisks. Look for the VERIFIED stamp.' }
+      { t: 'Check the STAMPS panel: YC Startup School India, Evex, research under review, and the football credential.' }
     ]
   },
   { // 10 · SIGNAL · eyes closed, bowing out with the VERIFIED stamp

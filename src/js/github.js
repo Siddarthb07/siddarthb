@@ -1,7 +1,7 @@
 /* GitHub project registry. source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v11';
+export const GH_CACHE_KEY = 'sb_gh_repos_v14';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
@@ -11,58 +11,100 @@ export const SITE = {
   founderMonths: 6
 };
 
-/** Repos never shown in the public index (site source, profile readme, archived toys, client work). */
+/** Repos never shown in the public index (site source, profile readme, toys). */
 export const REPO_HIDDEN = new Set([
   'Siddarthb07',
   'siddarthb',
-  'AI-BRAIN',
-  'AI-powered-whatsapp-chatbot',
-  'health-tracker-v2',
-  'AI-Risk-Prediction-',
-  'cv2-volume-control',
-  'webcam-sketcher',
-  'project_thrive',
-  'VidhiSethu',
   'first-contributions',
-  'sign-language-cv',
-  'orqis-e2e-test'
+  'orqis-e2e-test',
+  'vidhisetu-private'
 ]);
 
 export const REPO_TIERS = {
-  featured: ['Anima', 'corvex', 'GeoQuant', 'Drift'],
-  lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation'],
-  inflight: ['NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'cursor-llm-council', 'trade_bot'],
-  founder: ['Athera', 'Elevyx']
+  featured: ['Anima', 'bumblebee', 'corvex', 'GodFather', 'Orqis'],
+  lab: ['Propeller-simulator', 'Drone-Vortex-Ring-Simulation', 'homelab-rpi', 'pi-hole-nas'],
+  inflight: ['GeoQuant', 'Drift', 'NeuralVortex', 'text2sql-rag', 'vortex-tracker', 'cursor-llm-council', 'trade_bot', 'FleetControl'],
+  founder: ['Athera', 'VidhiSethu'],
+  archived: [
+    'Elevyx',
+    'AI-BRAIN',
+    'AI-powered-whatsapp-chatbot',
+    'AI-Risk-Prediction-',
+    'health-tracker-v2',
+    'cv2-volume-control',
+    'webcam-sketcher',
+    'project_thrive',
+    'sign-language-cv'
+  ]
 };
+
+/**
+ * Private / external projects that never appear in the public GitHub owner list
+ * but belong in the complete index (case files).
+ */
+export const INDEX_STUBS = [
+  {
+    name: 'bumblebee',
+    html_url: '#case-2',
+    description: 'private · opensourcing soon',
+    pushed_at: null,
+    language: null,
+    fork: false,
+    _stub: true,
+    _tier: 'featured'
+  },
+  {
+    name: 'GodFather',
+    html_url: '#case-4',
+    description: 'private · opensourcing soon',
+    pushed_at: null,
+    language: null,
+    fork: false,
+    _stub: true,
+    _tier: 'featured'
+  },
+  {
+    name: 'Orqis',
+    html_url: 'https://orqis-auto-agent-dev-ops.vercel.app',
+    description: 'cofounder · live product',
+    pushed_at: null,
+    language: null,
+    fork: false,
+    _stub: true,
+    _tier: 'featured',
+    _live: true
+  }
+];
 
 /** Display aliases when the GitHub repo name differs from the brand. */
 export const REPO_DISPLAY = {
-  corvex: 'Corvex'
-};
-
-export const PROOF_LINES = {
-  corvex: 'multi-host correlator · sealed eval · gated contain',
-  GeoQuant: 'walk-forward · Alpaca paper · cost in optimizer',
-  Drift: 'ACC/AHA · FINDRISC · safety gates',
-  Anima: 'HF hooks · valence / arousal / unc · MIT',
-  'Propeller-simulator': 'BEMT · GUI + CLI · CSV sweeps',
-  'Drone-Vortex-Ring-Simulation': 'Helmholtz · Kelvin Γ · viscous decay',
-  NeuralVortex: 'FNO surrogate · own CFD data · W&B',
-  'text2sql-rag': 'Spider benchmark · sqlglot validator · clean-room',
-  'vortex-tracker': 'OpenCV · diameter + speed · IISc May 2025',
-  Athera: 'AI automation · SMB workflows · no public client list',
-  Elevyx: 'founding dev · lead recovery · ended May 2026',
-  'cursor-llm-council': 'multi-model council · Cursor · no yes-men',
-  trade_bot: 'NSE bulk deals · WhatsApp alerts · research dash'
+  corvex: 'Corvex',
+  bumblebee: 'BumbleBee',
+  GodFather: 'GodFather',
+  VidhiSethu: 'VidhiSetu',
+  'Propeller-simulator': 'Propeller',
+  'Drone-Vortex-Ring-Simulation': 'Drone VRS',
+  'homelab-rpi': 'Homelab',
+  'pi-hole-nas': 'Pi-hole NAS',
+  'cursor-llm-council': 'LLM Council',
+  'text2sql-rag': 'Text2SQL',
+  'vortex-tracker': 'Vortex tracker',
+  'AI-powered-whatsapp-chatbot': 'WA chatbot',
+  'AI-Risk-Prediction-': 'Risk Pred.',
+  'health-tracker-v2': 'Health v2',
+  'cv2-volume-control': 'CV volume',
+  'webcam-sketcher': 'Webcam sketch',
+  'project_thrive': 'Thrive',
+  'sign-language-cv': 'Sign CV'
 };
 
 const TIER_ORDER = ['featured', 'lab', 'inflight', 'founder', 'archived', 'other'];
 const TIER_LABELS = {
-  featured: 'CASE FILES',
+  featured: 'CASES',
   lab: 'LAB',
-  inflight: 'OTHER PROJECTS',
+  inflight: 'BUILD',
   founder: 'FOUNDER',
-  archived: 'ARCHIVED',
+  archived: 'ARCHIVE',
   other: 'OTHER'
 };
 
@@ -70,11 +112,13 @@ export function padStat(n){
   return n >= 100 ? String(n) : String(n).padStart(2, '0');
 }
 
-export function tierForRepo(name, description = ''){
+export function tierForRepo(name, description = '', forced){
+  if (forced) return forced;
   if (REPO_TIERS.featured.includes(name)) return 'featured';
   if (REPO_TIERS.lab.includes(name)) return 'lab';
   if (REPO_TIERS.inflight.includes(name)) return 'inflight';
   if (REPO_TIERS.founder.includes(name)) return 'founder';
+  if (REPO_TIERS.archived.includes(name)) return 'archived';
   if (/archived/i.test(description || '')) return 'archived';
   return 'other';
 }
@@ -89,11 +133,18 @@ export function publicRepoCount(repos){
 }
 
 export function categorizeRepos(repos){
-  const visible = visibleRepos(repos);
-  const buckets = Object.fromEntries(TIER_ORDER.map(t => [t, []]));
+  const byName = new Map();
+  for (const repo of visibleRepos(repos)){
+    byName.set(repo.name, repo);
+  }
+  // Seed private/external case files so the index is complete.
+  for (const stub of INDEX_STUBS){
+    if (!byName.has(stub.name)) byName.set(stub.name, stub);
+  }
 
-  for (const repo of visible){
-    const tier = tierForRepo(repo.name, repo.description);
+  const buckets = Object.fromEntries(TIER_ORDER.map(t => [t, []]));
+  for (const repo of byName.values()){
+    const tier = tierForRepo(repo.name, repo.description, repo._tier);
     buckets[tier].push(repo);
   }
 
@@ -110,7 +161,7 @@ export function categorizeRepos(repos){
     }
   }
 
-  return { visible, buckets };
+  return { visible: [...byName.values()], buckets };
 }
 
 export function inflightCount(buckets){
@@ -152,15 +203,6 @@ export async function fetchAllRepos(){
   return repos;
 }
 
-export function relAge(iso){
-  if (!iso) return '';
-  const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
-  if (days < 1) return 'today';
-  if (days < 30) return `${days}d ago`;
-  if (days < 365) return `${Math.floor(days / 30)}mo ago`;
-  return `${Math.floor(days / 365)}y ago`;
-}
-
 function escapeHtml(s){
   return String(s)
     .replace(/&/g, '&amp;')
@@ -170,11 +212,17 @@ function escapeHtml(s){
     .replace(/'/g, '&#39;');
 }
 
-function safeGithubUrl(url){
+function safeHref(url){
+  const raw = String(url || '');
+  if (raw.startsWith('#')) return raw;
   try {
-    const u = new URL(String(url || ''));
+    const u = new URL(raw);
     if (u.protocol !== 'https:') return 'https://github.com/Siddarthb07';
-    if (u.hostname !== 'github.com' && u.hostname !== 'www.github.com') return 'https://github.com/Siddarthb07';
+    if (
+      u.hostname !== 'github.com' &&
+      u.hostname !== 'www.github.com' &&
+      !u.hostname.endsWith('.vercel.app')
+    ) return 'https://github.com/Siddarthb07';
     return u.href;
   } catch {
     return 'https://github.com/Siddarthb07';
@@ -184,34 +232,32 @@ function safeGithubUrl(url){
 export function renderRepoIndex(buckets, host){
   if (!host) return;
 
-  const parts = [];
+  const sections = [];
   for (const tier of TIER_ORDER){
     const list = buckets[tier];
     if (!list.length) continue;
-
-    parts.push(`<div class="ri-tier"><span class="ri-label">${escapeHtml(TIER_LABELS[tier])}</span><ul class="ri-list">`);
-    for (const repo of list){
-      const proof = PROOF_LINES[repo.name] || (repo.language ? repo.language : 'open source');
+    const tierLabel = TIER_LABELS[tier] || tier;
+    const items = list.map(repo => {
       const label = REPO_DISPLAY[repo.name] || repo.name;
-      const rawDesc = repo.description
-        ? repo.description
-            .replace(/archived[.,]?\s*/i, '')
-            .replace(/\u2014/g, '\u00b7')
-            .replace(/\u2013/g, '-')
-            .replace(/\u00b7\s*,\s*/g, '\u00b7 ')
-            .trim()
-        : proof;
-      const desc = escapeHtml(rawDesc);
-      const safeLabel = escapeHtml(label);
-      const upd = relAge(repo.pushed_at);
-      const href = safeGithubUrl(repo.html_url);
-      parts.push(
-        `<li><a href="${href}" target="_blank" rel="noopener noreferrer" data-cur="repo">` +
-        `<b>${safeLabel}${upd ? `<i class="ri-upd">upd ${escapeHtml(upd)}</i>` : ''}</b><span>${desc}</span></a></li>`
+      const href = safeHref(repo.html_url);
+      const isHash = href.startsWith('#');
+      const soon = repo._stub && !repo._live ? ' <i class="ri-soon">soon</i>' : '';
+      const target = isHash ? '' : ' target="_blank" rel="noopener noreferrer"';
+      const jump = isHash ? ` data-jump="${href === '#case-2' ? '4' : href === '#case-4' ? '6' : ''}"` : '';
+      return (
+        `<li class="ri-item" data-tier="${escapeHtml(tier)}">` +
+        `<a href="${escapeHtml(href)}"${target}${jump} data-cur="repo">` +
+        `${escapeHtml(label)}${soon}</a></li>`
       );
-    }
-    parts.push('</ul></div>');
+    });
+    sections.push(
+      `<section class="ri-col" data-tier="${escapeHtml(tier)}">` +
+      `<h4 class="ri-col-label">${escapeHtml(tierLabel)}</h4>` +
+      `<ul class="ri-list">${items.join('')}</ul></section>`
+    );
   }
 
-  host.innerHTML = parts.join('');
+  host.innerHTML = sections.length
+    ? `<div class="ri-board">${sections.join('')}</div>`
+    : `<p class="ri-fallback">No public repos to list.</p>`;
 }

@@ -24,9 +24,9 @@ const PAGES = [
   { num: '02', name: 'ORIGIN' },
   { num: '03', name: 'THE LAB' },
   { num: '04', name: 'ANIMA' },
-  { num: '05', name: 'CORVEX' },
-  { num: '06', name: 'GEOQUANT' },
-  { num: '07', name: 'DRIFT' },
+  { num: '05', name: 'BUMBLEBEE' },
+  { num: '06', name: 'CORVEX' },
+  { num: '07', name: 'GODFATHER' },
   { num: '08', name: 'ORQIS' },
   { num: '09', name: 'TIMELINE' },
   { num: '10', name: 'OPERATOR' },
@@ -202,7 +202,7 @@ async function loadGitHubData(){
     const {
       SITE, fetchAllRepos, categorizeRepos, inflightCount,
       publicRepoCount, padStat, renderRepoIndex
-    } = await import('./github.js?v=sb01-34');
+    } = await import('./github.js?v=sb01-39');
     const all = await fetchAllRepos();
     const { buckets } = categorizeRepos(all);
     const inflight = inflightCount(buckets);
@@ -229,78 +229,166 @@ async function loadGitHubData(){
 }
 
 /* =========================================================
-   6. EQUITY (measured GeoQuant walk-forward sparkline)
+   6. BUMBLEBEE CEC CHAT DASH (from bumblebee dash_app)
    ========================================================= */
-async function drawEquity(){
-  const line = $('#eqLine');
-  const fill = $('#eqFill');
-  if (!line) return;
-  const W = 320, H = 90;
-  let pts = null;
-  try {
-    const res = await fetch(`src/data/geoquant-equity.json?v=2`);
-    if (res.ok) {
-      const data = await res.json();
-      const vals = Array.isArray(data?.points) ? data.points.map(Number).filter(Number.isFinite) : [];
-      if (vals.length >= 2) {
-        const lo = Math.min(...vals), hi = Math.max(...vals);
-        const span = Math.max(hi - lo, 1);
-        pts = vals.map((v, i) => {
-          const x = i * (W / (vals.length - 1));
-          const y = H - 8 - ((v - lo) / span) * (H - 16);
-          return [x, clamp(y, 4, H - 4)];
-        });
+function startBumble(){
+  const root = $('#bumbleWidget');
+  const log = $('#beeLog');
+  const chips = $('#beeChips');
+  if (!root || !log || !chips) return;
+
+  const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const add = (role, html, cls='') => {
+    const d = document.createElement('div');
+    d.className = 'bee-msg ' + role + (cls ? ' ' + cls : '');
+    d.innerHTML = html;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+  };
+
+  const REPLIES = {
+    'What is Holi?': {
+      status: 'answer',
+      answer: 'Holi is a Hindu spring festival of colors, celebrated with colored powders and water.',
+      cite: 'Holi is a popular ancient Hindu festival, also known as the Festival of Colors.'
+    },
+    'Who won the 2022 FIFA World Cup?': {
+      status: 'refuse', reason: 'coverage_fail',
+      hint: 'Outside the frozen pack — CoverageGate refuses.'
+    },
+    'What is the GPU throughput rating of McKinsey?': {
+      status: 'refuse', reason: 'entity_gap',
+      hint: 'No sealed passage binds McKinsey to a GPU throughput rating.'
+    },
+    'What is 17×19?': {
+      status: 'answer', answer: '323', cite: null, skill: 'math'
+    },
+    'explain SoftCorrelator': {
+      status: 'answer',
+      answer: 'SoftCorrelator puts sparsemax mass on evidence cells. High mass + coverage → cite. Thin mass → refuse.',
+      cite: 'sparsemax mass binding across Correlated Evidence Cells'
+    }
+  };
+
+  let busy = false;
+  const ask = (text) => {
+    if (busy) return;
+    busy = true;
+    add('user', esc(text));
+    const data = REPLIES[text] || {
+      status: 'refuse', reason: 'coverage_fail', hint: 'Not in this demo pack — try a chip below.'
+    };
+    setTimeout(() => {
+      if (data.status === 'answer'){
+        const tag = data.skill ? `SKILL · ${data.skill}` : 'CITE';
+        let html = `<div class="lab">${tag}</div><div>${esc(data.answer)}</div>`;
+        if (data.cite) html += `<div class="cite">${esc(data.cite)}</div>`;
+        add('bot', html, 'answer');
+      } else {
+        add('bot',
+          `<div class="lab">REFUSE · ${esc(data.reason)}</div>`
+          + (data.hint ? `<div>${esc(data.hint)}</div>` : ''),
+          'refuse');
       }
-    }
-  } catch { /* fall through to placeholder */ }
+      busy = false;
+    }, reduceMotion ? 40 : 380);
+  };
 
-  if (!pts) {
-    // Fallback placeholder if the measured JSON fails to load
-    let v = 50; const seedPts = [];
-    let seed = 7;
-    const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
-    for (let i = 0; i < 80; i++){
-      v += (rand() - 0.4) * 4 + 0.6;
-      seedPts.push([i * (W / 79), H - clamp(v, 5, 85)]);
-    }
-    pts = seedPts;
-  }
+  const examples = [
+    { label: 'cite', text: 'What is Holi?' },
+    { label: 'refuse', text: 'Who won the 2022 FIFA World Cup?' },
+    { label: 'gap', text: 'What is the GPU throughput rating of McKinsey?' },
+    { label: 'math', text: 'What is 17×19?' },
+    { label: 'arch', text: 'explain SoftCorrelator' }
+  ];
+  chips.innerHTML = '';
+  examples.forEach(ex => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'bee-chip';
+    b.textContent = ex.label;
+    b.title = ex.text;
+    b.setAttribute('aria-label', ex.text);
+    b.addEventListener('click', () => ask(ex.text));
+    chips.appendChild(b);
+  });
 
-  const d  = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
-  const df = `M0,${H} ` + pts.map(p => 'L' + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ') + ` L${W},${H} Z`;
-  line.setAttribute('d', d);
-  if (fill) fill.setAttribute('d', df);
+  add('bot', '<div class="lab">DEMO</div><div>Tap a chip — cite when covered, refuse when thin.</div>', 'idle');
 }
 
 /* =========================================================
-   7. RISK DIAL
+   7. GODFATHER SESSION-SIM DASH (from FastAPI /rank · /simulate)
    ========================================================= */
-function setRisk(v=0.31){
-  const arc = $('#riskArc'); const num = $('#riskNum');
-  if (!arc) return;
-  const len = Math.PI * 50;
-  arc.setAttribute('d', 'M10,60 A50,50 0 0,1 110,60');
-  arc.style.strokeDasharray = len;
-  arc.style.strokeDashoffset = len;
-  arc.getBoundingClientRect();
-  arc.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.16,1,.3,1)';
-  arc.style.strokeDashoffset = (len * (1 - v)).toFixed(1);
-  if (num) num.textContent = v.toFixed(2);
+function startGodfather(){
+  const root = $('#godfatherWidget');
+  if (!root) return;
+  const phase = $('#gfPhase');
+  const ticket = $('#gfTicket');
+  const ledger = $('#gfLedger');
+  const tbody = $('#gfPicks tbody');
+  const scout = $('#gfScout b');
+  const risk = $('#gfRisk b');
+  const session = $('#gfSession b');
+  const rankBtn = $('#gfRank');
+  const simBtn = $('#gfSim');
+
+  const PICKS = [
+    { ticker: 'RELIANCE', wr: 0.72, score: 2.41, agent: 'Scout' },
+    { ticker: 'TCS', wr: 0.68, score: 1.92, agent: 'Scout' },
+    { ticker: 'INFY', wr: 0.61, score: 1.14, agent: 'Scout' }
+  ];
+
+  const paintPicks = (active) => {
+    if (!tbody) return;
+    tbody.innerHTML = PICKS.map((p, i) =>
+      `<tr class="${active && i < 2 ? 'on' : ''}"><td>${i+1}</td><td>${p.ticker}</td><td>${p.wr.toFixed(2)}</td><td>${p.score.toFixed(2)}</td><td>${p.agent}</td></tr>`
+    ).join('');
+  };
+
+  const setAgents = (s, r, se, on) => {
+    if (scout) scout.innerHTML = s;
+    if (risk) risk.innerHTML = r;
+    if (session) session.innerHTML = se;
+    root.querySelectorAll('.gf-agent').forEach(el => el.classList.toggle('on', !!on));
+  };
+
+  const runRank = () => {
+    if (phase) phase.textContent = 'RANK';
+    setAgents('bulk BUY ranked', 'watching', 'idle', false);
+    $('#gfScout')?.classList.add('on');
+    paintPicks(false);
+    if (ticket) ticket.innerHTML = 'POST /rank · prior-session bulk/block · no lookahead';
+    if (ledger) ledger.innerHTML = '';
+  };
+
+  const runSim = () => {
+    if (phase) phase.textContent = 'SIM';
+    paintPicks(true);
+    setAgents('candidates locked', 'size cut · 0.85', 'open-range entry', true);
+    if (ticket) ticket.innerHTML = '<b class="ok">PAPER FILL</b> · RELIANCE + TCS · SL + soft trail · fail-closed';
+    if (ledger) ledger.innerHTML =
+      '<div><span>equity</span><b>₹24.8k</b></div>'
+      + '<div><span>paper Δ</span><b>+148%</b></div>'
+      + '<div><span>mode</span><b>sim</b></div>';
+    setTimeout(() => {
+      if (phase) phase.textContent = 'BLOCK';
+      setAgents('cooldown', '<b class="bad">BLOCKED</b>', 'sit cash', false);
+      $('#gfRisk')?.classList.add('on');
+      if (ticket) ticket.innerHTML = '<b class="bad">NO RAISE</b> · Risk veto · paper only · not live P&amp;L';
+    }, reduceMotion ? 80 : 1100);
+  };
+
+  rankBtn?.addEventListener('click', runRank);
+  simBtn?.addEventListener('click', () => { runRank(); setTimeout(runSim, reduceMotion ? 60 : 500); });
+  runRank();
 }
 
 /* =========================================================
-   8. ANIMA PROBE READOUT
+   8. ANIMA READOUT DASH (circumplex + stream from dashboard)
    ========================================================= */
 function startProbe(){
-  const host = $('#probeBars');
-  if (!host) return;
-  host.innerHTML = '';
-  const N = 36;
-  const bars = [];
-  for (let i = 0; i < N; i++){
-    const s = document.createElement('span');
-    host.appendChild(s); bars.push(s);
-  }
+  const root = $('#animaWidget');
+  if (!root) return;
   const valBar = $('#valBar');
   const aroBar = $('#aroBar');
   const uncBar = $('#uncBar');
@@ -310,36 +398,133 @@ function startProbe(){
   const token = $('#probeToken');
   const layer = $('#probeLayer');
   const state = $('#probeState');
-  const states = ['STREAM','HOOK','PROBE','EMIT'];
-  let si = 0, tok = 47, t0 = performance.now();
-  function tick(now){
-    const t = (now - t0) / 1000;
-    const val = (Math.sin(t * 1.4) * 0.35 + Math.sin(t * 0.7) * 0.15);
-    const aro = (Math.sin(t * 2.1 + 1.2) * 0.5 + 0.5);
-    const unc = clamp(0.18 + Math.sin(t * 0.9 + 2.4) * 0.22 + Math.sin(t * 3.1) * 0.08, 0.05, 0.92);
-    for (let i = 0; i < N; i++){
-      const w = (Math.sin(i * 0.55 + t * 5 + val * 2) + Math.sin(i * 0.2 + t * 2.8)) * 0.5 + 0.5;
-      const decay = 1 - Math.abs((i - N/2) / (N/2));
-      bars[i].style.height = (8 + w * decay * (60 + aro * 40)) + '%';
-    }
+  const tokensEl = $('#anTokens');
+  const dot = $('#anDot');
+  const dots = $('#anDots');
+  const streamBtn = $('#anStream');
+  const stopBtn = $('#anStop');
+
+  const WORDS = ['Hello', 'there', '—', 'valence', 'drifts', 'calm', 'then', 'spikes', 'on', 'uncertainty', 'tokens', 'stream'];
+  let running = false, raf = 0, tok = 0, t0 = 0;
+  const trail = [];
+
+  const setBars = (val, aro, unc) => {
     if (valBar) valBar.style.setProperty('--w', ((val + 1) / 2 * 100).toFixed(1) + '%');
     if (aroBar) aroBar.style.setProperty('--w', (aro * 100).toFixed(1) + '%');
     if (uncBar) uncBar.style.setProperty('--w', (unc * 100).toFixed(1) + '%');
     if (valNum) valNum.textContent = (val >= 0 ? '+' : '') + val.toFixed(2);
     if (aroNum) aroNum.textContent = aro.toFixed(2);
     if (uncNum) uncNum.textContent = unc.toFixed(2);
-    if (Math.floor(t * 8) % 18 === 0){
-      tok = (tok + 1) % 999;
-      if (token) token.textContent = String(tok).padStart(3, '0');
-      if (layer) layer.textContent = '−' + (4 + (tok % 5));
+    if (dot){
+      dot.setAttribute('cx', String(110 + val * 88));
+      dot.setAttribute('cy', String(90 - (aro - 0.5) * 120));
     }
-    if (Math.floor(t * 10) % 24 === 0){
-      si = (si + 1) % states.length;
-      if (state) state.textContent = states[si];
+  };
+
+  const pushToken = (w, on) => {
+    if (!tokensEl) return;
+    const s = document.createElement('span');
+    s.textContent = w;
+    if (on) s.classList.add('on');
+    tokensEl.appendChild(s);
+    while (tokensEl.children.length > 14) tokensEl.removeChild(tokensEl.firstChild);
+  };
+
+  const tick = (now) => {
+    if (!running) return;
+    const t = (now - t0) / 1000;
+    const val = Math.sin(t * 1.35) * 0.42 + Math.sin(t * 0.55) * 0.12;
+    const aro = clamp(0.5 + Math.sin(t * 1.9 + 0.8) * 0.35, 0.05, 0.95);
+    const unc = clamp(0.2 + Math.sin(t * 0.95 + 2) * 0.25, 0.05, 0.9);
+    setBars(val, aro, unc);
+    if (Math.floor(t * 6) !== Math.floor((t - 0.016) * 6)){
+      const w = WORDS[tok % WORDS.length];
+      pushToken(w, true);
+      if (token) token.textContent = String(tok % 999).padStart(3, '0');
+      if (layer) layer.textContent = '−' + (3 + (tok % 4));
+      if (state) state.textContent = ['STREAM','HOOK','PROBE','EMIT'][tok % 4];
+      if (dots){
+        const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        c.setAttribute('cx', String(110 + val * 88));
+        c.setAttribute('cy', String(90 - (aro - 0.5) * 120));
+        c.setAttribute('r', '2.5');
+        c.setAttribute('fill', 'rgba(56,196,224,.45)');
+        dots.appendChild(c);
+        trail.push(c);
+        if (trail.length > 40){ dots.removeChild(trail.shift()); }
+      }
+      tok++;
     }
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
+    raf = requestAnimationFrame(tick);
+  };
+
+  const start = () => {
+    if (running) return;
+    running = true;
+    t0 = performance.now();
+    if (tokensEl) tokensEl.innerHTML = '';
+    if (dots) dots.innerHTML = '';
+    trail.length = 0;
+    if (state) state.textContent = 'STREAM';
+    raf = requestAnimationFrame(tick);
+  };
+  const stop = () => {
+    running = false;
+    if (raf) cancelAnimationFrame(raf);
+    if (state) state.textContent = 'IDLE';
+  };
+
+  streamBtn?.addEventListener('click', start);
+  stopBtn?.addEventListener('click', stop);
+  setBars(0.12, 0.48, 0.31);
+  start();
+}
+
+/* =========================================================
+   8c. ORQIS INCIDENT CONSOLE
+   ========================================================= */
+function startOrqis(){
+  const root = $('#orqisWidget');
+  const log = $('#oqLog');
+  const phase = $('#oqPhase');
+  const btn = $('#oqRun');
+  if (!root || !log) return;
+
+  const steps = [
+    { s: 'detect', phase: 'DETECT', lvl: 'ok', t: '0.0s', line: 'Runaway tool loop · resolve_refund ×14' },
+    { s: 'explain', phase: 'EXPLAIN', lvl: 'ok', t: '0.4s', line: 'MCP RCA · missing backoff on refund tool' },
+    { s: 'patch', phase: 'PATCH', lvl: 'ok', t: '1.1s', line: 'libcst bound retry + escalate · unified diff ready' },
+    { s: 'review', phase: 'REVIEW', lvl: 'ok', t: '1.4s', line: 'PR opened · human approval required' },
+    { s: 'refuse', phase: 'REFUSE', lvl: 'bad', t: '1.5s', line: 'Default branch push refused · never silent-push' }
+  ];
+  let timer = null;
+
+  const run = () => {
+    if (timer){ clearTimeout(timer); timer = null; }
+    log.innerHTML = '';
+    root.querySelectorAll('.oq-stage').forEach(el => { el.classList.remove('on', 'bad'); });
+    let i = 0;
+    const tick = () => {
+      const st = steps[i];
+      const stage = root.querySelector(`.oq-stage[data-s="${st.s}"]`);
+      if (stage){
+        stage.classList.add('on');
+        if (st.lvl === 'bad') stage.classList.add('bad');
+      }
+      if (phase) phase.textContent = st.phase;
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML = `<span class="t">${st.t}</span><span class="l">${st.line}</span><span class="lvl ${st.lvl}">${st.lvl.toUpperCase()}</span>`;
+      log.appendChild(row);
+      log.scrollTop = log.scrollHeight;
+      i++;
+      if (i < steps.length) timer = setTimeout(tick, reduceMotion ? 80 : 700);
+      else if (phase) phase.textContent = 'DONE';
+    };
+    tick();
+  };
+  btn?.addEventListener('click', run);
+  run();
 }
 
 /* =========================================================
@@ -508,6 +693,8 @@ function startCorvex(){
     stream.prepend(div);
     stream.scrollTop = 0;
     requestAnimationFrame(() => div.classList.add('on'));
+    const kpi = $('#cxKpiEvents');
+    if (kpi) kpi.textContent = String(stream.children.length);
   }
 
   function flushEvents(){
@@ -547,6 +734,12 @@ function startCorvex(){
       campEl.textContent = s.camp ? 'camp-lateral-alice' : '';
       campEl.style.opacity = s.camp ? '1' : '0';
     }
+    const kpiCamp = $('#cxKpiCamp');
+    if (kpiCamp) kpiCamp.textContent = s.camp ? '1' : '0';
+    const kpiAct = $('#cxKpiAct');
+    if (kpiAct) kpiAct.textContent = (s.phase || '').includes('CONTAIN') ? 'dry-run' : 'observe';
+    const pulse = $('#cxPulse');
+    if (pulse) pulse.classList.toggle('idle', !(s.phase && s.phase !== 'IDLE' && !s.phase.includes('DONE')));
   }
 
   function resetVisual(){
@@ -784,15 +977,16 @@ ready(() => {
   run('keys', startKeys);
   boot();
   const mountWidgets = () => {
-    run('equity', drawEquity);
-    run('risk', () => setRisk(0.31));
+    run('bumble', startBumble);
+    run('godfather', startGodfather);
     run('probe', startProbe);
     run('corvex', startCorvex);
+    run('orqis', startOrqis);
     run('rpm', initRPM);
     run('vrs', initVRS);
     run('magnets', startMagnets);
     run('mascot', () => {
-      import('./mascot.js?v=sb01-20')
+      import('./mascot.js?v=sb01-22')
         .then(m => m.initMascot())
         .catch(err => console.error('mascot failed', err));
     });
