@@ -243,7 +243,7 @@ def build():
         "Websites / volunteering: Project Thrive, Project Lighthouse, Arogi Foundation.",
         "Football: school team 4 years; state-level CBSE tournament; Goa Globe 2024, team 2nd place; ESSB / GameON.",
         "Past competitive skating (ForceOne Academy). Motorcycle track training (trained, not certified).",
-        "Badminton, swimming, Model UN; 50+ hours of community service.",
+        "Badminton, swimming, Model UN; two SWEA school trips (three days each); 50+ hours of community service.",
     ], s)
 
     story.append(Spacer(1, 8))

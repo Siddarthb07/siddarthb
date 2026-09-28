@@ -16,9 +16,9 @@ A Spider-Verse-styled comic book dossier portfolio. Ten snap-scroll pages, multi
 | 02 | **ORIGIN** | Method / stakes / craft narration panels + 3 principles |
 | 03 | **THE LAB** | Two physics solvers - propeller (RPM → thrust) and drone VRS |
 | 04 | **CASE FILE #01 - ANIMA** | LLM internals · probe readout · valence / arousal / unc |
-| 05 | **CASE FILE #02 - BUMBLEBEE** | Transformer-free CEC · cite / refuse · opensourcing soon |
+| 05 | **CASE FILE #02 - BUMBLEBEE** | Transformer-free CEC · cite / refuse · private repo |
 | 06 | **CASE FILE #03 - CORVEX** | Multi-host campaign correlator · sealed eval · gated contain |
-| 07 | **CASE FILE #04 - GODFATHER** | NSE paper desk · multi-agent · opensourcing soon |
+| 07 | **CASE FILE #04 - GODFATHER** | NSE paper desk · multi-agent · private repo |
 | 08 | **CASE FILE #05 - ORQIS** | Agent ops · incident explain · reviewable patch / PR |
 | 09 | **TIMELINE** | Career as a 4-cell comic strip with ONGOING pulse |
 | 10 | **THE OPERATOR** | Quote · bio · stamps · stack · stats |
