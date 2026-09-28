@@ -202,7 +202,7 @@ async function loadGitHubData(){
     const {
       SITE, fetchAllRepos, categorizeRepos, inflightCount,
       publicRepoCount, padStat, renderRepoIndex
-    } = await import('./github.js?v=sb01-39');
+    } = await import('./github.js?v=sb01-40');
     const all = await fetchAllRepos();
     const { buckets } = categorizeRepos(all);
     const inflight = inflightCount(buckets);
@@ -213,7 +213,7 @@ async function loadGitHubData(){
     if (sourceEl) sourceEl.textContent = 'GITHUB · LIVE';
     if (coverMeta){
       coverMeta.textContent =
-        `${padStat(SITE.caseFiles)} CASE FILES · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(publicCount)} OPEN REPOS`;
+        `${padStat(SITE.caseFiles)} CASE FILES (${SITE.privateCaseFiles} PRIVATE) · ${padStat(SITE.liveSims)} LIVE SIMS · ${padStat(publicCount)} OPEN REPOS`;
     }
 
     renderRepoIndex(buckets, indexHost);
@@ -986,7 +986,7 @@ ready(() => {
     run('vrs', initVRS);
     run('magnets', startMagnets);
     run('mascot', () => {
-      import('./mascot.js?v=sb01-22')
+      import('./mascot.js?v=sb01-23')
         .then(m => m.initMascot())
         .catch(err => console.error('mascot failed', err));
     });

@@ -1,12 +1,13 @@
 /* GitHub project registry. source of truth for public repo index + live stats */
 
 export const GH_USER = 'Siddarthb07';
-export const GH_CACHE_KEY = 'sb_gh_repos_v14';
+export const GH_CACHE_KEY = 'sb_gh_repos_v15';
 export const GH_CACHE_TTL = 60 * 60 * 1000;
 
 export const SITE = {
   caseFiles: 5,
-  internships: 3,
+  privateCaseFiles: 2,
+  internships: 2,
   liveSims: 2,
   founderMonths: 6
 };
@@ -46,7 +47,7 @@ export const INDEX_STUBS = [
   {
     name: 'bumblebee',
     html_url: '#case-2',
-    description: 'private · opensourcing soon',
+    description: 'private repo',
     pushed_at: null,
     language: null,
     fork: false,
@@ -56,7 +57,7 @@ export const INDEX_STUBS = [
   {
     name: 'GodFather',
     html_url: '#case-4',
-    description: 'private · opensourcing soon',
+    description: 'private repo',
     pushed_at: null,
     language: null,
     fork: false,
@@ -241,7 +242,7 @@ export function renderRepoIndex(buckets, host){
       const label = REPO_DISPLAY[repo.name] || repo.name;
       const href = safeHref(repo.html_url);
       const isHash = href.startsWith('#');
-      const soon = repo._stub && !repo._live ? ' <i class="ri-soon">soon</i>' : '';
+      const soon = repo._stub && !repo._live ? ' <i class="ri-soon">private</i>' : '';
       const target = isHash ? '' : ' target="_blank" rel="noopener noreferrer"';
       const jump = isHash ? ` data-jump="${href === '#case-2' ? '4' : href === '#case-4' ? '6' : ''}"` : '';
       return (

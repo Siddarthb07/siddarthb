@@ -35,8 +35,8 @@ const SCRIPT = [
     state: 'excited',
     pos: { x: '95vw', y: '6vh', side: 'right', scale: .8, range: [12, 6] },
     lines: [
-      { t: 'These sliders drive demo curves. The real BEMT and vortex-ring solvers are in the linked repos.' },
-      { t: 'Try dragging the descent rate into the unstable zone. The BEMT code tuned props for the same drones on page 02.' }
+      { t: 'These sliders drive demo curves. The BEMT-style and vortex-ring solvers are in the linked repos.' },
+      { t: 'Try dragging the descent rate into the unstable zone. The BEMT-style model helped pick props for the same drones on page 02.' }
     ]
   },
   { // 03 · ANIMA · waveform face, magnifier raised
@@ -44,7 +44,7 @@ const SCRIPT = [
     pos: { x: '2vw', y: '60vh', side: 'left', scale: .95, range: [16, 22] },
     lines: [
       { t: 'The HaluEval and TruthfulQA runs are guard smoke tests on fixtures. The repo documents how to re-run them.' },
-      { t: 'The widget is a demo. The real numbers (council 94.0) are in the benchmark report, linked on the EVIDENCE header.' }
+      { t: 'The widget is a demo. The benchmark numbers (TinyLlama 94/100 on the validity rubric) are in the report linked on the EVIDENCE header.' }
     ]
   },
   { // 04 · BUMBLEBEE · architecture + honest scoreboard

@@ -98,10 +98,9 @@ def build():
 
     story += section("Research / workshop submissions (pending)", s)
     story.append(Paragraph("CSET · SaTML — under review", s["role"]))
-    story.append(Paragraph("Trust / evaluation / Anima-adjacent materials · awaiting decision", s["meta"]))
+    story.append(Paragraph("Security experimentation (CSET) and trustworthy ML (SaTML) · decisions pending", s["meta"]))
     story += bullets([
-        "Do not list as published or accepted until official notice.",
-        "Private anonymized SaTML 2027 System A evaluation artifact prepared for the review process.",
+        "Submitted and under review. Not accepted or published.",
     ], s)
 
     story += section("Ventures and professional experience", s)
@@ -111,13 +110,13 @@ def build():
     story += bullets([
         "Owns backend for an agent-ops product: detect runaway loops, explain via MCP, open a reviewable patch/PR.",
         "Deterministic libcst remediations plus confidence-gated LLM assist; never silent-pushes the default branch.",
-        "Live product with beta onboarding — strongest shipping founder credential.",
+        "Live product with beta onboarding.",
     ], s)
 
     story.append(Paragraph("Athera (athera.digital) — Founder", s["role"]))
     story.append(Paragraph("AI automation and websites for small businesses · 6+ months", s["meta"]))
     story += bullets([
-        "Ships SMB automation, lead/outreach workflows, and client sites; real clients (names private).",
+        "Two client websites plus an in-progress AI HR build for a client; client names private.",
         "Ops glue across sheets, Gmail, webhooks, and live deploys.",
     ], s)
 
@@ -125,48 +124,44 @@ def build():
     story.append(Paragraph("Indian-legal RAG with citation audit · closed beta", s["meta"]))
     story += bullets([
         "Natural-language legal research over an Indian corpus; citation-audit layer filters unsupported claims.",
-        "Working with law agencies and lawyers; public architecture docs; application remains private.",
+        "Refined with informal feedback from 2 law agencies and 3 lawyers; public architecture docs; application remains private.",
     ], s)
 
     story.append(Paragraph("Evex — Founder / lead, event company (Bangalore)", s["role"]))
     story.append(Paragraph("Operations and P&amp;L", s["meta"]))
     story += bullets([
-        "Hosted 20+ school graduation events across Bangalore; ~₹5L+ profit.",
+        "Hosted 20+ school graduation parties across Bangalore; about INR 5 lakh profit.",
         "Leadership, logistics, and client delivery outside pure coding.",
     ], s)
 
     story += section("Internships", s)
     story.append(Paragraph("Indian Institute of Science (IISc) — Aerodynamics intern", s["role"]))
-    story.append(Paragraph("May 2025 · ~10 days (not a long research residency)", s["meta"]))
+    story.append(Paragraph("May 2025 · 10 days", s["meta"]))
     story += bullets([
         "Lab exposure to vortex-ring formation and instability regimes.",
-        "Follow-on CFD / propeller / VRS work was self-directed (not an IISc appointment).",
+        "Built vortex-tracker (OpenCV ring diameter and propagation speed) during the internship.",
+        "Follow-on propeller and vortex-ring simulation work was self-directed, on my own time.",
     ], s)
 
-    story.append(Paragraph("Vegam Solutions — Engineering intern", s["role"]))
-    story.append(Paragraph("Hardware filtration (2025 Q3) · Text-to-SQL RAG (2026 Q1, NDA)", s["meta"]))
+    story.append(Paragraph("Vegam Solutions — Engineering intern (two roles)", s["role"]))
+    story.append(Paragraph("Air-filtration hardware (2025 Q3) · Text-to-SQL RAG, 1 month full-time (2026 Q1, NDA)", s["meta"]))
     story += bullets([
         "Hardware: end-to-end water-based air-filtration prototype under shop constraints.",
-        "Software: NL→SQL retrieval with schema awareness and grounded refusal; clean-room portfolio proof: text2sql-rag (Spider).",
+        "Software: NL→SQL retrieval with schema awareness and grounded refusal; public clean-room companion: text2sql-rag (Spider evaluation pending).",
     ], s)
 
     story += section("Selected projects (technical)", s)
-    story.append(Paragraph(
-        "Case-file order matches the portfolio. Each entry: what it does, what was built, honest limits.",
-        s["meta"],
-    ))
-
     story.append(Paragraph("Anima — LLM interpretability meter (flagship)", s["role"]))
-    story.append(Paragraph("Public · MIT · HF Spaces demo · linked to CSET/SaTML (under review)", s["meta"]))
+    story.append(Paragraph("Public · MIT · HF Spaces demo", s["meta"]))
     story += bullets([
         "Forward hooks into Hugging Face causal LMs; probe heads read valence, arousal, and uncertainty per token.",
         "Guard recommends abstaining when the readout looks unreliable (HaluEval / TruthfulQA fixtures).",
-        "5-model council: TinyLlama 1.1B aggregate 94.0; GoEmotions valence Pearson r ≈ 0.19 (reported honestly).",
+        "Benchmarked on five open models: TinyLlama 1.1B scored 94/100 on the weighted validity rubric (60 = publication bar); GoEmotions valence Pearson r ≈ 0.19.",
         "Technical: FastAPI + WebSocket stream, dashboard, public Spaces demo — meter, not a claim the model feels.",
     ], s)
 
     story.append(Paragraph("BumbleBee — Transformer-free CEC correlator (private)", s["role"]))
-    story.append(Paragraph("Opensourcing soon · no Hugging Face transformer on the product path", s["meta"]))
+    story.append(Paragraph("Private repo · no Hugging Face transformer on the product path", s["meta"]))
     story += bullets([
         "Closed-corpus ask / cite / refuse: GRU local encoder → SoftCorrelator (sparsemax) → CoverageGate → cite or refuse.",
         "Skills (chat / math / code) short-circuit via packs/tools; hard asks fall back to CEC. Not a frontier next-token LLM.",
@@ -184,7 +179,7 @@ def build():
     ], s)
 
     story.append(Paragraph("GodFather — Multi-agent NSE paper desk (private)", s["role"]))
-    story.append(Paragraph("Opensourcing soon · paper / session-sim only · not investment advice", s["meta"]))
+    story.append(Paragraph("Private repo · paper / session-sim only · not investment advice", s["meta"]))
     story += bullets([
         "Scout / Risk / Session agents share one desk; Risk may cut size or force cash — never raise risk.",
         "Prior-session bulk/block BUY filings, open-range entry, same-day exits; CLAIMS.md honesty gates.",
@@ -213,14 +208,14 @@ def build():
     story.append(Paragraph("GeoQuant — Algorithmic trading research platform", s["role"]))
     story.append(Paragraph("Walk-forward · cost-aware · honesty-first", s["meta"]))
     story += bullets([
-        "MLP signals, news sentiment, paper hooks, retraining; publicly reports poor Sharpe (~−0.47) instead of hiding failure.",
-        "Not investment advice. Technical: PyTorch + FastAPI with costs inside the optimizer.",
+        "MLP signals, news sentiment, paper trading, retraining. Walk-forward backtests (2022 to 2025): v1 failed (Sharpe −0.47, kept public); v2 trend + vol target reached Sharpe 1.36.",
+        "Backtests only; not investment advice. Technical: PyTorch + FastAPI with costs inside the optimizer.",
     ], s)
 
-    story.append(Paragraph("Aerospace / CFD / drone arc (self-directed)", s["role"]))
-    story.append(Paragraph("After IISc spark · simulation + hardware learning", s["meta"]))
+    story.append(Paragraph("Aerospace / simulation / drone arc (self-directed)", s["role"]))
+    story.append(Paragraph("Simulation + hardware learning · vortex-tracker built during the IISc internship", s["meta"]))
     story += bullets([
-        "vortex-tracker (OpenCV diameter + speed) · Propeller-simulator (BEMT sweeps) · Drone-Vortex-Ring-Simulation (Helmholtz / Kelvin Γ).",
+        "vortex-tracker (OpenCV diameter + speed) · Propeller-simulator (BEMT-style model, simplified) · Drone-Vortex-Ring-Simulation (reduced-order Helmholtz / Kelvin Γ; not CFD).",
         "NeuralVortex: early FNO-style volumetric surrogate (smoke-scale — not production accuracy).",
         "Homemade F450 quad + F550 hex builds; Pico FC learning firmware (props-off until tether tests pass).",
     ], s)
@@ -228,7 +223,7 @@ def build():
     story.append(Paragraph("Other supporting systems", s["role"]))
     story += bullets([
         "trade_bot: NSE bulk-deal ingest, scoring, WhatsApp alerts — lab that fed GodFather.",
-        "text2sql-rag: Spider clean-room with schema linking, few-shot, sqlglot validation.",
+        "text2sql-rag: Spider clean-room with schema linking, few-shot, sqlglot validation (evaluation pending).",
         "FleetControl: multi-host stub LLM memory pools + Anima probes.",
         "cursor-llm-council: multi-model Cursor council that resists yes-man answers.",
         "AI-BRAIN: voice-first daily OS (Whisper, local/cloud LLM, Qdrant RAG).",
@@ -246,9 +241,9 @@ def build():
     story += section("Community · sports", s)
     story += bullets([
         "Websites / volunteering: Project Thrive, Project Lighthouse, Arogi Foundation.",
-        "Football: school team 4 years; CBSE state tournament; Goa Globe; ESSB / GameON.",
+        "Football: school team 4 years; state-level CBSE tournament; Goa Globe 2024, team 2nd place; ESSB / GameON.",
         "Past competitive skating (ForceOne Academy). Motorcycle track training (trained, not certified).",
-        "All-India CBSE 2nd — football, Goa Globe.",
+        "Badminton, swimming, Model UN; 50+ hours of community service.",
     ], s)
 
     story.append(Spacer(1, 8))
