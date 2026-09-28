@@ -166,7 +166,7 @@ def build():
         "Closed-corpus ask / cite / refuse: GRU local encoder → SoftCorrelator (sparsemax) → CoverageGate → cite or refuse.",
         "Skills (chat / math / code) short-circuit via packs/tools; hard asks fall back to CEC. Not a frontier next-token LLM.",
         "Honesty: on the sealed pack BM25 still leads in-domain F1; skills wins ≠ core CEC quality. Patent: nothing filed.",
-        "CLI: ingest, seal, train, calibrate, eval, ask, chat, dash. Footprint-first (~24M params class) — not dense-LLM parity.",
+        "CLI: ingest, seal, train, calibrate, eval, ask, chat, dash. Footprint-first design, not dense-LLM parity.",
     ], s)
 
     story.append(Paragraph("Corvex — Multi-host campaign correlator (flagship)", s["role"]))
