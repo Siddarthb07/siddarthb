@@ -10,7 +10,9 @@ from reportlab.platypus import (
 )
 from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
-OUT = Path(__file__).resolve().parents[1] / "assets" / "Siddarth_Boggarapu_Resume.pdf"
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "assets" / "Siddarth_Boggarapu_Resume.pdf"
+SCHOOL = ROOT / "assets" / "Siddarth_Boggarapu_School_Activity_Record.pdf"
 
 INK = HexColor("#111827")
 MUTED = HexColor("#4b5563")
@@ -88,10 +90,10 @@ def build():
             s["contact"],
         ),
         Paragraph(
-            "Builder portfolio centered on systems that <b>verify, cite, and refuse</b> under uncertainty — "
-            "LLM instrumentation, grounded QA, multi-host security correlation, paper trading research, "
-            "agent ops, legal-tech RAG, and physical simulation. CSET / SaTML submissions are "
-            "<b>under review</b> (not accepted, not published).",
+            "Student in Bangalore. Built an 8-bit breadboard computer from 74HC logic chips, "
+            "plus software that measures language models, correlates security alerts, and refuses "
+            "answers it cannot support. CSET / SaTML submissions are <b>under review</b> "
+            "(not accepted, not published).",
             s["summary"],
         ),
     ]
@@ -151,6 +153,15 @@ def build():
     ], s)
 
     story += section("Selected projects (technical)", s)
+    story.append(Paragraph("Discrete-logic CPU — built 8-bit breadboard computer", s["role"]))
+    story.append(Paragraph("74HC logic on six breadboards · ESP8266 loads the program only · not a simulated CPU", s["meta"]))
+    story += bullets([
+        "Built the processor from 74HC chips: registers, adder, decoders, and a 555 clock, on six solderless breadboards.",
+        "The ESP8266 NodeMCU only writes the program into SRAM from USB. It is not the processor, and it is not tied to the CPU 5 V supply.",
+        "Wired instructions: load, add, subtract, AND, OR, XOR, show the result on LEDs, halt, and no-operation. Jump and jump-if-zero are not wired.",
+        "Check program the machine is built to run: load 5, add 7, show 12 (binary 0000 1100), then halt. Clock can free-run or single-step.",
+    ], s)
+
     story.append(Paragraph("Anima — LLM interpretability meter (flagship)", s["role"]))
     story.append(Paragraph("Public · MIT · HF Spaces demo", s["meta"]))
     story += bullets([
@@ -184,18 +195,6 @@ def build():
         "Scout / Risk / Session agents share one desk; Risk may cut size or force cash — never raise risk.",
         "Prior-session bulk/block BUY filings, open-range entry, same-day exits; CLAIMS.md honesty gates.",
         "Never sent a live broker order. Cut from the broader trade_bot lab.",
-    ], s)
-
-    story.append(Paragraph("Orqis — Agent-ops self-healing (also under Ventures)", s["role"]))
-    story.append(Paragraph("Live product · detect → explain → patch → human review", s["meta"]))
-    story += bullets([
-        "Incident console for runaway tool loops; reviewable unified-diff / PR; refuse silent push.",
-    ], s)
-
-    story.append(Paragraph("VidhiSetu — Indian-legal RAG (also under Ventures)", s["role"]))
-    story.append(Paragraph("Citation audit · closed beta · public architecture docs", s["meta"]))
-    story += bullets([
-        "Answers grounded in sources; unsupported claims filtered before response ships.",
     ], s)
 
     story.append(Paragraph("Drift — Clinical rule-based health risk tracker", s["role"]))
@@ -232,6 +231,7 @@ def build():
 
     story += section("Hardware", s)
     story += bullets([
+        "Discrete-logic CPU: built 8-bit 74HC breadboard computer (see project above). ESP8266 is the loader only.",
         "Multirotors: F450 quad + F550 hex (GPS / autonomous modes) — airframe, ESCs, FC tuning.",
         "Rovers: Bluetooth, line-follow, ultrasonic avoid; custom PCB plant-watering (soil moisture).",
         "Arduino / ESP32 toolkit including BLE macrodeck for workflow shortcuts.",
@@ -255,5 +255,224 @@ def build():
     doc.build(story)
     print(f"Wrote {OUT} ({OUT.stat().st_size} bytes)")
 
+
+def school_styles():
+    base = getSampleStyleSheet()
+    return {
+        "kicker": ParagraphStyle(
+            "Kicker", parent=base["Normal"], fontName="Helvetica-Bold",
+            fontSize=8, leading=10, textColor=ACCENT, alignment=TA_CENTER, spaceAfter=2,
+        ),
+        "name": ParagraphStyle(
+            "SName", parent=base["Normal"], fontName="Helvetica-Bold",
+            fontSize=16, leading=19, textColor=INK, alignment=TA_CENTER, spaceAfter=2,
+        ),
+        "contact": ParagraphStyle(
+            "SContact", parent=base["Normal"], fontName="Helvetica",
+            fontSize=9, leading=12, textColor=MUTED, alignment=TA_CENTER, spaceAfter=8,
+        ),
+        "note": ParagraphStyle(
+            "SNote", parent=base["Normal"], fontName="Helvetica",
+            fontSize=9.5, leading=13, textColor=INK, spaceAfter=8,
+        ),
+        "h": ParagraphStyle(
+            "SH", parent=base["Normal"], fontName="Helvetica-Bold",
+            fontSize=11, leading=14, textColor=ACCENT, spaceBefore=10, spaceAfter=3,
+        ),
+        "role": ParagraphStyle(
+            "SRole", parent=base["Normal"], fontName="Helvetica-Bold",
+            fontSize=10.5, leading=13, textColor=INK, spaceBefore=6, spaceAfter=1,
+        ),
+        "body": ParagraphStyle(
+            "SBody", parent=base["Normal"], fontName="Helvetica",
+            fontSize=9.5, leading=12.5, textColor=INK, spaceAfter=2,
+        ),
+        "limit": ParagraphStyle(
+            "SLimit", parent=base["Normal"], fontName="Helvetica-Oblique",
+            fontSize=9, leading=12, textColor=MUTED, spaceAfter=4, leftIndent=8,
+        ),
+    }
+
+
+def entry(s, title, lines, limit):
+    flow = [Paragraph(title, s["role"])]
+    for line in lines:
+        flow.append(Paragraph(line, s["body"]))
+    flow.append(Paragraph(f"Limit: {limit}", s["limit"]))
+    return flow
+
+
+def build_school():
+    s = school_styles()
+    doc = SimpleDocTemplate(
+        str(SCHOOL), pagesize=letter,
+        leftMargin=0.7 * inch, rightMargin=0.7 * inch,
+        topMargin=0.6 * inch, bottomMargin=0.6 * inch,
+        title="Siddarth Boggarapu — school activity record",
+        author="Siddarth Boggarapu",
+    )
+    story = [
+        Paragraph("FOR SCHOOL REVIEW", s["kicker"]),
+        Paragraph("SIDDARTH BOGGARAPU", s["name"]),
+        Paragraph(
+            "Bangalore, India · siddarthb078@gmail.com<br/>"
+            "GitHub: Siddarthb07 · Portfolio: siddarthb07.github.io/siddarthb<br/>"
+            "School name / grade / counselor: ________________________________",
+            s["contact"],
+        ),
+        Paragraph(
+            "Activity record for the school to review before it approves documents "
+            "connected to SAT registration or score reporting. This is not a College Board form, "
+            "an admission ticket, or a photo ID. It is the list of work the school can check. "
+            "Each item states what was actually done and the limit on that claim.",
+            s["note"],
+        ),
+        Paragraph("BUILT COMPUTER", s["h"]),
+        HRFlowable(width="100%", thickness=0.7, color=RULE, spaceBefore=0, spaceAfter=4),
+    ]
+    story += entry(
+        s,
+        "Discrete-logic CPU — built 8-bit breadboard computer",
+        [
+            "I built the processor on six solderless breadboards from 74HC logic chips "
+            "(registers, adder, decoders, and a 555 clock). It is a real wired computer, not a diagram and not a program pretending to be a CPU.",
+            "An ESP8266 NodeMCU only loads the program into the SRAM from a USB port. It is not the processor. Its ground is shared with the CPU. Its 5 V pin is not connected to the CPU supply.",
+            "Instructions that are wired: load a number, add, subtract, AND, OR, XOR, copy the result to output LEDs, halt, and no-operation. "
+            "The machine can free-run or single-step.",
+            "The check program is four bytes: load 5, add 7, show the result, halt. The output LEDs should read 0000 1100 (12), then the halt light stays on.",
+        ],
+        "Jump and jump-if-zero are not wired, so this is not a general-purpose computer with branches. "
+        "The memory chip is 32K, but this build uses addresses 0 to 15. No custom silicon and no fabricated PCB.",
+    )
+    story += [
+        Paragraph("PROJECTS THE SCHOOL CAN OPEN", s["h"]),
+        HRFlowable(width="100%", thickness=0.7, color=RULE, spaceBefore=0, spaceAfter=4),
+    ]
+    story += entry(
+        s,
+        "Anima — language-model meter (public)",
+        [
+            "Reads internal activations of open language models and estimates valence, arousal, and uncertainty per token. A guard recommends abstaining when the reading looks unreliable.",
+            "On the project’s own validity rubric, TinyLlama 1.1B scored 94/100 (the project’s publication bar was 60). On GoEmotions, valence correlation was about 0.19.",
+        ],
+        "This does not mean the model has feelings. 94/100 is a project rubric, not an official exam score. The 0.19 correlation is weak.",
+    )
+    story += entry(
+        s,
+        "Corvex — multi-host alert correlator (public)",
+        [
+            "Combines weak alerts from many computers into one campaign timeline. Sensors exist for Windows and macOS. Live quarantine is locked off. A person stays in control.",
+            "Results that hold are on synthetic practice fleets, including a small sealed set (3 attack packs and 5 benign packs).",
+        ],
+        "Not validated on a real company’s network or on a large set of purely normal traffic. Not a commercial security product.",
+    )
+    story += entry(
+        s,
+        "BumbleBee — closed-corpus question answering (private repository)",
+        [
+            "Answers from a fixed document pack, cites the passage, or refuses. It does not use a Hugging Face transformer as the product.",
+            "On the sealed pack, ordinary BM25 search still scores higher in-domain F1 (0.136) than the correlator (0.122), on about 2,070 items.",
+        ],
+        "Not a ChatGPT-class model. A perfect score on a small skills checklist is not the same as the core answerer. No patent has been filed.",
+    )
+    story += entry(
+        s,
+        "Orqis — technical cofounder, live product",
+        [
+            "Backend for a tool that detects a software agent stuck in a loop, explains it, and opens a patch for a person to review before anything merges.",
+        ],
+        "It does not silently push to the main branch. No customer count is claimed here.",
+    )
+    story += [
+        Paragraph("WORK AND SCHOOL-ADJACENT ACTIVITY", s["h"]),
+        HRFlowable(width="100%", thickness=0.7, color=RULE, spaceBefore=0, spaceAfter=4),
+    ]
+    story += entry(
+        s,
+        "Indian Institute of Science — aerodynamics intern, May 2025 (10 days)",
+        [
+            "Lab exposure to vortex-ring formation. During the internship I built vortex-tracker, which measures ring diameter and speed from video with OpenCV.",
+        ],
+        "Later propeller and vortex-ring simulations were my own follow-on work, not an IISc assignment.",
+    )
+    story += entry(
+        s,
+        "Vegam Solutions — engineering intern",
+        [
+            "2025 Q3: water-based air-filtration prototype under shop constraints.",
+            "2026 Q1: one month full-time on natural-language to SQL, under NDA.",
+        ],
+        "No client deliverable or internal metric from the NDA role is included.",
+    )
+    story += entry(
+        s,
+        "Athera (athera.digital) — founder",
+        [
+            "Websites and automation for small businesses for 6+ months. Two client websites and an in-progress AI HR build.",
+        ],
+        "Client names are private and are not listed.",
+    )
+    story += entry(
+        s,
+        "Evex — event company, Bangalore",
+        [
+            "Hosted 20+ school graduation parties. About INR 5 lakh profit.",
+        ],
+        "This is operations and delivery, not a software product.",
+    )
+    story += entry(
+        s,
+        "VidhiSetu — Indian legal research tool, closed beta",
+        [
+            "Natural-language research over an Indian legal corpus, with a citation check that drops unsupported claims. Informal feedback from 2 law agencies and 3 lawyers. The application stays private.",
+        ],
+        "Not a public legal product and not a substitute for a lawyer.",
+    )
+    story += entry(
+        s,
+        "Papers",
+        [
+            "CSET (security experimentation) and SaTML (trustworthy machine learning) submissions are under review.",
+        ],
+        "Not accepted and not published. Do not list them as publications.",
+    )
+    story += [
+        Paragraph("SCHOOL LIFE", s["h"]),
+        HRFlowable(width="100%", thickness=0.7, color=RULE, spaceBefore=0, spaceAfter=4),
+    ]
+    story += entry(
+        s,
+        "Football, service, and other school activities",
+        [
+            "School football team for 4 years. State-level CBSE tournament. Goa Globe 2024, team 2nd place. Also ESSB / GameON.",
+            "Websites for Project Thrive, Project Lighthouse, and Arogi Foundation. 50+ hours of community service.",
+            "Model UN; badminton; swimming; two SWEA school trips (three days each). Past competitive skating at ForceOne Academy. Motorcycle track training, trained and not certified.",
+        ],
+        "2nd place is the team result at Goa Globe 2024, not an individual national ranking.",
+    )
+    story += [
+        Paragraph("WHAT THIS RECORD DOES NOT SAY", s["h"]),
+        HRFlowable(width="100%", thickness=0.7, color=RULE, spaceBefore=0, spaceAfter=4),
+        Paragraph(
+            "No SAT score is stated, because this packet is for the school’s approval step, not a score report. "
+            "No school name or grade is filled in above; the school should write those. "
+            "GodFather and GeoQuant are paper-trading research only and are not investment results. "
+            "Drift is not a medical device. Neural Sync (EEG) is still in progress.",
+            s["body"],
+        ),
+        Spacer(1, 14),
+        Paragraph("Student signature: ___________________________ &nbsp;&nbsp; Date: ______________", s["body"]),
+        Paragraph("School official: _______________________________ &nbsp;&nbsp; Date: ______________", s["body"]),
+        Spacer(1, 8),
+        Paragraph(
+            "Same facts as the CV at https://siddarthb07.github.io/siddarthb/ — resume PDF in that site’s assets folder.",
+            s["contact"],
+        ),
+    ]
+    doc.build(story)
+    print(f"Wrote {SCHOOL} ({SCHOOL.stat().st_size} bytes)")
+
+
 if __name__ == "__main__":
     build()
+    build_school()
